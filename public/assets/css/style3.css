@@ -1,0 +1,387 @@
+/* Layout Basics */
+body {
+    background: #f2f8fa;
+    font-family: "Inter", sans-serif;
+}
+
+.topbar {
+    height: 70px;
+    background: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    width: calc(100% - 260px);
+    transition: 0.3s ease;
+}
+
+/* .sidebar.minimized ~ .topbar {
+    width: calc(100% - 80px);
+    transition: 0.3s ease;
+} */
+.topbar.minimized {
+    width: calc(100% - 80px);
+    transition: 0.3s ease;
+}
+/* SEARCH BOX */
+.search-box {
+    background: #f1f3f5;
+    border-radius: 50px;
+    padding: 8px 18px;
+    width: 280px;
+    gap: 10px;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.search-box input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* SIDEBAR */
+.sidebar {
+    min-width: 260px;
+    /* background: #fff; */
+    background: #fafdfd;
+    height: 100%;
+    /* height: 100vh; */
+    /* position: fixed; */
+    /* left: 0; */
+    /* top: 0; */
+    /* padding-top: 70px; */
+    border-right: 1px solid #e6e6e6;
+    overflow-y: auto;
+    transition: 0.3s ease;
+}
+
+.sidebar.minimized {
+    min-width: 80px;
+}
+.sidebar-content {
+    background: #fafdfd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    min-width: 260px;
+    overflow-y: auto;
+    transition: 0.3s ease;
+}
+.sidebar.minimized .sidebar-content {
+    min-width: 80px;
+}
+
+/* LOGO */
+.sidebar-logo {
+    /* padding: 15px; */
+    border-bottom: 1px solid #eee;
+    height: 55px;
+}
+
+.top-sidebar {
+    position: sticky;
+    top: 0;
+    background: #fafdfd;
+    padding: 15px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar.minimized .logo-full {
+    display: none;
+}
+
+.sidebar.minimized .logo-icon {
+    display: block !important;
+}
+
+/* MENU */
+.menu {
+    padding: 15px;
+}
+
+.menu-title {
+    font-size: 11px;
+    color: #7e8b9a;
+    margin: 15px 0 10px 10px;
+    display: block;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin: 4px 0;
+    color: #333;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.menu-item i {
+    font-size: 20px;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background: #e8f3fc;
+    color: #1570ef;
+}
+
+/* Minimized mode (icons only) */
+.sidebar.minimized .menu-item span {
+    display: none;
+}
+
+.sidebar.minimized .menu-title {
+    display: none;
+}
+
+.sidebar.minimized .menu-item {
+    justify-content: center;
+}
+
+/* CONTENT */
+.content {
+    /* margin-left: 260px; */
+    padding: 110px 30px 40px;
+    transition: 0.3s ease;
+    /* width: calc(100% - 260px); */
+    height: 100vh;
+    background-color: #333;
+    overflow-y: auto;
+}
+
+.content.minimized {
+    /* margin-left: 80px; */
+    /* width: calc(100% - 80px); */
+    transition: 0.3s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .sidebar {
+        left: -260px;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
+
+/* DROPDOWN CONTAINER */
+.menu-dropdown {
+    margin-bottom: 10px;
+}
+
+/* DROPDOWN BUTTON */
+/* DROPDOWN BUTTON WITH ARROW ON RIGHT */
+.dropdown-toggle-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* icon → text spacing */
+    background: none;
+    border: none;
+    padding: 12px 14px;
+    color: #333;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+    position: relative;
+    justify-content: flex-start;
+    /* FIX: align icon + text left */
+}
+
+/* Icon stays left */
+.dropdown-toggle-btn i:first-child {
+    font-size: 20px;
+}
+
+/* Arrow stays on the right edge */
+/* .dropdown-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: .3s ease;
+    font-size: 16px;
+} */
+.dropdown-arrow {
+    margin-left: auto;
+    /* This pushes arrow neatly to right */
+    font-size: 15px;
+    /* color: #1570ef; */
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+    position: relative;
+    top: 1px;
+    /* vertical alignment perfect */
+}
+
+/* .menu-dropdown.open .dropdown-arrow {
+    transform: translateY(-50%) rotate(180deg);
+} */
+.menu-dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-toggle-btn:hover {
+    background: #e8f3fc;
+    color: #1570ef;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+@media (min-width: 567px) {
+    .dropdown-toggle::after {
+        display: inline-block;
+    }
+}
+
+/* ARROW */
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+}
+
+.menu-dropdown.open .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* SUBMENU */
+.submenu {
+    display: none;
+    flex-direction: column;
+    padding-left: 40px;
+    margin-top: 6px;
+    animation: fadeIn 0.3s ease;
+}
+
+.menu-dropdown.open .submenu {
+    display: flex;
+}
+
+/* SUBMENU ITEM */
+.submenu-item {
+    padding: 8px 0;
+    color: #444;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+}
+
+.submenu-item::before {
+    content: "•";
+    color: #1570ef;
+    font-size: 22px;
+    position: absolute;
+    left: -18px;
+    top: -4px;
+}
+
+.submenu-item:hover {
+    color: #1570ef;
+}
+
+/* In minimized sidebar */
+.sidebar.minimized .submenu {
+    display: none !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hide dropdown arrow when sidebar is minimized */
+.sidebar.minimized .dropdown-arrow {
+    display: none !important;
+}
+
+/* Also hide menu text when minimized */
+.sidebar.minimized .menu-item span,
+.sidebar.minimized .dropdown-toggle-btn span {
+    display: none !important;
+}
+
+/* Center icons when minimized */
+.sidebar.minimized .menu-item i,
+.sidebar.minimized .dropdown-toggle-btn i {
+    margin-right: 0 !important;
+    display: block;
+    /* text-align: center; */
+    width: 100%;
+}
+
+/* Optional: shrink submenu when minimized */
+.sidebar.minimized .submenu {
+    display: none !important;
+}
+
+.menu-item span,
+.dropdown-toggle-btn span {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.chat-container {
+    /* background-color: red; */
+    /* height: 100vh; */
+    height: calc(100vh - 180px);
+    /* overflow-y: auto; */
+}
+#content {
+    margin-top: 70px;
+}
+
+.bottom-fixed {
+    position: fixed;
+    bottom: 20px;
+    width: calc(100% - 320px);
+    transition: all 0.3s ease;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    /* width: 100%; */
+    /* max-width: 700px; */
+}
+#content.minimized .bottom-fixed {
+    width: calc(100% - 140px);
+}
+.message {
+    background: #1a1a1a;
+    padding: 13px 18px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    max-width: 560px;
+}
+
+.lst-msg-margin {
+    margin-bottom: 120px;
+}
