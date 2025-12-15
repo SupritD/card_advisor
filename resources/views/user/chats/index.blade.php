@@ -1,5 +1,5 @@
 @extends('layouts.user-dashboard')
-@section('title', 'Card Details')
+@section('title', 'Chat')
 
 @section('content')
     <div class="d-flex flex-column justify-content-center align-items-center">
@@ -13,7 +13,7 @@
                 <div class="col-9 mx-auto">
                     {{-- <h1>hello</h1> --}}
                     <div id="centerBox" class="center-box">
-                        <h1 style="font-weight:400;">What’s on your mind today?</h1>
+                        <h1 class="text-dark" style="font-weight:400;">What’s on your mind today?</h1>
                     </div>
                     <div id="inputArea" class="input-area">
                         <input type="text" id="msgInput" class="input-bar" placeholder="Ask anything..." />

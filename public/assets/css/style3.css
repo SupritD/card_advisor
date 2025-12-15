@@ -160,7 +160,7 @@ body {
     transition: 0.3s ease;
     /* width: calc(100% - 260px); */
     height: 100vh;
-    background-color: #333;
+    /* background-color: #333; */
     overflow-y: auto;
 }
 
@@ -375,13 +375,15 @@ body {
     width: calc(100% - 140px);
 }
 .message {
-    background: #1a1a1a;
+    /* background: #1a1a1a; */
     padding: 13px 18px;
     border-radius: 12px;
     margin-bottom: 12px;
     max-width: 560px;
 }
-
-.lst-msg-margin {
-    margin-bottom: 120px;
+.message.user-message {
+    background-color: #323232d9;
+}
+.message.bot-message{
+    background-color: #171717;
 }

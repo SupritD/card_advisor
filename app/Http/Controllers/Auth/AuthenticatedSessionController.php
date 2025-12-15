@@ -27,7 +27,15 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        // dd('here');
+        $user = Auth::user();
 
+        // ✅ If user has NOT selected any card
+        if ($user->cards()->count() === 0) {
+            return redirect()->route('user.cards.index');
+        }
+
+        // ✅ Otherwise go to dashboard
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

@@ -67,7 +67,7 @@
 
 
     <div class="card border-0 shadow-sm">
-        <div class="card-header bg-light">
+        <div class="card-header bg-dark text-white">
             <h5 class="mb-0">
                 <i class="fas fa-plus-circle"></i>
                 {{ $userCards->count() ? 'Update Your Cards' : 'Select Your Cards' }}
@@ -150,30 +150,6 @@
 @endsection
 
 <script>
-    // document.querySelectorAll('.remove-card').forEach(button => {
-    //     button.addEventListener('click', function() {
-
-    //         if (!confirm('Remove this card from your list?')) return;
-
-    //         const cardId = this.dataset.id;
-    //         const cardBox = this.closest('.col-md-4');
-
-    //         fetch(`/my-cards/${cardId}`, {
-    //                 method: 'DELETE',
-    //                 headers: {
-    //                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
-    //                     'Accept': 'application/json'
-    //                 }
-    //             })
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 if (data.success) {
-    //                     cardBox.remove();
-    //                 }
-    //             })
-    //             .catch(err => console.error(err));
-    //     });
-    // });
 
     setTimeout(() => {
         const alert = document.getElementById('success-alert');

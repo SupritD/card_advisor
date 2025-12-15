@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\ChatController;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\Admin\CardController;
-use App\Http\Controllers\User\CardController; // 👈 IMPORTANT
+use App\Http\Controllers\User\CardController;
 
 
 Route::get('/', function () {
@@ -38,7 +38,11 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/my-cards', [CardController::class, 'store'])
             ->name('user.cards.store');
-
+        // =========================
+        // USER CHAT ROUTES  ✅
+        // =========================
+        Route::get('/my-chat', [ChatController::class, 'index'])
+            ->name('user.chat.index');
     });
 
 

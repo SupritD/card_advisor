@@ -74,7 +74,7 @@
                         <span>Activity</span>
                     </a>
 
-                    <a href="#" class="menu-item">
+                    <a href="{{ route('user.chat.index') }}" class="menu-item">
                         <i class="bi bi-chat-left-text"></i>
                         <span>Messages</span>
                     </a>
