@@ -8,6 +8,107 @@ document.addEventListener('DOMContentLoaded', () => {
     // If the page doesn't have the chat elements (e.g., different view), do nothing
     if (!input || !chatBox) return;
 
+    // Attempt to restore previous session messages if we have a session token
+    (async () => {
+        try {
+            const token = localStorage.getItem('chat_session_token');
+            if (!token) return;
+            const resp = await fetch(`/api/chat/history?session_token=${encodeURIComponent(token)}`);
+            if (!resp.ok) return;
+            const data = await resp.json();
+            if (!data.messages) return;
+
+            data.messages.forEach(m => {
+                const container = document.createElement("div");
+                container.className = m.role === 'user' ? "d-flex justify-content-end" : "d-flex justify-content-start";
+                const msg = document.createElement("div");
+                msg.className = "message " + (m.role === 'user' ? 'user-message' : 'bot-message');
+                msg.innerText = m.content;
+                container.appendChild(msg);
+                chatBox.appendChild(container);
+            });
+
+            if (data.messages.length > 0) {
+                chatBox.scrollTop = chatBox.scrollHeight;
+                if (centerBox) centerBox.style.display = 'none';
+                chatBox.style.display = 'block';
+                if (chatInput) chatInput.classList.add('bottom-fixed');
+            }
+        } catch (e) {
+            // ignore restore errors
+            console.warn('Failed to restore chat session', e);
+        }
+    })();
+
+    // Session controls (show token, clear session)
+    const btnShow = document.getElementById('btnShowSession');
+    const btnClear = document.getElementById('btnClearSession');
+    const tokenEl = document.getElementById('sessionTokenDisplay');
+
+    if (btnShow) {
+        btnShow.addEventListener('click', function () {
+            const t = localStorage.getItem('chat_session_token');
+            if (!t) {
+                tokenEl.innerText = 'No active session.';
+                tokenEl.style.display = 'inline';
+                setTimeout(() => { tokenEl.style.display = 'none'; }, 3000);
+                return;
+            }
+            tokenEl.innerText = t + ' (click to copy)';
+            tokenEl.style.display = 'inline';
+
+            tokenEl.addEventListener('click', async function copyToken() {
+                try {
+                    await navigator.clipboard.writeText(t);
+                    tokenEl.innerText = 'Copied to clipboard';
+                    setTimeout(() => { tokenEl.style.display = 'none'; }, 2000);
+                } catch (e) {
+                    // fallback: select
+                    const tmp = document.createElement('textarea');
+                    tmp.value = t;
+                    document.body.appendChild(tmp);
+                    tmp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tmp);
+                    tokenEl.innerText = 'Copied to clipboard';
+                    setTimeout(() => { tokenEl.style.display = 'none'; }, 2000);
+                }
+                tokenEl.removeEventListener('click', copyToken);
+            }, { once: true });
+        });
+    }
+
+    if (btnClear) {
+        btnClear.addEventListener('click', async function () {
+            const t = localStorage.getItem('chat_session_token');
+            const ok = confirm('Clear chat session? This will remove local history and optionally delete it from the server.');
+            if (!ok) return;
+
+            if (t) {
+                try {
+                    await fetch('/api/chat/session', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({ session_token: t })
+                    });
+                } catch (e) {
+                    console.warn('Failed to delete session on server', e);
+                }
+            }
+
+            // clear local data and reset UI
+            localStorage.removeItem('chat_session_token');
+            tokenEl.style.display = 'none';
+            chatBox.innerHTML = '';
+            if (centerBox) centerBox.style.display = 'block';
+            chatBox.style.display = 'none';
+            if (chatInput) chatInput.classList.remove('bottom-fixed');
+        });
+    }
+
     let lastMsg = document.querySelector(".chat-container .message:last-child");
 
     input.addEventListener("keypress", function (e) {
@@ -64,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             'X-Requested-With': 'XMLHttpRequest',
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         },
-                        body: JSON.stringify({ message: msg.innerText, language })
+                        body: JSON.stringify({ message: msg.innerText, language, session_token: localStorage.getItem('chat_session_token') || undefined })
                     });
 
                     if (!resp.ok) throw new Error('Stream request failed: ' + resp.status);
@@ -103,6 +204,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                     reader.cancel();
                                     break;
                                 }
+
+                                // session token event
+                                if (obj.session_token) {
+                                    try {
+                                        localStorage.setItem('chat_session_token', obj.session_token);
+                                    } catch (e) {
+                                        // ignore storage errors
+                                    }
+                                    continue;
+                                }
+
                                 if (obj.delta) {
                                     botMsg.innerText += obj.delta;
                                     botMsg.scrollIntoView({ behavior: 'smooth', block: 'end' });

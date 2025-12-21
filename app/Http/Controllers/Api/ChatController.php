@@ -6,15 +6,34 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\Models\ChatSession;
+use App\Models\ChatMessage;
 
 class ChatController extends Controller
 {
+    protected function getOrCreateSession(Request $request)
+    {
+        $token = $request->input('session_token') ?? $request->header('X-Chat-Session');
+        $session = null;
+
+        if ($token) {
+            $session = ChatSession::where('token', $token)->first();
+        }
+
+        if (!$session) {
+            $session = ChatSession::createForUser($request->user());
+        }
+
+        return $session;
+    }
+
     public function chat(Request $request)
     {
         $request->validate([
             'message' => 'required|string',
             'model' => 'nullable|string',
             'language' => 'nullable|string|in:auto,en,zh,es,fr',
+            'session_token' => 'nullable|string',
         ]);
 
         $message = $request->input('message');
@@ -28,6 +47,16 @@ class ChatController extends Controller
         }
 
         try {
+            // get or create session
+            $session = $this->getOrCreateSession($request);
+
+            // persist user message
+            $userMsg = ChatMessage::create([
+                'chat_session_id' => $session->id,
+                'role' => 'user',
+                'content' => $message,
+            ]);
+
             // Build messages for the model. Include a system instruction to force language
             $messages = [];
 
@@ -47,6 +76,13 @@ class ChatController extends Controller
                 ];
             }
 
+            // include recent history
+            $history = $session->messages()->orderBy('created_at', 'desc')->limit(20)->get()->reverse();
+            foreach ($history as $h) {
+                $messages[] = ['role' => $h->role, 'content' => $h->content];
+            }
+
+            // current user message already saved but include it for context
             $messages[] = [
                 'role' => 'user',
                 'content' => $message,
@@ -78,11 +114,45 @@ class ChatController extends Controller
                 $content = $data['choices'][0]['content'];
             }
 
-            return response()->json(['reply' => $content ?? 'No reply from model', 'raw' => $data]);
+            // persist assistant reply
+            $assistantMsg = ChatMessage::create([
+                'chat_session_id' => $session->id,
+                'role' => 'assistant',
+                'content' => $content ?? '',
+                'meta' => $data,
+            ]);
+
+            return response()->json(['reply' => $content ?? 'No reply from model', 'raw' => $data, 'session_token' => $session->token]);
         } catch (\Exception $e) {
             Log::error('ChatController exception', ['exception' => $e->getMessage()]);
             return response()->json(['error' => 'Exception calling upstream API'], 500);
         }
+    }
+
+    /**
+     * Return historical messages for a session token
+     */
+    public function history(Request $request)
+    {
+        $request->validate([
+            'session_token' => 'nullable|string',
+        ]);
+
+        $token = $request->input('session_token') ?? $request->query('session_token');
+        if (!$token) {
+            return response()->json(['messages' => []]);
+        }
+
+        $session = ChatSession::where('token', $token)->first();
+        if (!$session) {
+            return response()->json(['messages' => []]);
+        }
+
+        $messages = $session->messages()->orderBy('created_at', 'asc')->get()->map(function ($m) {
+            return ['role' => $m->role, 'content' => $m->content, 'created_at' => $m->created_at->toDateTimeString()];
+        });
+
+        return response()->json(['messages' => $messages, 'session_token' => $session->token]);
     }
 
     /**
@@ -94,6 +164,7 @@ class ChatController extends Controller
             'message' => 'required|string',
             'model' => 'nullable|string',
             'language' => 'nullable|string|in:auto,en,zh,es,fr',
+            'session_token' => 'nullable|string',
         ]);
 
         $message = $request->input('message');
@@ -105,6 +176,14 @@ class ChatController extends Controller
         if (empty($apiKey)) {
             return response()->json(['error' => 'HuggingFace API key not configured'], 500);
         }
+
+        // get or create session and persist user message
+        $session = $this->getOrCreateSession($request);
+        $userMsg = ChatMessage::create([
+            'chat_session_id' => $session->id,
+            'role' => 'user',
+            'content' => $message,
+        ]);
 
         // Build messages with language system instruction
         $messages = [];
@@ -121,6 +200,13 @@ class ChatController extends Controller
                 'content' => "You are a helpful assistant. Always reply in {$langName}.",
             ];
         }
+
+        // include recent history
+        $history = $session->messages()->orderBy('created_at', 'desc')->limit(20)->get()->reverse();
+        foreach ($history as $h) {
+            $messages[] = ['role' => $h->role, 'content' => $h->content];
+        }
+
         $messages[] = ['role' => 'user', 'content' => $message];
 
         $payload = [
@@ -138,11 +224,16 @@ class ChatController extends Controller
 
             $body = $psrResponse->getBody();
 
-            return response()->stream(function () use ($body) {
+            return response()->stream(function () use ($body, $session) {
                 // Ensure script doesn't time out
                 set_time_limit(0);
 
+                // notify client of session token at the start
+                echo "data: " . json_encode(['session_token' => $session->token]) . "\n\n";
+                @ob_flush(); @flush();
+
                 $buffer = '';
+                $assistantContent = '';
 
                 while (!$body->eof()) {
                     $chunk = $body->read(1024);
@@ -181,6 +272,15 @@ class ChatController extends Controller
                         // strip data: prefix if present
                         $part = preg_replace('/^data:\s*/', '', $part);
                         if ($part === '[DONE]') {
+                            // persist final assistant message
+                            if ($assistantContent !== '') {
+                                ChatMessage::create([
+                                    'chat_session_id' => $session->id,
+                                    'role' => 'assistant',
+                                    'content' => $assistantContent,
+                                ]);
+                            }
+
                             echo "data: {\"done\":true}\n\n";
                             @ob_flush(); @flush();
                             return;
@@ -199,6 +299,7 @@ class ChatController extends Controller
                             }
 
                             if ($delta !== null) {
+                                $assistantContent .= $delta;
                                 echo "data: " . json_encode(['delta' => $delta]) . "\n\n";
                                 @ob_flush(); @flush();
                             }
@@ -218,6 +319,7 @@ class ChatController extends Controller
                                         }
 
                                         if ($delta !== null) {
+                                            $assistantContent .= $delta;
                                             echo "data: " . json_encode(['delta' => $delta]) . "\n\n";
                                             @ob_flush(); @flush();
                                         }
@@ -248,10 +350,20 @@ class ChatController extends Controller
                         }
 
                         if ($delta !== null) {
+                            $assistantContent .= $delta;
                             echo "data: " . json_encode(['delta' => $delta]) . "\n\n";
                             @ob_flush(); @flush();
                         }
                     }
+                }
+
+                // persist assistant final content
+                if ($assistantContent !== '') {
+                    ChatMessage::create([
+                        'chat_session_id' => $session->id,
+                        'role' => 'assistant',
+                        'content' => $assistantContent,
+                    ]);
                 }
 
                 echo "data: {\"done\":true}\n\n";
@@ -265,5 +377,29 @@ class ChatController extends Controller
             Log::error('Chat stream exception', ['exception' => $e->getMessage()]);
             return response()->json(['error' => 'Exception streaming upstream API'], 500);
         }
+    }
+
+    /**
+     * Delete a chat session and its messages (optional) — requires session_token
+     */
+    public function destroy(Request $request)
+    {
+        $request->validate([
+            'session_token' => 'nullable|string',
+        ]);
+
+        $token = $request->input('session_token') ?? $request->header('X-Chat-Session');
+        if (!$token) {
+            return response()->json(['status' => 'no-token'], 200);
+        }
+
+        $session = ChatSession::where('token', $token)->first();
+        if (!$session) {
+            return response()->json(['status' => 'not-found'], 404);
+        }
+
+        $session->delete();
+
+        return response()->json(['status' => 'deleted']);
     }
 }
