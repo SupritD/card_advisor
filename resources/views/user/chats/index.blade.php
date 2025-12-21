@@ -23,3 +23,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/js/dashboard-chat.js') }}"></script>
+@endpush

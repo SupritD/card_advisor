@@ -45,7 +45,7 @@
           <span>Home Pages</span>
           <i class="bi bi-chevron-down dropdown-arrow"></i>
         </button>
-        
+
         <div class="submenu">
           <a href="#" class="submenu-item">Intranet</a>
           <a href="#" class="submenu-item">Extranet</a>
@@ -59,7 +59,7 @@
 
                 <div class="menu">
                     {{-- <a href="#" class="menu-title">COMMUNITY</a> --}}
-                    
+
                     <a href="{{ route('user.cards.index') }}" class="menu-item">
                         <i class="bi bi-calendar-event"></i>
                         <span>Cards</span>
@@ -179,7 +179,7 @@
 
     {{-- Custom JS --}}
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <script src="{{ asset('assets/js/dashboard-chat.js') }}"></script>
+
 
     @stack('scripts')
 </body>
