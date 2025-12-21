@@ -15,6 +15,17 @@
                     <div id="centerBox" class="center-box">
                         <h1 class="text-dark" style="font-weight:400;">What’s on your mind today?</h1>
                     </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <label for="chatLanguage" class="me-2 mb-0">Language:</label>
+                        <select id="chatLanguage" class="form-select form-select-sm me-3" style="width:150px;">
+                            <option value="en" selected>English</option>
+                            <option value="auto">Auto</option>
+                            <option value="zh">Chinese</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                        </select>
+                    </div>
+
                     <div id="inputArea" class="input-area">
                         <input type="text" id="msgInput" class="input-bar" placeholder="Ask anything..." />
                     </div>

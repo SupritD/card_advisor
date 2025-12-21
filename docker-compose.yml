@@ -17,7 +17,7 @@ services:
       - REDIS_PORT=6379
     volumes:
       - ./:/var/www
-      - .env.docker:/var/www/.env
+      - .env:/var/www/.env
     ports:
       - "8000:8000"
     depends_on:
