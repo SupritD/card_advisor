@@ -18,6 +18,12 @@ class ChatController extends Controller
 
         if ($token) {
             $session = ChatSession::where('token', $token)->first();
+
+            // If a user is authenticated and the session exists but has no owner, attach it.
+            if ($session && $request->user() && !$session->user_id) {
+                $session->user_id = $request->user()->id;
+                $session->save();
+            }
         }
 
         if (!$session) {
@@ -234,6 +240,7 @@ class ChatController extends Controller
 
                 $buffer = '';
                 $assistantContent = '';
+                $metaChunks = [];
 
                 while (!$body->eof()) {
                     $chunk = $body->read(1024);
@@ -242,7 +249,7 @@ class ChatController extends Controller
                         continue;
                     }
 
-                    $buffer .= $chunk;
+                    $buffer .= $chunk; // keep raw chunks for later meta capture
 
                     // Process all complete events separated by double-newline
                     while (true) {
@@ -278,6 +285,7 @@ class ChatController extends Controller
                                     'chat_session_id' => $session->id,
                                     'role' => 'assistant',
                                     'content' => $assistantContent,
+                                    'meta' => ['chunks' => $metaChunks],
                                 ]);
                             }
 
@@ -309,6 +317,9 @@ class ChatController extends Controller
                                 foreach ($matches[0] as $m) {
                                     $j = json_decode($m, true);
                                     if (json_last_error() === JSON_ERROR_NONE) {
+                                        // collect meta
+                                        $metaChunks[] = $j;
+
                                         $delta = null;
                                         if (isset($j['choices'][0]['delta']['content'])) {
                                             $delta = $j['choices'][0]['delta']['content'];
@@ -363,6 +374,7 @@ class ChatController extends Controller
                         'chat_session_id' => $session->id,
                         'role' => 'assistant',
                         'content' => $assistantContent,
+                        'meta' => ['chunks' => $metaChunks],
                     ]);
                 }
 
@@ -401,5 +413,46 @@ class ChatController extends Controller
         $session->delete();
 
         return response()->json(['status' => 'deleted']);
+    }
+
+    /**
+     * List chat sessions for the current authenticated user
+     */
+    public function sessions(Request $request)
+    {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['sessions' => []]);
+        }
+
+        $sessions = ChatSession::where('user_id', $user->id)
+            ->orderBy('updated_at', 'desc')
+            ->get()
+            ->map(function ($s) {
+                $last = $s->messages()->orderBy('created_at', 'desc')->first();
+                return [
+                    'id' => $s->id,
+                    'token' => $s->token,
+                    'created_at' => $s->created_at->toDateTimeString(),
+                    'last_message' => $last ? substr($last->content ?? '', 0, 200) : null,
+                ];
+            });
+
+        return response()->json(['sessions' => $sessions]);
+    }
+
+    /**
+     * Create a new chat session for the authenticated user
+     */
+    public function createSession(Request $request)
+    {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+
+        $session = ChatSession::createForUser($user);
+
+        return response()->json(['session_token' => $session->token]);
     }
 }

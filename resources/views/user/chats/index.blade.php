@@ -25,7 +25,11 @@
                             <option value="fr">French</option>
                         </select>
 
-                        <!-- Session controls: show token, clear session -->
+                        <!-- Session controls: session select, new session, show token, clear session -->
+                        <select id="chatSessionsSelect" class="form-select form-select-sm me-2" style="width:260px; display: inline-block;">
+                            <option value="">(Select session)</option>
+                        </select>
+                        <button id="btnNewSession" class="btn btn-outline-primary btn-sm me-2" type="button">New session</button>
                         <button id="btnShowSession" class="btn btn-outline-secondary btn-sm me-2" type="button">Show token</button>
                         <button id="btnClearSession" class="btn btn-outline-danger btn-sm" type="button">Clear session</button>
                         <small id="sessionTokenDisplay" class="text-muted ms-3" style="display:none; word-break:break-all;"></small>

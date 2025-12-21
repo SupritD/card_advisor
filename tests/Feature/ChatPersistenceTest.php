@@ -22,6 +22,9 @@ class ChatPersistenceTest extends TestCase
 
     public function test_chat_persists_and_history_endpoint_returns_messages()
     {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user, 'sanctum');
+
         Http::fake([
             'https://router.huggingface.co/v1/chat/completions' => Http::response([
                 'choices' => [
@@ -49,6 +52,9 @@ class ChatPersistenceTest extends TestCase
 
     public function test_stream_persists_and_emits_session_token()
     {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user, 'sanctum');
+
         // Build a fake streaming body with SSE "data: ...\n\n" segments
         $body = "data: {\"choices\":[{\"delta\":{\"content\":\"Hello\"}}]}\n\n";
         $body .= "data: {\"choices\":[{\"delta\":{\"content\":\" world\"}}]}\n\n";
@@ -72,6 +78,9 @@ class ChatPersistenceTest extends TestCase
 
     public function test_can_delete_session_via_api()
     {
+        $user = \App\Models\User::factory()->create();
+        $this->actingAs($user, 'sanctum');
+
         Http::fake([
             'https://router.huggingface.co/v1/chat/completions' => Http::response([
                 'choices' => [
