@@ -14,9 +14,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     {{-- Custom CSS --}}
-    {{-- <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('assets/css/dashboard-chat.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet"> --}}
 
     @stack('styles')
 </head>
@@ -38,6 +38,15 @@
                         <span>Home Pages</span>
                     </a>
 
+                    <a href="{{ route('user.cards.index') }}" class="menu-item">
+                        <i class="bi bi-calendar-event"></i>
+                        <span>Cards</span>
+                    </a>
+                    <a href="{{ route('user.chat.index') }}" class="menu-item">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span>New Chat</span>
+                    </a>
+
                     {{--
       <div class="menu-dropdown">
         <button class="menu-item dropdown-toggle-btn">
@@ -55,44 +64,72 @@
         </div>
     </div>
     --}}
-</div>
+                </div>
 
                 <div class="menu">
                     {{-- <a href="#" class="menu-title">COMMUNITY</a> --}}
 
-                    <a href="{{ route('user.cards.index') }}" class="menu-item">
-                        <i class="bi bi-calendar-event"></i>
-                        <span>Cards</span>
-                    </a>
-                    <a href="#" class="menu-item">
+
+                    {{-- <a href="#" class="menu-item">
                         <i class="bi bi-book"></i>
                         <span>Knowledge Base</span>
-                    </a>
+                    </a> --}}
 
-                    <a href="#" class="menu-item">
+                    {{-- <a href="#" class="menu-item">
                         <i class="bi bi-activity"></i>
                         <span>Activity</span>
-                    </a>
+                    </a> --}}
 
-                    <a href="{{ route('user.chat.index') }}" class="menu-item">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span>Messages</span>
-                    </a>
 
-                    <a href="#" class="menu-item">
+
+                    {{-- <a href="#" class="menu-item">
                         <i class="bi bi-people"></i>
                         <span>Members</span>
-                    </a>
+                    </a> --}}
 
-                    <a href="#" class="menu-item">
+                    {{-- <a href="#" class="menu-item">
                         <i class="bi bi-people-fill"></i>
                         <span>Groups</span>
-                    </a>
+                    </a> --}}
 
-                    <a href="#" class="menu-item">
+                    {{-- <a href="#" class="menu-item">
                         <i class="bi bi-calendar-event"></i>
                         <span>Events</span>
-                    </a>
+                    </a> --}}
+                    <div>
+                        <div class="menu-dropdown">
+                            <button class="menu-item dropdown-toggle-btn">
+                                <i class="bi bi-house"></i>
+                                <span>Your Chats</span>
+                                <i class="bi bi-chevron-down dropdown-arrow"></i>
+                            </button>
+
+                            <div class="submenu">
+                                <a href="#" class="submenu-item">Intranet</a>
+                                <a href="#" class="submenu-item">Extranet</a>
+                                <a href="#" class="submenu-item">Community</a>
+                                <a href="#" class="submenu-item">Online Learning</a>
+                                <a href="#" class="submenu-item">Social Network</a>
+                                <a href="#" class="submenu-item">Intranet</a>
+                                <a href="#" class="submenu-item">Extranet</a>
+                                <a href="#" class="submenu-item">Community</a>
+                                <a href="#" class="submenu-item">Online Learning</a>
+                                <a href="#" class="submenu-item">Social Network</a>
+                                <a href="#" class="submenu-item">Intranet</a>
+                                <a href="#" class="submenu-item">Extranet</a>
+                                <a href="#" class="submenu-item">Community</a>
+                                <a href="#" class="submenu-item">Online Learning</a>
+                                <a href="#" class="submenu-item">Social Network</a>
+                                <a href="#" class="submenu-item">Intranet</a>
+                                <a href="#" class="submenu-item">Extranet</a>
+                                <a href="#" class="submenu-item">Community</a>
+                                <a href="#" class="submenu-item">Online Learning</a>
+                                <a href="#" class="submenu-item">Social Network</a>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </aside>
