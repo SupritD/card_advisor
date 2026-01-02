@@ -3,35 +3,62 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\ChatMessage;
+use App\Models\ChatSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use App\Models\ChatSession;
-use App\Models\ChatMessage;
 
 class ChatController extends Controller
 {
     protected function getOrCreateSession(Request $request)
     {
-        $token = $request->input('session_token') ?? $request->header('X-Chat-Session');
-        $session = null;
+        $user = auth()->user();
+
+        Log::info('getOrCreateSession', [
+            'user_id' => optional($user)->id,
+            'incoming_token' => $request->input('session_token'),
+        ]);
+
+        $token = $request->input('session_token')
+            ?? $request->header('X-Chat-Session');
 
         if ($token) {
             $session = ChatSession::where('token', $token)->first();
 
-            // If a user is authenticated and the session exists but has no owner, attach it.
-            if ($session && $request->user() && !$session->user_id) {
-                $session->user_id = $request->user()->id;
-                $session->save();
+            if ($session && $user && ! $session->user_id) {
+                $session->update(['user_id' => $user->id]);
+            }
+
+            if ($session) {
+                return $session;
             }
         }
 
-        if (!$session) {
-            $session = ChatSession::createForUser($request->user());
-        }
-
-        return $session;
+        return ChatSession::createForUser($user);
     }
+
+    // protected function getOrCreateSession(Request $request)
+    // {
+    //     $token = $request->input('session_token') ?? $request->header('X-Chat-Session');
+    //     $session = null;
+
+    //     if ($token) {
+    //         $session = ChatSession::where('token', $token)->first();
+
+    //         // If a user is authenticated and the session exists but has no owner, attach it.
+    //         if ($session && $request->user() && ! $session->user_id) {
+    //             $session->user_id = $request->user()->id;
+    //             $session->save();
+    //         }
+    //     }
+
+    //     if (! $session) {
+    //         $session = ChatSession::createForUser($request->user());
+    //     }
+
+    //     return $session;
+    // }
 
     public function chat(Request $request)
     {
@@ -107,6 +134,7 @@ class ChatController extends Controller
 
             if ($response->failed()) {
                 Log::error('HuggingFace API error', ['status' => $response->status(), 'body' => $response->body()]);
+
                 return response()->json(['error' => 'Upstream API error'], 500);
             }
 
@@ -131,6 +159,7 @@ class ChatController extends Controller
             return response()->json(['reply' => $content ?? 'No reply from model', 'raw' => $data, 'session_token' => $session->token]);
         } catch (\Exception $e) {
             Log::error('ChatController exception', ['exception' => $e->getMessage()]);
+
             return response()->json(['error' => 'Exception calling upstream API'], 500);
         }
     }
@@ -145,12 +174,12 @@ class ChatController extends Controller
         ]);
 
         $token = $request->input('session_token') ?? $request->query('session_token');
-        if (!$token) {
+        if (! $token) {
             return response()->json(['messages' => []]);
         }
 
         $session = ChatSession::where('token', $token)->first();
-        if (!$session) {
+        if (! $session) {
             return response()->json(['messages' => []]);
         }
 
@@ -235,17 +264,19 @@ class ChatController extends Controller
                 set_time_limit(0);
 
                 // notify client of session token at the start
-                echo "data: " . json_encode(['session_token' => $session->token]) . "\n\n";
-                @ob_flush(); @flush();
+                echo 'data: '.json_encode(['session_token' => $session->token])."\n\n";
+                @ob_flush();
+                @flush();
 
                 $buffer = '';
                 $assistantContent = '';
                 $metaChunks = [];
 
-                while (!$body->eof()) {
+                while (! $body->eof()) {
                     $chunk = $body->read(1024);
                     if ($chunk === '') {
                         usleep(100000);
+
                         continue;
                     }
 
@@ -290,7 +321,9 @@ class ChatController extends Controller
                             }
 
                             echo "data: {\"done\":true}\n\n";
-                            @ob_flush(); @flush();
+                            @ob_flush();
+                            @flush();
+
                             return;
                         }
 
@@ -308,8 +341,9 @@ class ChatController extends Controller
 
                             if ($delta !== null) {
                                 $assistantContent .= $delta;
-                                echo "data: " . json_encode(['delta' => $delta]) . "\n\n";
-                                @ob_flush(); @flush();
+                                echo 'data: '.json_encode(['delta' => $delta])."\n\n";
+                                @ob_flush();
+                                @flush();
                             }
                         } else {
                             // Attempt to extract JSON objects inside the part (in case multiple were glued together)
@@ -331,15 +365,17 @@ class ChatController extends Controller
 
                                         if ($delta !== null) {
                                             $assistantContent .= $delta;
-                                            echo "data: " . json_encode(['delta' => $delta]) . "\n\n";
-                                            @ob_flush(); @flush();
+                                            echo 'data: '.json_encode(['delta' => $delta])."\n\n";
+                                            @ob_flush();
+                                            @flush();
                                         }
                                     }
                                 }
                             } else {
                                 // Send raw chunk as fallback (should be rare)
-                                echo "data: " . json_encode(['chunk' => $part]) . "\n\n";
-                                @ob_flush(); @flush();
+                                echo 'data: '.json_encode(['chunk' => $part])."\n\n";
+                                @ob_flush();
+                                @flush();
                             }
                         }
                     }
@@ -362,8 +398,9 @@ class ChatController extends Controller
 
                         if ($delta !== null) {
                             $assistantContent .= $delta;
-                            echo "data: " . json_encode(['delta' => $delta]) . "\n\n";
-                            @ob_flush(); @flush();
+                            echo 'data: '.json_encode(['delta' => $delta])."\n\n";
+                            @ob_flush();
+                            @flush();
                         }
                     }
                 }
@@ -379,7 +416,8 @@ class ChatController extends Controller
                 }
 
                 echo "data: {\"done\":true}\n\n";
-                @ob_flush(); @flush();
+                @ob_flush();
+                @flush();
             }, 200, [
                 'Content-Type' => 'text/event-stream',
                 'Cache-Control' => 'no-cache',
@@ -387,6 +425,7 @@ class ChatController extends Controller
             ]);
         } catch (\Exception $e) {
             Log::error('Chat stream exception', ['exception' => $e->getMessage()]);
+
             return response()->json(['error' => 'Exception streaming upstream API'], 500);
         }
     }
@@ -401,12 +440,12 @@ class ChatController extends Controller
         ]);
 
         $token = $request->input('session_token') ?? $request->header('X-Chat-Session');
-        if (!$token) {
+        if (! $token) {
             return response()->json(['status' => 'no-token'], 200);
         }
 
         $session = ChatSession::where('token', $token)->first();
-        if (!$session) {
+        if (! $session) {
             return response()->json(['status' => 'not-found'], 404);
         }
 
@@ -421,7 +460,7 @@ class ChatController extends Controller
     public function sessions(Request $request)
     {
         $user = $request->user();
-        if (!$user) {
+        if (! $user) {
             return response()->json(['sessions' => []]);
         }
 
@@ -430,6 +469,7 @@ class ChatController extends Controller
             ->get()
             ->map(function ($s) {
                 $last = $s->messages()->orderBy('created_at', 'desc')->first();
+
                 return [
                     'id' => $s->id,
                     'token' => $s->token,
@@ -447,7 +487,7 @@ class ChatController extends Controller
     public function createSession(Request $request)
     {
         $user = $request->user();
-        if (!$user) {
+        if (! $user) {
             return response()->json(['error' => 'Unauthenticated'], 401);
         }
 

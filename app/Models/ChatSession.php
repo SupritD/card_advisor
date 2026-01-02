@@ -15,7 +15,13 @@ class ChatSession extends Model
     public static function createForUser($user = null)
     {
         $token = (string) Str::uuid();
+
         return static::create(['user_id' => $user ? $user->id : null, 'token' => $token]);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function messages()

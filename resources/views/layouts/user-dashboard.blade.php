@@ -105,26 +105,16 @@
                             </button>
 
                             <div class="submenu">
-                                <a href="#" class="submenu-item">Intranet</a>
-                                <a href="#" class="submenu-item">Extranet</a>
-                                <a href="#" class="submenu-item">Community</a>
-                                <a href="#" class="submenu-item">Online Learning</a>
-                                <a href="#" class="submenu-item">Social Network</a>
-                                <a href="#" class="submenu-item">Intranet</a>
-                                <a href="#" class="submenu-item">Extranet</a>
-                                <a href="#" class="submenu-item">Community</a>
-                                <a href="#" class="submenu-item">Online Learning</a>
-                                <a href="#" class="submenu-item">Social Network</a>
-                                <a href="#" class="submenu-item">Intranet</a>
-                                <a href="#" class="submenu-item">Extranet</a>
-                                <a href="#" class="submenu-item">Community</a>
-                                <a href="#" class="submenu-item">Online Learning</a>
-                                <a href="#" class="submenu-item">Social Network</a>
-                                <a href="#" class="submenu-item">Intranet</a>
-                                <a href="#" class="submenu-item">Extranet</a>
-                                <a href="#" class="submenu-item">Community</a>
-                                <a href="#" class="submenu-item">Online Learning</a>
-                                <a href="#" class="submenu-item">Social Network</a>
+                                @forelse ($chatSessions as $session)
+                                    <a href="{{ route('user.chat.index', ['session' => $session->token]) }}"
+                                        class="submenu-item">
+                                        {{ $session->title ?? 'Chat ' . $session->created_at->format('d M') }}
+                                    </a>
+                                @empty
+                                    <span class="submenu-item text-muted">
+                                        No chats yet
+                                    </span>
+                                @endforelse
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\ChatSession;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +23,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        View::composer('layouts.user-dashboard', function ($view) {
+            $user = Auth::user();
+
+            $sessions = $user
+                ? ChatSession::where('user_id', $user->id)->latest()->get()
+                : collect();
+
+            $view->with('chatSessions', $sessions);
+        });
     }
 }

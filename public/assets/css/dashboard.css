@@ -78,6 +78,7 @@ body {
     min-width: 260px;
     overflow-y: auto;
     transition: 0.3s ease;
+    z-index: 1;
 }
 
 .sidebar.minimized .sidebar-content {
