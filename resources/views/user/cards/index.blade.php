@@ -20,23 +20,6 @@
                         <div class="col-md-4 mb-3">
                             <div class="border rounded p-3 h-100">
 
-                                <!-- REMOVE BUTTON -->
-                                {{-- <button type="submit" name="cards[]" value="{{ $card->id }}"
-                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2" title="Remove card">
-                                    ✕
-                                </button> --}}
-
-                                {{-- <button type="button"
-                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 remove-card"
-                                    data-id="{{ $card->id }}">
-                                    ✕
-                                </button> --}}
-                                {{-- <button type="button"
-                                    class="btn btn-sm btn-danger position-absolute top-0 end-0 m-2 remove-card"
-                                    data-id="{{ $card->id }}">
-                                    ✕
-                                </button> --}}
-
                                 <h6 class="fw-bold mb-1">
                                     {{ $card->card_name }}
                                 </h6>
@@ -76,6 +59,74 @@
 
         <div class="card-body">
 
+            <div class="row">
+                <div class="col-12 border-1 rounded mb-3 p-3 bg-light">
+                    <form method="GET" action="">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label>Card Name</label>
+                                <select name="cardname" class="form-select">
+                                    <option value="">All</option>
+                                    @foreach ($cardNames as $name)
+                                        <option value="{{ $name }}"
+                                            {{ request('cardname') == $name ? 'selected' : '' }}>
+                                            {{ $name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Bank Name</label>
+                                <select name="bankname" class="form-select">
+                                    <option value="">All</option>
+                                    @foreach ($bankNames as $bank)
+                                        <option value="{{ $bank }}"
+                                            {{ request('bankname') == $bank ? 'selected' : '' }}>
+                                            {{ $bank }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Card Type</label>
+                                <select name="cardtype" class="form-select">
+                                    <option value="">All</option>
+                                    @foreach ($cardTypes as $type)
+                                        <option value="{{ $type }}"
+                                            {{ request('cardtype') == $type ? 'selected' : '' }}>
+                                            {{ ucfirst($type) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Network</label>
+                                <select name="network" class="form-select">
+                                    <option value="">All</option>
+                                    @foreach ($networks as $network)
+                                        <option value="{{ $network }}"
+                                            {{ request('network') == $network ? 'selected' : '' }}>
+                                            {{ strtoupper($network) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text-end">
+                            <a href="{{ route('user.cards.index') }}" class="btn btn-secondary btn-sm">Reset</a>
+                            <button class="btn btn-primary btn-sm">Filter</button>
+                        </div>
+                    </form>
+
+                    <strong>Note:</strong> Select the cards you own or are interested in. You can update this list
+                    anytime.
+                </div>
+            </div>
+
             {{-- @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -89,12 +140,14 @@
 
             <form action="{{ route('user.cards.store') }}" method="POST">
                 @csrf
-
-                @if ($cards->isEmpty())
+                @foreach ($userCardIds as $id)
+                    <input type="hidden" name="cards[]" value="{{ $id }}">
+                @endforeach
+                {{-- @if ($cards->isEmpty())
                     <div class="alert alert-warning">
                         No cards available at the moment.
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="row">
 
@@ -150,7 +203,6 @@
 @endsection
 
 <script>
-
     setTimeout(() => {
         const alert = document.getElementById('success-alert');
         if (alert) {
