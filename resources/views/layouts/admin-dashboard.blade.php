@@ -56,7 +56,7 @@
                         <span>User</span>
                     </a>
 
-                    <a href="#" class="menu-item">
+                    {{-- <a href="#" class="menu-item">
                         <i class="bi bi-book"></i>
                         <span>Knowledge Base</span>
                     </a>
@@ -79,7 +79,7 @@
                     <a href="#" class="menu-item">
                         <i class="bi bi-calendar-event"></i>
                         <span>Events</span>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </aside>

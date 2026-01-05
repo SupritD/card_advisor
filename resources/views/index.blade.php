@@ -90,35 +90,36 @@
         </div>
     </nav> --}}
     <header class="pr-header">
-    <div class="pr-container">
+        <div class="pr-container">
 
-        <!-- Brand -->
-        <div class="pr-brand animate pr-fade">
-            <a href="{{ url('/') }}" class="pr-logo">
-                Card Advisor GPT
-            </a>
+            <!-- Brand -->
+            <div class="pr-brand animate pr-fade">
+                <a href="{{ url('/') }}" class="pr-logo">
+                    Card Advisor GPT
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="pr-nav animate pr-fade pr-delay-1">
+                <a href="#">Explore Cards</a>
+                <a href="#">Knowledge Hub</a>
+                <a href="#">AI Features</a>
+                <a href="#">About</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="pr-actions animate pr-fade pr-delay-2">
+                <a href="{{ route('login') }}" class="pr-login">
+                    Login
+                </a>
+                <a href="{{ route('admin.login') }}" class="pr-login">Admin Login</a>
+                <a href="{{ route('register') }}" class="pr-primary-btn">
+                    Get Started
+                </a>
+            </div>
+
         </div>
-
-        <!-- Navigation -->
-        <nav class="pr-nav animate pr-fade pr-delay-1">
-            <a href="#">Explore Cards</a>
-            <a href="#">Knowledge Hub</a>
-            <a href="#">AI Features</a>
-            <a href="#">About</a>
-        </nav>
-
-        <!-- Actions -->
-        <div class="pr-actions animate pr-fade pr-delay-2">
-            <a href="{{ route('login') }}" class="pr-login">
-                Login
-            </a>
-            <a href="{{ route('register') }}" class="pr-primary-btn">
-                Get Started
-            </a>
-        </div>
-
-    </div>
-</header>
+    </header>
 
     {{-- banner area start --}}
     <section class="banner-area">
@@ -174,61 +175,59 @@
     {{-- banner area end --}}
 
     {{-- about feature area start --}}
-   <section class="about-floating-area">
-    <div class="container">
+    <section class="about-floating-area">
+        <div class="container">
 
-        <div class="about-floating-layout">
+            <div class="about-floating-layout">
 
-            <!-- Image -->
-            <div class="about-floating-image animate fade-left">
-                <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
-                    alt="AI simplifying financial information"
-                >
-            </div>
+                <!-- Image -->
+                <div class="about-floating-image animate fade-left">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
+                        alt="AI simplifying financial information">
+                </div>
 
-            <!-- Content -->
-            <div class="about-floating-content">
+                <!-- Content -->
+                <div class="about-floating-content">
 
-                <span class="card-badge">About Us</span>
+                    <span class="card-badge">About Us</span>
 
-                <h2 class="about-floating-title animate fade-up delay-1">
-                    Built to Make Cards<br>
-                    Simple & Understandable
-                </h2>
+                    <h2 class="about-floating-title animate fade-up delay-1">
+                        Built to Make Cards<br>
+                        Simple & Understandable
+                    </h2>
 
-                <p class="about-floating-text animate fade-up delay-2">
-                    Card Advisor GPT is built to solve one simple problem:
-                    <strong>people don’t fully understand their cards.</strong>
-                </p>
+                    <p class="about-floating-text animate fade-up delay-2">
+                        Card Advisor GPT is built to solve one simple problem:
+                        <strong>people don’t fully understand their cards.</strong>
+                    </p>
 
-                <p class="about-floating-text animate fade-up delay-3">
-                    Banks often explain cards using complex terms. Our AI reads
-                    details like <strong>bank name, card type, network, fees,
-                    and benefits</strong>, then presents everything in clear,
-                    easy language.
-                </p>
+                    <p class="about-floating-text animate fade-up delay-3">
+                        Banks often explain cards using complex terms. Our AI reads
+                        details like <strong>bank name, card type, network, fees,
+                            and benefits</strong>, then presents everything in clear,
+                        easy language.
+                    </p>
 
-                <!-- Floating Keywords -->
-                <div class="about-floating-tags">
-                    <span class="tag animate fade-up delay-4">Education</span>
-                    <span class="tag animate fade-up delay-5">Clarity</span>
-                    <span class="tag animate fade-up delay-6">AI-Powered</span>
-                    <span class="tag animate fade-up delay-7">No Confusion</span>
+                    <!-- Floating Keywords -->
+                    <div class="about-floating-tags">
+                        <span class="tag animate fade-up delay-4">Education</span>
+                        <span class="tag animate fade-up delay-5">Clarity</span>
+                        <span class="tag animate fade-up delay-6">AI-Powered</span>
+                        <span class="tag animate fade-up delay-7">No Confusion</span>
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
-    </div>
-</section>
+    </section>
 
     {{-- about feature area end --}}
 
     {{-- product feature area start --}}
     <section class="products-area">
         <div class="products-glow"></div>
-          <div class="knowledge-glow-step"></div>
+        <div class="knowledge-glow-step"></div>
 
         <div class="container">
 
@@ -438,36 +437,36 @@
         </div>
     </section> --}}
     <section class="cta-area">
-    <div class="cta-glow"></div>
+        <div class="cta-glow"></div>
 
-    <div class="container">
+        <div class="container">
 
-        <div class="cta-content animate fade-up">
-            <span class="cta-tag">Get Started</span>
+            <div class="cta-content animate fade-up">
+                <span class="cta-tag">Get Started</span>
 
-            <h2 class="cta-title">
-                Understand Your Cards.<br>
-                Make Smarter Financial Choices.
-            </h2>
+                <h2 class="cta-title">
+                    Understand Your Cards.<br>
+                    Make Smarter Financial Choices.
+                </h2>
 
-            <p class="cta-text">
-                Card Advisor GPT helps you learn how your cards work,
-                avoid unnecessary fees, and use them confidently — all
-                through simple AI-powered explanations.
-            </p>
+                <p class="cta-text">
+                    Card Advisor GPT helps you learn how your cards work,
+                    avoid unnecessary fees, and use them confidently — all
+                    through simple AI-powered explanations.
+                </p>
 
-            <div class="cta-actions">
-                <a href="{{ route('register') }}" class="cta-btn primary">
-                    Create Free Account
-                </a>
-                <a href="{{ route('login') }}" class="cta-btn secondary">
-                    Login
-                </a>
+                <div class="cta-actions">
+                    <a href="{{ route('register') }}" class="cta-btn primary">
+                        Create Free Account
+                    </a>
+                    <a href="{{ route('login') }}" class="cta-btn secondary">
+                        Login
+                    </a>
+                </div>
             </div>
-        </div>
 
-    </div>
-</section>
+        </div>
+    </section>
 
     {{-- user login area end --}}
 
@@ -546,61 +545,61 @@
     </section> --}}
 
     <footer class="pf-footer">
-    <div class="pf-container">
+        <div class="pf-container">
 
-        <!-- Top CTA (Soft, Footer-Style) -->
-        <div class="pf-footer-cta animate pf-fade-up">
-            <h3 class="text-white">Start using your cards smarter</h3>
-            <a href="{{ route('register') }}" class="pf-cta-btn">
-                Create Free Account
-            </a>
-        </div>
-
-        <!-- Main Footer -->
-        <div class="pf-footer-main animate pf-fade-up pf-delay-1">
-
-            <!-- Brand -->
-            <div class="pf-footer-brand">
-                <h4 class="text-white">Card Advisor GPT</h4>
-                <p>
-                    An AI-powered card knowledge platform built to help users
-                    understand credit and debit cards clearly — without sales,
-                    bias, or confusion.
-                </p>
+            <!-- Top CTA (Soft, Footer-Style) -->
+            <div class="pf-footer-cta animate pf-fade-up">
+                <h3 class="text-white">Start using your cards smarter</h3>
+                <a href="{{ route('register') }}" class="pf-cta-btn">
+                    Create Free Account
+                </a>
             </div>
 
-            <!-- Links -->
-            <div class="pf-footer-cols">
-                <div class="pf-col">
-                    <span>Product</span>
-                    <a href="#">Explore Cards</a>
-                    <a href="#">Knowledge Hub</a>
-                    <a href="#">AI Features</a>
+            <!-- Main Footer -->
+            <div class="pf-footer-main animate pf-fade-up pf-delay-1">
+
+                <!-- Brand -->
+                <div class="pf-footer-brand">
+                    <h4 class="text-white">Card Advisor GPT</h4>
+                    <p>
+                        An AI-powered card knowledge platform built to help users
+                        understand credit and debit cards clearly — without sales,
+                        bias, or confusion.
+                    </p>
                 </div>
 
-                <div class="pf-col">
-                    <span>Company</span>
-                    <a href="#">About Us</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Use</a>
+                <!-- Links -->
+                <div class="pf-footer-cols">
+                    <div class="pf-col">
+                        <span>Product</span>
+                        <a href="#">Explore Cards</a>
+                        <a href="#">Knowledge Hub</a>
+                        <a href="#">AI Features</a>
+                    </div>
+
+                    <div class="pf-col">
+                        <span>Company</span>
+                        <a href="#">About Us</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Use</a>
+                    </div>
+
+                    <div class="pf-col">
+                        <span>Account</span>
+                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('register') }}">Create Account</a>
+                    </div>
                 </div>
 
-                <div class="pf-col">
-                    <span>Account</span>
-                    <a href="{{ route('login') }}">Login</a>
-                    <a href="{{ route('register') }}">Create Account</a>
-                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="pf-footer-bottom animate pf-fade-up pf-delay-2">
+                © {{ date('Y') }} Card Advisor GPT. All rights reserved.
             </div>
 
         </div>
-
-        <!-- Bottom -->
-        <div class="pf-footer-bottom animate pf-fade-up pf-delay-2">
-            © {{ date('Y') }} Card Advisor GPT. All rights reserved.
-        </div>
-
-    </div>
-</footer>
+    </footer>
 
 
 
