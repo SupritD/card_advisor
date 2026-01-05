@@ -470,7 +470,7 @@ h6 {
 .products-glow-step {
    position: absolute;
     /* bottom: -160px; */
-    top: -135px;
+    top: -157px;
     right: -160px;
     width: 380px;
     height: 380px;
@@ -533,7 +533,7 @@ h6 {
 /* Hover Motion */
 .product-card:hover {
     transform: translateY(-16px) scale(1.05);
-    box-shadow: 0 55px 140px rgba(0,0,0,.2);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, .2);
     background: linear-gradient(180deg, #f7f9ff, #ffffff);
 }
 
@@ -687,7 +687,7 @@ h6 {
 /* Glow */
 .knowledge-glow {
     position: absolute;
-    top: -140px;
+    top: -146px;
     left: -140px;
     width: 360px;
     height: 360px;   
@@ -1475,5 +1475,68 @@ h6 {
 @media (max-width: 900px) {
     .pr-nav {
         display: none; /* mobile menu later */
+    }
+}
+/* ============================
+   Premium Custom Cursor
+============================ */
+
+/* Hide default cursor */
+html, body {
+    cursor: none;
+}
+
+/* Dot */
+.ux-cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: #6a5cff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+}
+
+/* Ring */
+.ux-cursor-ring {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(106,92,255,.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 999998;
+    transform: translate(-50%, -50%);
+    transition:
+        width .25s ease,
+        height .25s ease,
+        background .25s ease,
+        border-color .25s ease;
+}
+
+/* Hover state */
+.cursor-hover .ux-cursor-ring {
+    width: 54px;
+    height: 54px;
+    border-color: #00d2ff;
+    background: rgba(0,210,255,.08);
+}
+
+/* Text state */
+.cursor-text .ux-cursor-ring {
+    width: 28px;
+    height: 28px;
+    border-color: rgba(148,163,184,.7);
+}
+
+/* Disable on mobile */
+@media (max-width: 768px) {
+    html, body {
+        cursor: auto;
+    }
+    .ux-cursor-dot,
+    .ux-cursor-ring {
+        display: none;
     }
 }

@@ -26,6 +26,11 @@
 </head>
 
 <body>
+    <style>
+</style>
+    <div class="ux-cursor-dot"></div>
+    <div class="ux-cursor-ring"></div>
+
 
     <!-- TOP BAR -->
     <div class="topbar d-none d-lg-flex justify-content-between align-items-center px-4">
@@ -143,7 +148,7 @@
 
                 <!-- Image -->
                 <div class="banner-image animate fade-left delay-1">
-                    <img src="{{ asset('images/banner/card-advisor.jpg') }}" alt="Card Advisor GPT">
+                    <img src="{{ asset('assets/image/banner/dash.png') }}" alt="Card Advisor GPT">
                 </div>
 
                 <!-- Info Card -->
@@ -628,6 +633,73 @@
             }
         });
     </script>
+    <script>
+(() => {
+    const dot = document.querySelector('.ux-cursor-dot');
+    const ring = document.querySelector('.ux-cursor-ring');
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    // Track mouse
+    document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+    });
+
+    // Smooth follow (ONLY follows mouse — no snapping)
+    function animate() {
+        ringX += (mouseX - ringX) * 0.18;
+        ringY += (mouseY - ringY) * 0.18;
+
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    /* Hover states (NO position manipulation) */
+    const hoverEls = 'a, button, .btn, [role="button"]';
+    const textEls = 'input, textarea, select, p, h1, h2, h3, h4, h5, h6, span';
+
+    document.querySelectorAll(hoverEls).forEach(el => {
+        el.addEventListener('mouseenter', () =>
+            document.body.classList.add('cursor-hover')
+        );
+        el.addEventListener('mouseleave', () =>
+            document.body.classList.remove('cursor-hover')
+        );
+    });
+
+    document.querySelectorAll(textEls).forEach(el => {
+        el.addEventListener('mouseenter', () =>
+            document.body.classList.add('cursor-text')
+        );
+        el.addEventListener('mouseleave', () =>
+            document.body.classList.remove('cursor-text')
+        );
+    });
+
+    // Hide when leaving window
+    document.addEventListener('mouseleave', () => {
+        dot.style.opacity = 0;
+        ring.style.opacity = 0;
+    });
+
+    document.addEventListener('mouseenter', () => {
+        dot.style.opacity = 1;
+        ring.style.opacity = 1;
+    });
+})();
+</script>
+
+
 </body>
 
 </html>
