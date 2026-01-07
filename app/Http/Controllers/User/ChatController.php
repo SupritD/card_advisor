@@ -23,4 +23,35 @@ class ChatController extends Controller
 
         return view('user.chats.index', compact('sessions'));
     }
+
+    public function create()
+    {
+        $session = ChatSession::createForUser(Auth::user());
+
+        return redirect()->route('user.chat.show', $session->token);
+    }
+
+    public function show($token = null)
+    {
+        $user = Auth::user();
+
+        $sessions = $user->chatSessions()->latest()->get();
+
+        $activeSession = null;
+        $messages = collect();
+
+        if ($token) {
+            $activeSession = ChatSession::where('token', $token)
+                ->where('user_id', $user->id)
+                ->firstOrFail();
+
+            $messages = $activeSession->messages()->get();
+        }
+
+        return view('user.chats.index', compact(
+            'sessions',
+            'activeSession',
+            'messages'
+        ));
+    }
 }

@@ -46,6 +46,12 @@
                         <i class="bi bi-chat-left-text"></i>
                         <span>New Chat</span>
                     </a>
+                    <form method="POST" action="{{ route('user.chat.create') }}">
+                        @csrf
+                        <button class="btn btn-outline-primary btn-sm">
+                            New Chat
+                        </button>
+                    </form>
 
                     {{--
       <div class="menu-dropdown">
@@ -106,8 +112,11 @@
 
                             <div class="submenu">
                                 @forelse ($chatSessions as $session)
-                                    <a href="{{ route('user.chat.index', ['session' => $session->token]) }}"
+                                    {{-- <a href="{{ route('user.chat.index', ['session' => $session->token]) }}"
                                         class="submenu-item">
+                                        {{ $session->title ?? 'Chat ' . $session->created_at->format('d M') }}
+                                    </a> --}}
+                                    <a href="{{ route('user.chat.show', $session->token) }}" class="submenu-item">
                                         {{ $session->title ?? 'Chat ' . $session->created_at->format('d M') }}
                                     </a>
                                 @empty

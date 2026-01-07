@@ -41,6 +41,11 @@ Route::middleware('auth')->group(function () {
         // =========================
         Route::get('/my-chat', [ChatController::class, 'index'])
             ->name('user.chat.index');
+        Route::post('/dashboard/my-chat', [ChatController::class, 'create'])
+            ->name('user.chat.create');
+
+        Route::get('/my-chat/{token?}', [ChatController::class, 'show'])
+            ->name('user.chat.show');
     });
 
 });
