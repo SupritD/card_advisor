@@ -48,7 +48,8 @@
                     </a>
                     <form method="POST" action="{{ route('user.chat.create') }}">
                         @csrf
-                        <button class="btn btn-outline-primary btn-sm">
+                        {{-- btn btn-outline-primary btn-sm --}}
+                        <button class=" menu-item w-100 border-0 text-start" type="submit">
                             New Chat
                         </button>
                     </form>
