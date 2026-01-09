@@ -18,9 +18,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
     {{-- Custom CSS --}}
-    {{-- <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('assets/css/dashboard-chat.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
 
     @stack('styles')
 
@@ -57,7 +56,7 @@
                         <span>User</span>
                     </a>
 
-                    <a href="#" class="menu-item">
+                    {{-- <a href="#" class="menu-item">
                         <i class="bi bi-book"></i>
                         <span>Knowledge Base</span>
                     </a>
@@ -80,7 +79,7 @@
                     <a href="#" class="menu-item">
                         <i class="bi bi-calendar-event"></i>
                         <span>Events</span>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </aside>

@@ -2,10 +2,9 @@
 
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\CardController;
 use App\Http\Controllers\User\ChatController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\CardController;
-
 
 Route::get('/', function () {
     return view('index');
@@ -28,7 +27,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
     Route::prefix('dashboard')->group(function () {
         // =========================
         // USER CARDS ROUTES  ✅
@@ -43,17 +41,16 @@ Route::middleware('auth')->group(function () {
         // =========================
         Route::get('/my-chat', [ChatController::class, 'index'])
             ->name('user.chat.index');
-    });
+        Route::post('/dashboard/my-chat', [ChatController::class, 'create'])
+            ->name('user.chat.create');
 
+        Route::get('/my-chat/{token?}', [ChatController::class, 'show'])
+            ->name('user.chat.show');
+    });
 
 });
 
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
-
-
-
-
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

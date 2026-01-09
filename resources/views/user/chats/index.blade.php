@@ -15,6 +15,26 @@
                     <div id="centerBox" class="center-box">
                         <h1 class="text-dark" style="font-weight:400;">What’s on your mind today?</h1>
                     </div>
+                    <div class="d-flex align-items-center mb-2">
+                        <label for="chatLanguage" class="me-2 mb-0">Language:</label>
+                        <select id="chatLanguage" class="form-select form-select-sm me-3" style="width:150px;">
+                            <option value="en" selected>English</option>
+                            <option value="auto">Auto</option>
+                            <option value="zh">Chinese</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                        </select>
+
+                        <!-- Session controls: session select, new session, show token, clear session -->
+                        <select id="chatSessionsSelect" class="form-select form-select-sm me-2" style="width:260px; display: inline-block;">
+                            <option value="">(Select session)</option>
+                        </select>
+                        <button id="btnNewSession" class="btn btn-outline-primary btn-sm me-2" type="button">New session</button>
+                        <button id="btnShowSession" class="btn btn-outline-secondary btn-sm me-2" type="button">Show token</button>
+                        <button id="btnClearSession" class="btn btn-outline-danger btn-sm" type="button">Clear session</button>
+                        <small id="sessionTokenDisplay" class="text-muted ms-3" style="display:none; word-break:break-all;"></small>
+                    </div>
+
                     <div id="inputArea" class="input-area">
                         <input type="text" id="msgInput" class="input-bar" placeholder="Ask anything..." />
                     </div>
@@ -23,3 +43,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/js/dashboard-chat.js') }}"></script>
+@endpush

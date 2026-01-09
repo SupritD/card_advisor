@@ -54,6 +54,11 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## Local development notes 🔧
+
+- If you're running the app locally as an SPA, set the Sanctum stateful domains in `.env` (e.g. `SANCTUM_STATEFUL_DOMAINS=localhost:8000,127.0.0.1:8000`).
+- The chat UI fetches `/sanctum/csrf-cookie` on page load so the browser can obtain the CSRF cookie required for cookie-based auth (Sanctum); ensure your browser includes cookies for `localhost:8000`.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

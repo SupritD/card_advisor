@@ -16,7 +16,8 @@
     {{-- Custom CSS --}}
     <link href="{{ asset('assets/css/dashboard-chat.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet"> --}} --}}
 
     @stack('styles')
 </head>
@@ -48,14 +49,61 @@
                     </a>
                     <form method="POST" action="{{ route('user.chat.create') }}">
                         @csrf
+                        {{-- btn btn-outline-primary btn-sm --}}
                         <button class=" menu-item w-100 border-0 text-start" type="submit">
                             New Chat
                         </button>
                     </form>
 
+                    {{--
+      <div class="menu-dropdown">
+        <button class="menu-item dropdown-toggle-btn">
+          <i class="bi bi-house"></i>
+          <span>Home Pages</span>
+          <i class="bi bi-chevron-down dropdown-arrow"></i>
+        </button>
+
+        <div class="submenu">
+          <a href="#" class="submenu-item">Intranet</a>
+          <a href="#" class="submenu-item">Extranet</a>
+          <a href="#" class="submenu-item">Community</a>
+          <a href="#" class="submenu-item">Online Learning</a>
+          <a href="#" class="submenu-item">Social Network</a>
+        </div>
+    </div>
+    --}}
                 </div>
 
                 <div class="menu">
+                    {{-- <a href="#" class="menu-title">COMMUNITY</a> --}}
+
+
+                    {{-- <a href="#" class="menu-item">
+                        <i class="bi bi-book"></i>
+                        <span>Knowledge Base</span>
+                    </a> --}}
+
+                    {{-- <a href="#" class="menu-item">
+                        <i class="bi bi-activity"></i>
+                        <span>Activity</span>
+                    </a> --}}
+
+
+
+                    {{-- <a href="#" class="menu-item">
+                        <i class="bi bi-people"></i>
+                        <span>Members</span>
+                    </a> --}}
+
+                    {{-- <a href="#" class="menu-item">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Groups</span>
+                    </a> --}}
+
+                    {{-- <a href="#" class="menu-item">
+                        <i class="bi bi-calendar-event"></i>
+                        <span>Events</span>
+                    </a> --}}
                     <div>
                         <div class="menu-dropdown">
                             <button class="menu-item dropdown-toggle-btn">
