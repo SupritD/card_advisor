@@ -13,6 +13,10 @@ class CardImportSeeder extends Seeder
 {
     public function run()
     {
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        MstCard::truncate(); // Clear old data first
+        \Illuminate\Support\Facades\DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         Excel::import(new class implements ToModel, WithStartRow {
             public function startRow(): int
             {
@@ -72,6 +76,6 @@ class CardImportSeeder extends Seeder
                 }
                 return 0;
             }
-        }, base_path('Credit card details.xlsx'));
+        }, base_path('card details.xlsx'));
     }
 }

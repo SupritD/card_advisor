@@ -25,6 +25,9 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/cards', [CardController::class, 'index'])->name('cards.index');
+    Route::post('/cards/toggle', [CardController::class, 'toggleCard'])->name('cards.toggle');
+    Route::post('/cards/update', [CardController::class, 'updateUserCards'])->name('cards.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('dashboard')->group(function () {
@@ -36,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
         Route::post('/my-cards', [CardController::class, 'store'])
             ->name('user.cards.store');
+
+
         // =========================
         // USER CHAT ROUTES  ✅
         // =========================
@@ -53,4 +58,4 @@ Route::middleware('auth')->group(function () {
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

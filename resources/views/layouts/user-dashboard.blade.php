@@ -16,7 +16,6 @@
     {{-- Custom CSS --}}
     <link href="{{ asset('assets/css/dashboard-chat.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/dashboard.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('assets/css/style3.css') }}" rel="stylesheet"> --}}
 
     @stack('styles')
 </head>
@@ -38,7 +37,8 @@
                         <span>Home Pages</span>
                     </a>
 
-                    <a href="{{ route('user.cards.index') }}" class="menu-item">
+                    <a href="{{ route('user.cards.index') }}"
+                        class="menu-item {{ request()->routeIs('user.cards.*') ? 'active text-primary bg-primary bg-opacity-10' : '' }}">
                         <i class="bi bi-calendar-event"></i>
                         <span>Cards</span>
                     </a>
@@ -55,22 +55,22 @@
                     </form>
 
                     {{--
-      <div class="menu-dropdown">
-        <button class="menu-item dropdown-toggle-btn">
-          <i class="bi bi-house"></i>
-          <span>Home Pages</span>
-          <i class="bi bi-chevron-down dropdown-arrow"></i>
-        </button>
+                    <div class="menu-dropdown">
+                        <button class="menu-item dropdown-toggle-btn">
+                            <i class="bi bi-house"></i>
+                            <span>Home Pages</span>
+                            <i class="bi bi-chevron-down dropdown-arrow"></i>
+                        </button>
 
-        <div class="submenu">
-          <a href="#" class="submenu-item">Intranet</a>
-          <a href="#" class="submenu-item">Extranet</a>
-          <a href="#" class="submenu-item">Community</a>
-          <a href="#" class="submenu-item">Online Learning</a>
-          <a href="#" class="submenu-item">Social Network</a>
-        </div>
-    </div>
-    --}}
+                        <div class="submenu">
+                            <a href="#" class="submenu-item">Intranet</a>
+                            <a href="#" class="submenu-item">Extranet</a>
+                            <a href="#" class="submenu-item">Community</a>
+                            <a href="#" class="submenu-item">Online Learning</a>
+                            <a href="#" class="submenu-item">Social Network</a>
+                        </div>
+                    </div>
+                    --}}
                 </div>
 
                 <div class="menu">
@@ -136,7 +136,9 @@
 
         <div class="w-100">
             {{-- TOPBAR --}}
-            <nav id="topbar" class="topbar">
+            <nav id="topbar"
+                class="topbar d-flex justify-content-between align-items-center px-4 py-3 bg-white bg-opacity-90 shadow-sm"
+                style="position: sticky; top: 0; z-index: 1040; backdrop-filter: blur(10px);">
                 <div class="left-items d-flex align-items-center gap-3">
                     <button id="toggleSidebar" class="btn shadow-sm toggle-btn">
                         <i class="bi bi-list fs-3"></i>
@@ -219,6 +221,24 @@
 
 
     @stack('scripts')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggleSidebar');
+
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth < 768) {
+                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && sidebar.classList.contains('active')) {
+                        // Assuming 'active' class toggles visibility. If dashboard.js uses a different class (e.g. 'show'), this needs adjustment.
+                        // Triggerting the toggle button is safer if we don't know the exact class logic of dashboard.js
+                        toggleBtn.click();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
