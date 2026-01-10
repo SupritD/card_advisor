@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
         // Seed default user
         $this->call([\Database\Seeders\UserSeeder::class]);
 
-        // Seed master cards
-        $this->call([\Database\Seeders\MstCardSeeder::class]);
+        // Seed master cards  (Replacing MstCardSeeder with our ImportSeeder)
+        // $this->call([\Database\Seeders\MstCardSeeder::class]);
+        $this->call([\Database\Seeders\CardImportSeeder::class]);
     }
 }

@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
+    libzip-dev \
     npm \
     && rm -rf /var/lib/apt/lists/*
 
@@ -23,7 +24,8 @@ RUN docker-php-ext-install \
     pcntl \
     bcmath \
     gd \
-    xml
+    xml \
+    zip
 
 # Enable Redis extension
 RUN pecl install redis && docker-php-ext-enable redis
