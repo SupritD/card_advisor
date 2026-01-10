@@ -27,5 +27,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed default user
         $this->call([\Database\Seeders\UserSeeder::class]);
+
+        // Seed master cards
+        $this->call([\Database\Seeders\MstCardSeeder::class]);
     }
 }
