@@ -42,17 +42,12 @@
                         <i class="bi bi-calendar-event"></i>
                         <span>Cards</span>
                     </a>
-                    <a href="{{ route('user.chat.index') }}" class="menu-item">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span>New Chat</span>
+                    <a href="{{ route('user.chat.index') }}"
+                        class="menu-item {{ request()->routeIs('user.chat.index') ? 'active text-primary bg-primary bg-opacity-10' : '' }}">
+                        <i class="bi bi-robot"></i>
+                        <span>AI Advisor</span>
                     </a>
-                    <form method="POST" action="{{ route('user.chat.create') }}">
-                        @csrf
-                        {{-- btn btn-outline-primary btn-sm --}}
-                        <button class=" menu-item w-100 border-0 text-start" type="submit">
-                            New Chat
-                        </button>
-                    </form>
+
 
                     {{--
                     <div class="menu-dropdown">
@@ -104,7 +99,10 @@
                         <span>Events</span>
                     </a> --}}
                     <div>
-                        <div class="menu-dropdown">
+                        @php
+                            $isChatView = request()->routeIs('user.chat.show') || (request()->routeIs('user.chat.index') && request()->route('token'));
+                        @endphp
+                        <div class="menu-dropdown {{ $isChatView ? 'open' : '' }}">
                             <button class="menu-item dropdown-toggle-btn">
                                 <i class="bi bi-house"></i>
                                 <span>Your Chats</span>
@@ -112,12 +110,12 @@
                             </button>
 
                             <div class="submenu">
+                                @php
+                                    $currentToken = request()->route('token');
+                                @endphp
                                 @forelse ($chatSessions as $session)
-                                    {{-- <a href="{{ route('user.chat.index', ['session' => $session->token]) }}"
-                                        class="submenu-item">
-                                        {{ $session->title ?? 'Chat ' . $session->created_at->format('d M') }}
-                                    </a> --}}
-                                    <a href="{{ route('user.chat.show', $session->token) }}" class="submenu-item">
+                                    <a href="{{ route('user.chat.show', $session->token) }}"
+                                        class="submenu-item {{ $currentToken === $session->token ? 'active bg-primary bg-opacity-10 text-primary' : '' }}">
                                         {{ $session->title ?? 'Chat ' . $session->created_at->format('d M') }}
                                     </a>
                                 @empty

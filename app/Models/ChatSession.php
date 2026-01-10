@@ -10,7 +10,7 @@ class ChatSession extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'token'];
+    protected $fillable = ['user_id', 'token', 'title'];
 
     public static function createForUser($user = null)
     {
