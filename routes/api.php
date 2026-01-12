@@ -16,6 +16,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/chat/sessions', [ChatController::class, 'sessions']);
     Route::post('/chat/session', [ChatController::class, 'createSession']);
     Route::delete('/chat/session', [ChatController::class, 'destroy']);
+    Route::post('/chat/update-title', [ChatController::class, 'updateTitle']);
     // });
 
     // Helper endpoint for the frontend to check authentication status

@@ -22,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        \Illuminate\Pagination\Paginator::useBootstrapFive();
+
         //
         View::composer('layouts.user-dashboard', function ($view) {
             $user = Auth::user();
