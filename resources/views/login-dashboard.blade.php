@@ -100,7 +100,7 @@
         <div class="w-100">
             {{-- TOPBAR --}}
             <nav id="topbar" class="topbar">
-                <div class="left-items d-flex align-items-center gap-3">
+                {{-- <div class="left-items d-flex align-items-center gap-3">
                     <button id="toggleSidebar" class="btn shadow-sm toggle-btn">
                         <i class="bi bi-list fs-3"></i>
                     </button>
@@ -109,7 +109,7 @@
                         <i class="bi bi-search"></i>
                         <input type="text" placeholder="Start typing to search…" class="form-control" />
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="right-items d-flex align-items-center gap-4">
                     {{-- USER DROPDOWN --}}

@@ -100,7 +100,9 @@
                     </a> --}}
                     <div>
                         @php
-                            $isChatView = request()->routeIs('user.chat.show') || (request()->routeIs('user.chat.index') && request()->route('token'));
+                            $isChatView =
+                                request()->routeIs('user.chat.show') ||
+                                (request()->routeIs('user.chat.index') && request()->route('token'));
                         @endphp
                         <div class="menu-dropdown {{ $isChatView ? 'open' : '' }}">
                             <button class="menu-item dropdown-toggle-btn">
@@ -129,6 +131,44 @@
 
 
                 </div>
+                <!-- Feedback Button -->
+                <div id="feedback-btn" title="Give Feedback">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span class="feedback-text">Feedback</span>
+                </div>
+
+                <!-- Feedback Form -->
+                <div id="feedback-box">
+                    <div class="feedback-header">
+                        <span>
+                            <i class="bi bi-chat-dots"></i> Feedback
+                        </span>
+
+                        <span id="feedback-close">
+                            <i class="fa-solid fa-xmark"></i>
+                        </span>
+                    </div>
+
+                    <div class="feedback-body">
+                        <input type="text" class="form-control mb-2" placeholder="Your Name">
+                        <input type="email" class="form-control mb-2" placeholder="Your Email">
+
+                        <div class="text-center mb-2">
+                            <i class="fa-regular fa-star star"></i>
+                            <i class="fa-regular fa-star star"></i>
+                            <i class="fa-regular fa-star star"></i>
+                            <i class="fa-regular fa-star star"></i>
+                            <i class="fa-regular fa-star star"></i>
+                        </div>
+
+                        <textarea class="form-control mb-3" rows="3" placeholder="Tell us what you think..."></textarea>
+
+                        <button class="btn btn-primary w-100">Send Feedback</button>
+                    </div>
+                </div>
+
+
+
             </div>
         </aside>
 
@@ -136,16 +176,16 @@
             {{-- TOPBAR --}}
             <nav id="topbar"
                 class="topbar d-flex justify-content-between align-items-center px-4 py-3 bg-white bg-opacity-90 shadow-sm"
-                style="position: sticky; top: 0; z-index: 1040; backdrop-filter: blur(10px);">
+                style="position: sticky; top: 0; z-index: 1040; backdrop-filter: blur(10px); color: #696969;">
                 <div class="left-items d-flex align-items-center gap-3">
-                    <button id="toggleSidebar" class="btn shadow-sm toggle-btn">
+                    <button id="toggleSidebar" class=" btn shadow-sm toggle-btn">
                         <i class="bi bi-list fs-3"></i>
                     </button>
 
-                    <div class="search-box d-none d-md-flex align-items-center">
+                    {{-- <div class="search-box d-none d-md-flex align-items-center">
                         <i class="bi bi-search"></i>
                         <input type="text" placeholder="Start typing to search…" class="form-control" />
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="right-items d-flex align-items-center gap-4">
@@ -228,7 +268,8 @@
             // Close sidebar when clicking outside on mobile
             document.addEventListener('click', (e) => {
                 if (window.innerWidth < 768) {
-                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && sidebar.classList.contains('active')) {
+                    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target) && sidebar.classList
+                        .contains('active')) {
                         // Assuming 'active' class toggles visibility. If dashboard.js uses a different class (e.g. 'show'), this needs adjustment.
                         // Triggerting the toggle button is safer if we don't know the exact class logic of dashboard.js
                         toggleBtn.click();
@@ -237,6 +278,37 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const btn = document.getElementById('feedback-btn');
+            const box = document.getElementById('feedback-box');
+            const closeBtn = document.getElementById('feedback-close');
+            const stars = document.querySelectorAll('.star');
+
+            btn.addEventListener('click', () => {
+                box.classList.toggle('active');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                box.classList.remove('active');
+            });
+
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    stars.forEach(s => s.classList.remove('active'));
+                    for (let i = 0; i <= index; i++) {
+                        stars[i].classList.add('active');
+                    }
+                });
+            });
+
+        });
+    </script>
+
+
+
+
 </body>
 
 </html>

@@ -158,11 +158,11 @@
                         credit card and debit card details from different banks. It helps users understand card fees,
                         tiers, networks, and benefits—along with the latest offers—without confusion.
 
-                        {{-- <ul class="features">
+                        <ul class="features">
                     <li>💳 Compare cards across banks & networks</li>
                     <li>📊 Understand fees, rewards & benefits</li>
                     <li>🤖 AI explanations — no confusion</li>
-                </ul> --}}
+                </ul>
 
                     <p class="tagline">
                         👉 Know your card. Use it right. Save more.

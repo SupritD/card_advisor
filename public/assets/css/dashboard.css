@@ -16,7 +16,7 @@ body {
     right: 0;
     top: 0;
     z-index: 1000;
-    width: calc(100% - 260px);
+    /* width: calc(100% - 260px); */
     transition: 0.3s ease;
 }
 
@@ -25,7 +25,7 @@ body {
     transition: 0.3s ease;
 } */
 .topbar.minimized {
-    width: calc(100% - 80px);
+    /* width: calc(100% - 80px); */
     transition: 0.3s ease;
 }
 
@@ -414,7 +414,8 @@ HERO WALLET STYLES (Added via Antigravity)
 }
 
 .wallet-card-new {
-    background: rgba(255, 255, 255, 0.1); /* Glassmorphism base */
+    background: rgba(255, 255, 255, 0.1);
+    /* Glassmorphism base */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -436,20 +437,25 @@ HERO WALLET STYLES (Added via Antigravity)
 .hover-elevate {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .hover-elevate:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Mobile Improvements */
 @media (max-width: 768px) {
     .hero-wallet-container {
         padding: 1.5rem;
-        padding-top: 3.5rem; /* Critical Fix: Header Overlap */
-        border-radius: 0 0 24px 24px; /* Unique shape for mobile top */
-        margin-left: -1.5rem; /* Full bleed on mobile container */
+        padding-top: 3.5rem;
+        /* Critical Fix: Header Overlap */
+        border-radius: 0 0 24px 24px;
+        /* Unique shape for mobile top */
+        margin-left: -1.5rem;
+        /* Full bleed on mobile container */
         margin-right: -1.5rem;
-        margin-top: -1.5rem; /* Pull up to cover default padding */
+        margin-top: -1.5rem;
+        /* Pull up to cover default padding */
         width: calc(100% + 3rem);
     }
 
@@ -459,17 +465,22 @@ HERO WALLET STYLES (Added via Antigravity)
         scroll-snap-type: x mandatory;
         padding-bottom: 1rem;
         gap: 1rem;
-        -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
-        scrollbar-width: none; /* Hide scrollbar Firefox */
-        padding-right: 1.5rem; /* End padding for scroll */
-    }
-    
-    .wallet-grid::-webkit-scrollbar {
-        display: none; /* Hide scrollbar Chrome/Safari */
+        -ms-overflow-style: none;
+        /* Hide scrollbar IE/Edge */
+        scrollbar-width: none;
+        /* Hide scrollbar Firefox */
+        padding-right: 1.5rem;
+        /* End padding for scroll */
     }
 
-    .wallet-grid > div {
-        min-width: 85%; /* Peeking effect */
+    .wallet-grid::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar Chrome/Safari */
+    }
+
+    .wallet-grid>div {
+        min-width: 85%;
+        /* Peeking effect */
         scroll-snap-align: center;
     }
 }
@@ -479,5 +490,153 @@ HERO WALLET STYLES (Added via Antigravity)
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 1.5rem;
+    }
+}
+
+/* feedback start */
+
+#feedback-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background: #fcfcfc;
+    color: #0d6efd;
+    padding: 10px 19px;
+    border: solid 1px #0d6efd;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+#feedback-btn i {
+    font-size: 20px;
+}
+
+/* Text always visible but subtle */
+.feedback-text {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Hover effect */
+#feedback-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+/* Feedback box */
+#feedback-box {
+    position: fixed;
+    bottom: 95px;
+    /* left: -20px; */
+    width: 240px;
+    background: #fff;
+    border-radius: 16px;
+    /* box-shadow: 0 25px 45px rgba(0,0,0,0.25); */
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: 0.3s ease;
+    z-index: 99;
+    margin-left: 10px;
+}
+
+#feedback-box.active {
+    transform: scale(1);
+}
+
+.feedback-header {
+    background: #0d6efd;
+    color: white;
+    padding: 14px 16px;
+    border-radius: 16px 16px 0 0;
+    font-weight: 600;
+}
+
+.feedback-body {
+    padding: 15px;
+}
+
+.star {
+    font-size: 22px;
+    cursor: pointer;
+    color: #ddd;
+}
+
+.star.active {
+    color: #ffc107;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 576px) {
+
+    #feedback-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    #feedback-btn i {
+        font-size: 18px;
+    }
+
+    .feedback-text {
+        /* display: none; mobile pe sirf icon */
+    }
+
+    #feedback-box {
+        width: 100%;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px 16px 0 0;
+        transform-origin: bottom;
+        z-index: 1000;
+    }
+
+    #feedback-box.active {
+        transform: scale(1);
+    }
+}
+
+/* CLOSE BUTTON */
+#feedback-close {
+    cursor: pointer !;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+#feedback-close:hover {
+    opacity: 1;
+}
+
+/* Header layout fix */
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== RESPONSIVE FIX (CLEAN & SIMPLE) ===== */
+@media (max-width: 430px) {
+
+    #feedback-box {
+        /* width: 50%; */
+        left: 1px;
+        bottom: 150px;
+        transform: translateX(0%) scale(0);
+        transform-origin: bottom right;
+    }
+
+    #feedback-box.active {
+        transform: translateX(0%) scale(1);
+        width: 40%;
+        bottom: 340px;
     }
 }
