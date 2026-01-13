@@ -57,19 +57,17 @@ class CardController extends Controller
         | Fetch Cards
         |--------------------------------------------------------------------------
         */
-        $cards = $query->get();
+        $cards = $query->paginate(9)->withQueryString();
 
         /*
         |--------------------------------------------------------------------------
-        | Dropdown Values (From Active Cards)
+        | Dropdown Values (Optimized)
         |--------------------------------------------------------------------------
         */
-        $allCards = MstCard::where('status', 'active')->get();
-
-        $cardNames = $allCards->pluck('card_name')->unique()->values();
-        $bankNames = $allCards->pluck('bank_name')->unique()->values();
-        $cardTypes = $allCards->pluck('card_category')->unique()->values();
-        $networks = $allCards->pluck('network_type')->unique()->values();
+        $cardNames = MstCard::where('status', 'active')->distinct()->pluck('card_name');
+        $bankNames = MstCard::where('status', 'active')->distinct()->pluck('bank_name');
+        $cardTypes = MstCard::where('status', 'active')->distinct()->pluck('card_category');
+        $networks = MstCard::where('status', 'active')->distinct()->pluck('network_type');
 
         /*
         |--------------------------------------------------------------------------
@@ -116,5 +114,34 @@ class CardController extends Controller
         // return redirect()
         //     ->route('user.cards.index')
         //     ->with('success', 'Your cards have been updated successfully.');
+    }
+
+    public function toggleCard(Request $request)
+    {
+        $request->validate([
+            'card_id' => 'required|exists:mst_cards,id',
+            'action' => 'required|in:add,remove'
+        ]);
+
+        $user = Auth::user();
+        $cardId = $request->card_id;
+
+        if ($request->action === 'add') {
+            $user->cards()->syncWithoutDetaching([$cardId]);
+            $message = 'Card added to wallet';
+        } else {
+            $user->cards()->detach($cardId);
+            $message = 'Card removed from wallet';
+        }
+
+        // Fetch card details for frontend DOM injection
+        $card = MstCard::find($cardId);
+
+        return response()->json([
+            'success' => true,
+            'message' => $message,
+            'card' => $card,
+            'total_count' => $user->cards()->count()
+        ]);
     }
 }

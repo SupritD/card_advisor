@@ -397,3 +397,87 @@ body {
 .message.bot-message {
     background-color: #171717;
 }
+
+/* 
+=========================================
+HERO WALLET STYLES (Added via Antigravity)
+=========================================
+*/
+.hero-wallet-container {
+    background: linear-gradient(135deg, #020617 0%, #1e293b 100%);
+    border-radius: 24px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.wallet-card-new {
+    background: rgba(255, 255, 255, 0.1); /* Glassmorphism base */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.wallet-card-new:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.hover-elevate {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-elevate:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1) !important;
+}
+
+/* Mobile Improvements */
+@media (max-width: 768px) {
+    .hero-wallet-container {
+        padding: 1.5rem;
+        padding-top: 3.5rem; /* Critical Fix: Header Overlap */
+        border-radius: 0 0 24px 24px; /* Unique shape for mobile top */
+        margin-left: -1.5rem; /* Full bleed on mobile container */
+        margin-right: -1.5rem;
+        margin-top: -1.5rem; /* Pull up to cover default padding */
+        width: calc(100% + 3rem);
+    }
+
+    .wallet-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 1rem;
+        gap: 1rem;
+        -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+        scrollbar-width: none; /* Hide scrollbar Firefox */
+        padding-right: 1.5rem; /* End padding for scroll */
+    }
+    
+    .wallet-grid::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
+    .wallet-grid > div {
+        min-width: 85%; /* Peeking effect */
+        scroll-snap-align: center;
+    }
+}
+
+@media (min-width: 769px) {
+    .wallet-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}

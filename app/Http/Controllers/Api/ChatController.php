@@ -26,7 +26,7 @@ class ChatController extends Controller
         if ($token) {
             $session = ChatSession::where('token', $token)->first();
 
-            if ($session && $user && ! $session->user_id) {
+            if ($session && $user && !$session->user_id) {
                 $session->update(['user_id' => $user->id]);
             }
 
@@ -103,9 +103,17 @@ class ChatController extends Controller
 
                 $langName = $langNames[$language] ?? $language;
 
+                $cardContext = $this->getCardContext($request->user());
+
                 $messages[] = [
                     'role' => 'system',
-                    'content' => "You are a helpful assistant. Always reply in {$langName}.",
+                    'content' => "You are an expert Credit Card Advisor. Always reply in {$langName}.\n\n{$cardContext}\n\nAnalyze these cards to answer user queries. If the user asks for a recommendation, checks if one of their existing cards fits the category. If not, suggest they might need a new one, but prioritize maximizing their current portfolio.\n\nIMPORTANT: You must ONLY answer questions related to credit cards, banking, finance, and shopping rewards. If the user asks about ANY other topic (e.g., coding, cooking, general knowledge, history), strictly REFUSE to answer and politely state that you can only assist with credit card and financial advice.",
+                ];
+            } else {
+                $cardContext = $this->getCardContext($request->user());
+                $messages[] = [
+                    'role' => 'system',
+                    'content' => "You are an expert Credit Card Advisor.\n\n{$cardContext}\n\nAnalyze these cards to answer user queries. Prioritize maximizing their current portfolio.\n\nIMPORTANT: You must ONLY answer questions related to credit cards, banking, finance, and shopping rewards. If the user asks about ANY other topic, strictly REFUSE to answer and politely state that you can only assist with credit card and financial advice.",
                 ];
             }
 
@@ -174,12 +182,12 @@ class ChatController extends Controller
         ]);
 
         $token = $request->input('session_token') ?? $request->query('session_token');
-        if (! $token) {
+        if (!$token) {
             return response()->json(['messages' => []]);
         }
 
         $session = ChatSession::where('token', $token)->first();
-        if (! $session) {
+        if (!$session) {
             return response()->json(['messages' => []]);
         }
 
@@ -222,6 +230,8 @@ class ChatController extends Controller
 
         // Build messages with language system instruction
         $messages = [];
+        $cardContext = $this->getCardContext($request->user());
+
         if ($language !== 'auto') {
             $langNames = [
                 'en' => 'English',
@@ -232,7 +242,12 @@ class ChatController extends Controller
             $langName = $langNames[$language] ?? $language;
             $messages[] = [
                 'role' => 'system',
-                'content' => "You are a helpful assistant. Always reply in {$langName}.",
+                'content' => "You are an expert Credit Card Advisor. Always reply in {$langName}.\n\n{$cardContext}\n\nAnalyze these cards to answer user queries. Prioritize maximizing their current portfolio.\n\nIMPORTANT: You must ONLY answer questions related to credit cards, banking, finance, and shopping rewards. If the user asks about ANY other topic, strictly REFUSE to answer and politely state that you can only assist with credit card and financial advice.",
+            ];
+        } else {
+            $messages[] = [
+                'role' => 'system',
+                'content' => "You are an expert Credit Card Advisor.\n\n{$cardContext}\n\nAnalyze these cards to answer user queries. Prioritize maximizing their current portfolio.\n\nIMPORTANT: You must ONLY answer questions related to credit cards, banking, finance, and shopping rewards. If the user asks about ANY other topic, strictly REFUSE to answer and politely state that you can only assist with credit card and financial advice.",
             ];
         }
 
@@ -264,7 +279,7 @@ class ChatController extends Controller
                 set_time_limit(0);
 
                 // notify client of session token at the start
-                echo 'data: '.json_encode(['session_token' => $session->token])."\n\n";
+                echo 'data: ' . json_encode(['session_token' => $session->token]) . "\n\n";
                 @ob_flush();
                 @flush();
 
@@ -272,7 +287,7 @@ class ChatController extends Controller
                 $assistantContent = '';
                 $metaChunks = [];
 
-                while (! $body->eof()) {
+                while (!$body->eof()) {
                     $chunk = $body->read(1024);
                     if ($chunk === '') {
                         usleep(100000);
@@ -341,7 +356,7 @@ class ChatController extends Controller
 
                             if ($delta !== null) {
                                 $assistantContent .= $delta;
-                                echo 'data: '.json_encode(['delta' => $delta])."\n\n";
+                                echo 'data: ' . json_encode(['delta' => $delta]) . "\n\n";
                                 @ob_flush();
                                 @flush();
                             }
@@ -365,7 +380,7 @@ class ChatController extends Controller
 
                                         if ($delta !== null) {
                                             $assistantContent .= $delta;
-                                            echo 'data: '.json_encode(['delta' => $delta])."\n\n";
+                                            echo 'data: ' . json_encode(['delta' => $delta]) . "\n\n";
                                             @ob_flush();
                                             @flush();
                                         }
@@ -373,7 +388,7 @@ class ChatController extends Controller
                                 }
                             } else {
                                 // Send raw chunk as fallback (should be rare)
-                                echo 'data: '.json_encode(['chunk' => $part])."\n\n";
+                                echo 'data: ' . json_encode(['chunk' => $part]) . "\n\n";
                                 @ob_flush();
                                 @flush();
                             }
@@ -398,7 +413,7 @@ class ChatController extends Controller
 
                         if ($delta !== null) {
                             $assistantContent .= $delta;
-                            echo 'data: '.json_encode(['delta' => $delta])."\n\n";
+                            echo 'data: ' . json_encode(['delta' => $delta]) . "\n\n";
                             @ob_flush();
                             @flush();
                         }
@@ -440,18 +455,36 @@ class ChatController extends Controller
         ]);
 
         $token = $request->input('session_token') ?? $request->header('X-Chat-Session');
-        if (! $token) {
+        if (!$token) {
             return response()->json(['status' => 'no-token'], 200);
         }
 
         $session = ChatSession::where('token', $token)->first();
-        if (! $session) {
+        if (!$session) {
             return response()->json(['status' => 'not-found'], 404);
         }
 
         $session->delete();
 
-        return response()->json(['status' => 'deleted']);
+        return response()->json(['message' => 'Session deleted successfully']);
+    }
+
+    public function updateTitle(Request $request)
+    {
+        $request->validate([
+            'session_token' => 'required|string',
+            'title' => 'required|string|max:100',
+        ]);
+
+        $session = ChatSession::where('token', $request->session_token)->first();
+
+        if (!$session) {
+            return response()->json(['error' => 'Session not found'], 404);
+        }
+
+        $session->update(['title' => $request->title]);
+
+        return response()->json(['message' => 'Title updated successfully']);
     }
 
     /**
@@ -460,7 +493,7 @@ class ChatController extends Controller
     public function sessions(Request $request)
     {
         $user = $request->user();
-        if (! $user) {
+        if (!$user) {
             return response()->json(['sessions' => []]);
         }
 
@@ -487,12 +520,38 @@ class ChatController extends Controller
     public function createSession(Request $request)
     {
         $user = $request->user();
-        if (! $user) {
+        if (!$user) {
             return response()->json(['error' => 'Unauthenticated'], 401);
         }
 
         $session = ChatSession::createForUser($user);
 
         return response()->json(['session_token' => $session->token]);
+    }
+
+    private function getCardContext($user)
+    {
+        if (!$user) {
+            return "The user is not logged in or has no cards associated.";
+        }
+
+        // Must eager load or fetch cards
+        // Assuming $user->cards relationship exists
+        $cards = $user->cards;
+
+        if ($cards->isEmpty()) {
+            return "The user has no credit cards in their portfolio currently.";
+        }
+
+        $context = "The user has the following active credit cards in their portfolio:\n";
+        foreach ($cards as $card) {
+            $fee = $card->annual_fee == 0 ? "Free" : "₹" . $card->annual_fee;
+            $context .= "- **{$card->card_name}** ({$card->bank_name} / {$card->network_type})\n";
+            $context .= "  - Annual Fee: {$fee}\n";
+            $context .= "  - Key Benefits: {$card->pros}\n";
+            $context .= "  - Category: {$card->card_category}\n\n";
+        }
+
+        return $context;
     }
 }
