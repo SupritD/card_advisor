@@ -106,7 +106,8 @@
                         @endphp
                         <div class="menu-dropdown {{ $isChatView ? 'open' : '' }}">
                             <button class="menu-item dropdown-toggle-btn">
-                                <i class="bi bi-house"></i>
+                                {{-- <i class="bi bi-house"></i> --}}
+                                <i class="bi bi-chat-left-text"></i>
                                 <span>Your Chats</span>
                                 <i class="bi bi-chevron-down dropdown-arrow"></i>
                             </button>
