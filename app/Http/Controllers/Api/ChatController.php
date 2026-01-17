@@ -72,7 +72,6 @@ class ChatController extends Controller
         $message = $request->input('message');
         $model = $request->input('model', 'deepseek-ai/DeepSeek-V3.2:novita');
         $language = $request->input('language', 'en');
-
         $apiKey = config('services.huggingface.key') ?? env('HUGGINGFACE_API_KEY');
 
         if (empty($apiKey)) {
@@ -490,6 +489,20 @@ class ChatController extends Controller
     /**
      * List chat sessions for the current authenticated user
      */
+    public function getSession(Request $request)
+    {
+        $request->validate([
+            'session_token' => 'required|string',
+        ]);
+
+        $session = ChatSession::where('token', $request->session_token)->first();
+
+        if (!$session) {
+            return response()->json(['error' => 'Session not found'], 404);
+        }
+
+        return response()->json(['session' => $session]);
+    }
     public function sessions(Request $request)
     {
         $user = $request->user();
@@ -520,11 +533,12 @@ class ChatController extends Controller
     public function createSession(Request $request)
     {
         $user = $request->user();
+        $content = $request->content;
         if (!$user) {
             return response()->json(['error' => 'Unauthenticated'], 401);
         }
 
-        $session = ChatSession::createForUser($user);
+        $session = ChatSession::createForUser($user, $content);
 
         return response()->json(['session_token' => $session->token]);
     }

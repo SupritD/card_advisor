@@ -10,13 +10,14 @@ class ChatSession extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'token', 'title'];
+    protected $fillable = ['user_id', 'token', 'title', 'content'];
 
-    public static function createForUser($user = null)
+    public static function createForUser($user = null, $content)
     {
         $token = (string) Str::uuid();
+        $title = substr((string) $content, 0, 50);
 
-        return static::create(['user_id' => $user ? $user->id : null, 'token' => $token]);
+        return static::create(['user_id' => $user ? $user->id : null, 'token' => $token, 'title' => $title, 'content' => $content]);
     }
 
     public function user()

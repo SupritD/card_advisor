@@ -12,6 +12,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('token')->unique();
+            $table->string('title', 100)->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

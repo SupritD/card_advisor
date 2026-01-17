@@ -359,8 +359,8 @@
                     </div>
 
                     <div class="dropdown">
-                        <button class="btn btn-light btn-sm rounded-circle" style="width: 36px; height: 36px;" type="button"
-                            data-bs-toggle="dropdown">
+                        <button class="btn btn-light btn-sm rounded-circle" style="width: 36px; height: 36px;"
+                            type="button" data-bs-toggle="dropdown">
                             <i class="bi bi-globe text-muted"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-3 overflow-hidden"

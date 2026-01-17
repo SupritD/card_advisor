@@ -13,6 +13,7 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     // Route::middleware('auth:sanctum')->group(function () {
     // Route::post('/chat/stream', [ChatController::class, 'stream']);
+    Route::post('/chat/get-session', [ChatController::class, 'getSession']);
     Route::get('/chat/sessions', [ChatController::class, 'sessions']);
     Route::post('/chat/session', [ChatController::class, 'createSession']);
     Route::delete('/chat/session', [ChatController::class, 'destroy']);
