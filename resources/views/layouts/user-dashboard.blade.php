@@ -128,47 +128,7 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
-                <!-- Feedback Button -->
-                <div id="feedback-btn" title="Give Feedback">
-                    <i class="fa-solid fa-comment-dots"></i>
-                    <span class="feedback-text">Feedback</span>
-                </div>
-
-                <!-- Feedback Form -->
-                <div id="feedback-box">
-                    <div class="feedback-header">
-                        <span>
-                            <i class="bi bi-chat-dots"></i> Feedback
-                        </span>
-
-                        <span id="feedback-close">
-                            <i class="fa-solid fa-xmark"></i>
-                        </span>
-                    </div>
-
-                    <div class="feedback-body">
-                        <input type="text" class="form-control mb-2" placeholder="Your Name">
-                        <input type="email" class="form-control mb-2" placeholder="Your Email">
-
-                        <div class="text-center mb-2">
-                            <i class="fa-regular fa-star star"></i>
-                            <i class="fa-regular fa-star star"></i>
-                            <i class="fa-regular fa-star star"></i>
-                            <i class="fa-regular fa-star star"></i>
-                            <i class="fa-regular fa-star star"></i>
-                        </div>
-
-                        <textarea class="form-control mb-3" rows="3" placeholder="Tell us what you think..."></textarea>
-
-                        <button class="btn btn-primary w-100">Send Feedback</button>
-                    </div>
-                </div>
-
-
-
             </div>
         </aside>
 

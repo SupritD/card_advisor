@@ -161,10 +161,10 @@ body {
 /* CONTENT */
 .content {
     /* margin-left: 260px; */
-    padding: 110px 30px 40px;
+    padding: 0px 30px 40px;
     transition: 0.3s ease;
     /* width: calc(100% - 260px); */
-    height: 100vh;
+    /* height: 100vh; */
     /* background-color: #333; */
     overflow-y: auto;
 }

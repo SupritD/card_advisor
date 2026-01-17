@@ -27,7 +27,7 @@
 
 <body>
     <style>
-</style>
+    </style>
     <div class="ux-cursor-dot"></div>
     <div class="ux-cursor-ring"></div>
 
@@ -158,11 +158,11 @@
                         credit card and debit card details from different banks. It helps users understand card fees,
                         tiers, networks, and benefits—along with the latest offers—without confusion.
 
-                        <ul class="features">
-                    <li>💳 Compare cards across banks & networks</li>
-                    <li>📊 Understand fees, rewards & benefits</li>
-                    <li>🤖 AI explanations — no confusion</li>
-                </ul>
+                    <ul class="features">
+                        <li>💳 Compare cards across banks & networks</li>
+                        <li>📊 Understand fees, rewards & benefits</li>
+                        <li>🤖 AI explanations — no confusion</li>
+                    </ul>
 
                     <p class="tagline">
                         👉 Know your card. Use it right. Save more.
@@ -620,8 +620,11 @@
             Register
         </a>
     </nav> --}}
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('assets/js/mainpage.js') }}"></script>
 
     <script>
         window.addEventListener('scroll', function() {
@@ -634,70 +637,70 @@
         });
     </script>
     <script>
-(() => {
-    const dot = document.querySelector('.ux-cursor-dot');
-    const ring = document.querySelector('.ux-cursor-ring');
+        (() => {
+            const dot = document.querySelector('.ux-cursor-dot');
+            const ring = document.querySelector('.ux-cursor-ring');
 
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let ringX = mouseX;
+            let ringY = mouseY;
 
-    // Track mouse
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+            // Track mouse
+            document.addEventListener('mousemove', e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
 
-        dot.style.left = mouseX + 'px';
-        dot.style.top = mouseY + 'px';
-    });
+                dot.style.left = mouseX + 'px';
+                dot.style.top = mouseY + 'px';
+            });
 
-    // Smooth follow (ONLY follows mouse — no snapping)
-    function animate() {
-        ringX += (mouseX - ringX) * 0.18;
-        ringY += (mouseY - ringY) * 0.18;
+            // Smooth follow (ONLY follows mouse — no snapping)
+            function animate() {
+                ringX += (mouseX - ringX) * 0.18;
+                ringY += (mouseY - ringY) * 0.18;
 
-        ring.style.left = ringX + 'px';
-        ring.style.top = ringY + 'px';
+                ring.style.left = ringX + 'px';
+                ring.style.top = ringY + 'px';
 
-        requestAnimationFrame(animate);
-    }
-    animate();
+                requestAnimationFrame(animate);
+            }
+            animate();
 
-    /* Hover states (NO position manipulation) */
-    const hoverEls = 'a, button, .btn, [role="button"]';
-    const textEls = 'input, textarea, select, p, h1, h2, h3, h4, h5, h6, span';
+            /* Hover states (NO position manipulation) */
+            const hoverEls = 'a, button, .btn, [role="button"]';
+            const textEls = 'input, textarea, select, p, h1, h2, h3, h4, h5, h6, span';
 
-    document.querySelectorAll(hoverEls).forEach(el => {
-        el.addEventListener('mouseenter', () =>
-            document.body.classList.add('cursor-hover')
-        );
-        el.addEventListener('mouseleave', () =>
-            document.body.classList.remove('cursor-hover')
-        );
-    });
+            document.querySelectorAll(hoverEls).forEach(el => {
+                el.addEventListener('mouseenter', () =>
+                    document.body.classList.add('cursor-hover')
+                );
+                el.addEventListener('mouseleave', () =>
+                    document.body.classList.remove('cursor-hover')
+                );
+            });
 
-    document.querySelectorAll(textEls).forEach(el => {
-        el.addEventListener('mouseenter', () =>
-            document.body.classList.add('cursor-text')
-        );
-        el.addEventListener('mouseleave', () =>
-            document.body.classList.remove('cursor-text')
-        );
-    });
+            document.querySelectorAll(textEls).forEach(el => {
+                el.addEventListener('mouseenter', () =>
+                    document.body.classList.add('cursor-text')
+                );
+                el.addEventListener('mouseleave', () =>
+                    document.body.classList.remove('cursor-text')
+                );
+            });
 
-    // Hide when leaving window
-    document.addEventListener('mouseleave', () => {
-        dot.style.opacity = 0;
-        ring.style.opacity = 0;
-    });
+            // Hide when leaving window
+            document.addEventListener('mouseleave', () => {
+                dot.style.opacity = 0;
+                ring.style.opacity = 0;
+            });
 
-    document.addEventListener('mouseenter', () => {
-        dot.style.opacity = 1;
-        ring.style.opacity = 1;
-    });
-})();
-</script>
+            document.addEventListener('mouseenter', () => {
+                dot.style.opacity = 1;
+                ring.style.opacity = 1;
+            });
+        })();
+    </script>
 
 
 </body>
