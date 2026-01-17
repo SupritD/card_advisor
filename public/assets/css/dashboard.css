@@ -496,7 +496,7 @@ HERO WALLET STYLES (Added via Antigravity)
 /* feedback start */
 
 #feedback-btn {
-    position: absolute;
+    position: fixed;
     bottom: 25px;
     right: 25px;
     background: #fcfcfc;
@@ -534,16 +534,16 @@ HERO WALLET STYLES (Added via Antigravity)
 /* Feedback box */
 #feedback-box {
     position: fixed;
-    bottom: 95px;
-    /* left: -20px; */
-    width: 240px;
+    bottom: 84px;
+    right: 27px;
+    width: 284px;
     background: #fff;
     border-radius: 16px;
-    /* box-shadow: 0 25px 45px rgba(0,0,0,0.25); */
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
     transform: scale(0);
     transform-origin: bottom right;
     transition: 0.3s ease;
-    z-index: 99;
+    z-index: 1040;
     margin-left: 10px;
 }
 
