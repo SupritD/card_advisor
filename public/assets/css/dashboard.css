@@ -52,8 +52,8 @@ body {
 /* SIDEBAR */
 .sidebar {
     min-width: 260px;
-    /* background: #fff; */
-    background: #fafdfd;
+    background: #fff;
+    /* background: #fafdfd; */
     height: 100%;
     /* height: 100vh; */
     /* position: fixed; */
@@ -70,7 +70,7 @@ body {
 }
 
 .sidebar-content {
-    background: #fafdfd;
+    /* background: #fafdfd; */
     position: fixed;
     top: 0;
     left: 0;
@@ -95,7 +95,7 @@ body {
 .top-sidebar {
     position: sticky;
     top: 0;
-    background: #fafdfd;
+    /* background: #fafdfd; */
     padding: 15px;
     padding-bottom: 0px;
     border-bottom: 1px solid #eee;
@@ -175,20 +175,81 @@ body {
     transition: 0.3s ease;
 }
 
-/* RESPONSIVE */
-@media (max-width: 992px) {
+/* ============================ */
+/* ===== Tablet (768–991px) ===== */
+/* ============================ */
+@media (min-width: 768px) and (max-width: 991px) {
     .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        min-width: 80px;
+        /* 🔥 STRIP default */
+        transform: translateX(0);
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar-content {
+        min-width: 80px;
+    }
+
+    /* Click pe FULL */
+    .sidebar.show {
+        min-width: 260px;
+    }
+
+    .sidebar.show .sidebar-content {
+        min-width: 260px;
+    }
+
+    .content {
+        margin-left: 80px;
+    }
+
+    .sidebar.show~.content {
+        margin-left: 260px;
+    }
+
+    /* Strip mode me text hide */
+    .sidebar:not(.show) .menu-item span,
+    .sidebar:not(.show) .dropdown-toggle-btn span,
+    .sidebar:not(.show) .menu-title {
+        display: none !important;
+    }
+
+    .sidebar:not(.show) .menu-item,
+    .sidebar:not(.show) .dropdown-toggle-btn {
+        justify-content: center;
+    }
+}
+
+/* ============================ */
+/* ===== Mobile (< 768px) ===== */
+/* ============================ */
+@media (max-width: 767px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
         left: -260px;
+        /* 🔥 bilkul hidden */
+        height: 100vh;
+        min-width: 260px;
+        z-index: 1001;
+        transition: left 0.3s ease;
     }
 
     .sidebar.show {
         left: 0;
+        /* 🔥 slide in */
     }
 
     .content {
         margin-left: 0;
     }
 }
+
 
 /* DROPDOWN CONTAINER */
 .menu-dropdown {
@@ -277,7 +338,7 @@ body {
 .submenu {
     display: none;
     flex-direction: column;
-    padding-left: 40px;
+    padding-left: 4px;
     margin-top: 6px;
     animation: fadeIn 0.3s ease;
 }
@@ -288,21 +349,22 @@ body {
 
 /* SUBMENU ITEM */
 .submenu-item {
-    padding: 8px 0;
+    padding: 8px 8px 8px 8px;
     color: #444;
     text-decoration: none;
     font-size: 14px;
     position: relative;
+    border-radius: 8px;
 }
 
-.submenu-item::before {
+/* .submenu-item::before {
     content: "•";
     color: #1570ef;
     font-size: 22px;
     position: absolute;
     left: -18px;
-    top: -4px;
-}
+    top: 1px;
+} */
 
 .submenu-item:hover {
     color: #1570ef;
@@ -497,61 +559,175 @@ HERO WALLET STYLES (Added via Antigravity)
 
 #feedback-btn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #fcfcfc;
-    color: #0d6efd;
-    padding: 10px 19px;
-    border: solid 1px #0d6efd;
-    border-radius: 50px;
+    bottom: 22px;
+    right: 22px;
+    height: 46px;
+    width: 46px;
+    background: #0d6efd;
+    border-radius: 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    overflow: hidden;
     cursor: pointer;
     z-index: 1000;
-    transition: all 0.3s ease;
-    font-weight: 600;
+    box-shadow: 0 10px 28px rgba(13, 110, 253, 0.35);
+    transition: width 0.35s ease, box-shadow 0.3s ease;
 }
 
-#feedback-btn i {
-    font-size: 20px;
+/* Desktop hover */
+@media (hover: hover) {
+    #feedback-btn:hover {
+        width: 140px;
+        box-shadow: 0 14px 38px rgba(13, 110, 253, 0.5);
+    }
+
+    #feedback-btn:hover .feedback-text {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-/* Text always visible but subtle */
-.feedback-text {
-    font-size: 14px;
-    opacity: 0.9;
+/* Mobile active (JS toggle) */
+#feedback-btn.active {
+    width: 140px;
+    box-shadow: 0 14px 38px rgba(13, 110, 253, 0.5);
 }
 
-/* Hover effect */
-#feedback-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-    background-color: #0d6efd;
+.f-icon {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
     color: #fff;
 }
 
-/* Feedback box */
+.feedback-text {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: 0.25s ease;
+}
+
+#feedback-btn.active .feedback-text {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    #feedback-btn {
+        bottom: 16px;
+        right: 16px;
+        height: 42px;
+        width: 42px;
+        border-radius: 12px;
+    }
+
+    #feedback-btn.active {
+        width: 128px;
+    }
+
+    .f-icon {
+        width: 42px;
+        min-width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+
+    .feedback-text {
+        font-size: 13px;
+    }
+}
+
+
+/* ===== Feedback Button ===== */
+/* ===== Feedback Button ===== */
+#feedback-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #b8b8b8;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+
+    /* Smooth transition for transform, shadow, and background */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.4s ease,
+        background 0.3s ease;
+    z-index: 1050;
+}
+
+/* ===== Hover effect – slide and slight scale ===== */
+#feedback-btn:hover {
+    transform: translateY(-8px) translateX(-2px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    background: #0b5ed7;
+    /* slightly darker */
+}
+
+
+.feedback-img {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    /* smooth scaling if needed */
+}
+
+.feedback-text {
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+    /* optional text color smooth */
+}
+
+/* ===== Feedback Box ===== */
 #feedback-box {
     position: fixed;
-    bottom: 84px;
-    right: 27px;
-    width: 284px;
+    bottom: 80px;
+    right: 25px;
+    width: 300px;
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
     transform: scale(0);
     transform-origin: bottom right;
-    transition: 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.4s ease,
+        background 0.3s ease;
     z-index: 1040;
     margin-left: 10px;
+}
+
+#feedback-btn:hover {
+    transform: translateY(-8px) translateX(-2px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    background: #c2c2c2;
+    /* slightly darker */
 }
 
 #feedback-box.active {
     transform: scale(1);
 }
 
+/* ===== Feedback Header ===== */
 .feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: #0d6efd;
     color: white;
     padding: 14px 16px;
@@ -559,6 +735,7 @@ HERO WALLET STYLES (Added via Antigravity)
     font-weight: 600;
 }
 
+/* ===== Feedback Body ===== */
 .feedback-body {
     padding: 15px;
 }
@@ -567,76 +744,63 @@ HERO WALLET STYLES (Added via Antigravity)
     font-size: 22px;
     cursor: pointer;
     color: #ddd;
+    transition: color 0.2s ease;
+    /* smooth star hover */
 }
 
 .star.active {
     color: #ffc107;
 }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 576px) {
-
-    #feedback-btn {
-        bottom: 15px;
-        right: 15px;
-        padding: 12px 16px;
-        font-size: 14px;
-    }
-
-    #feedback-btn i {
-        font-size: 18px;
-    }
-
-    .feedback-text {
-        /* display: none; mobile pe sirf icon */
-    }
-
-    #feedback-box {
-        width: 100%;
-        right: 0;
-        bottom: 0;
-        border-radius: 16px 16px 0 0;
-        transform-origin: bottom;
-        z-index: 1000;
-    }
-
-    #feedback-box.active {
-        transform: scale(1);
-    }
-}
-
-/* CLOSE BUTTON */
+/* ===== Close Button ===== */
 #feedback-close {
-    cursor: pointer !;
+    cursor: pointer;
     font-size: 18px;
     opacity: 0.8;
+    transition: opacity 0.2s ease;
 }
 
 #feedback-close:hover {
     opacity: 1;
 }
 
-/* Header layout fix */
-.feedback-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+/* ===== Responsive ===== */
+@media (max-width: 576px) {
+    #feedback-btn {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
 
-/* ===== RESPONSIVE FIX (CLEAN & SIMPLE) ===== */
-@media (max-width: 430px) {
+    .feedback-text {
+        display: none;
+        /* Mobile me sirf icon */
+    }
 
     #feedback-box {
-        /* width: 50%; */
-        left: 1px;
-        bottom: 150px;
-        transform: translateX(0%) scale(0);
-        transform-origin: bottom right;
+        width: 90%;
+        right: 5%;
+        bottom: 70px;
+        border-radius: 16px;
+        transform-origin: bottom;
     }
+}
 
-    #feedback-box.active {
-        transform: translateX(0%) scale(1);
-        width: 40%;
-        bottom: 340px;
+@media (max-width: 430px) {
+    #feedback-box {
+        bottom: 60px;
+        width: 95%;
+        right: 2.5%;
     }
+}
+
+.ai-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.ai-icon-white {
+    width: 40px;
+    height: 34px;
 }

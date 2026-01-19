@@ -16,7 +16,7 @@
         /* Fix top spacing from dashboard layout */
         main.content {
             padding: 0 !important;
-            margin-top: 70px !important;
+            margin-top: 70px ;
             /* Align exactly with fixed topbar */
         }
 
@@ -349,7 +349,8 @@
                 <div class="chat-header">
                     <div class="chat-title">
                         <div class="ai-avatar">
-                            <i class="bi bi-robot"></i>
+                            <img src="{{ asset('assets/image/logo/white-logo-icon.svg') }}" alt="AI Advisor" class="ai-icon-white">
+                            {{-- <i class="bi bi-robot"></i> --}}
                         </div>
                         <div>
                             <h6 class="fw-bold mb-0 text-dark">Advisor</h6>

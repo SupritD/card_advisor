@@ -283,7 +283,7 @@
         <div class="wallet-section">
             <div class="wallet-header">
                 <div class="wallet-icon-wrapper">
-                    <i class="fas fa-wallet text-white fa-lg"></i>
+                    {{-- <i class="fas fa-wallet text-white fa-lg"></i> --}}
                 </div>
                 <div>
                     <h4 class="fw-bold mb-0 text-dark">My Wallet</h4>

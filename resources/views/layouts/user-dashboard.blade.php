@@ -44,7 +44,7 @@
                     </a>
                     <a href="{{ route('user.chat.index') }}"
                         class="menu-item {{ request()->routeIs('user.chat.index') ? 'active text-primary bg-primary bg-opacity-10' : '' }}">
-                        <i class="bi bi-robot"></i>
+                        <img src="{{ asset('assets/image/logo/logo-outline-1.svg') }}" alt="AI Advisor" class="ai-icon">
                         <span>AI Advisor</span>
                     </a>
 
@@ -178,7 +178,7 @@
                     </div>
                 </div>
             </nav>
-            <main id="content" class="content">
+            <main id="content" class="content" style="margin-top: 0px;">
                 {{-- <h1>hello</h1> --}}
 
 
@@ -209,8 +209,8 @@
                 @yield('content')
             </main>
             <!-- Feedback Button -->
-            <div id="feedback-btn" title="Give Feedback">
-                <i class="fa-solid fa-comment-dots"></i>
+            <div id="feedback-btn">                     
+                     <img src="{{ asset('assets/image/logo/feedback-svgrepo-com.svg') }}" alt="Feedback" class="feedback-img">
                 <span class="feedback-text">Feedback</span>
             </div>
 
@@ -243,8 +243,8 @@
                     <button class="btn btn-primary w-100">Send Feedback</button>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
     {{-- Bootstrap JS --}}
@@ -301,6 +301,7 @@
 
         });
     </script>
+
 
 
 </body>
