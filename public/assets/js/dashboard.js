@@ -10,7 +10,7 @@ function setDefaultSidebarState() {
     content.classList.add("minimized");
   } else {
     sidebar.classList.remove("minimized");
-    sidebar.classList.remove("show");
+    sidebar.classList.remove("show"); // hidden by default
     topbar.classList.remove("minimized");
     content.classList.remove("minimized");
   }
@@ -20,7 +20,7 @@ setDefaultSidebarState();
 window.addEventListener("resize", setDefaultSidebarState);
 
 toggleSidebar.addEventListener("click", (e) => {
-  e.stopPropagation();
+  e.stopPropagation(); // 👈 important
   const w = window.innerWidth;
 
   if (w >= DESKTOP_BREAKPOINT) {
@@ -28,6 +28,16 @@ toggleSidebar.addEventListener("click", (e) => {
     topbar.classList.toggle("minimized");
     content.classList.toggle("minimized");
   } else {
-    sidebar.classList.toggle("show");
+    sidebar.classList.toggle("show"); // 👈 mobile open/close
+  }
+});
+
+// 👇 sidebar pe click kare to band na ho
+sidebar.addEventListener("click", e => e.stopPropagation());
+
+// 👇 bahar click kare to band ho (sirf mobile)
+document.addEventListener("click", () => {
+  if (window.innerWidth < DESKTOP_BREAKPOINT) {
+    sidebar.classList.remove("show");
   }
 });
