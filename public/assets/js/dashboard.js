@@ -32,10 +32,10 @@ toggleSidebar.addEventListener("click", (e) => {
   }
 });
 
-// 👇 sidebar pe click kare to band na ho
+
 sidebar.addEventListener("click", e => e.stopPropagation());
 
-// 👇 bahar click kare to band ho (sirf mobile)
+
 document.addEventListener("click", () => {
   if (window.innerWidth < DESKTOP_BREAKPOINT) {
     sidebar.classList.remove("show");
