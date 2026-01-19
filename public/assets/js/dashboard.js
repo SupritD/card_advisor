@@ -1,48 +1,33 @@
-const sidebar = document.getElementById("sidebar");
-const topbar = document.getElementById("topbar");
-const content = document.getElementById("content");
-const toggleSidebar = document.getElementById("toggleSidebar");
+const DESKTOP_BREAKPOINT = 500;
 
-// Toggle Sidebar
+function setDefaultSidebarState() {
+  const w = window.innerWidth;
+
+  if (w >= DESKTOP_BREAKPOINT) {
+    sidebar.classList.add("minimized");
+    sidebar.classList.remove("show");
+    topbar.classList.add("minimized");
+    content.classList.add("minimized");
+  } else {
+    sidebar.classList.remove("minimized");
+    sidebar.classList.remove("show");
+    topbar.classList.remove("minimized");
+    content.classList.remove("minimized");
+  }
+}
+
+setDefaultSidebarState();
+window.addEventListener("resize", setDefaultSidebarState);
+
 toggleSidebar.addEventListener("click", (e) => {
-    e.stopPropagation();
+  e.stopPropagation();
+  const w = window.innerWidth;
 
-    // Desktop >= 992px
-    if (window.innerWidth >= 992) {
-        sidebar.classList.toggle("minimized");
-        topbar.classList.toggle("minimized");
-        content.classList.toggle("minimized");
-        return;
-    }
-
-    // Mobile
+  if (w >= DESKTOP_BREAKPOINT) {
+    sidebar.classList.toggle("minimized");
+    topbar.classList.toggle("minimized");
+    content.classList.toggle("minimized");
+  } else {
     sidebar.classList.toggle("show");
-});
-
-// Prevent immediate close when clicking inside sidebar
-sidebar.addEventListener("click", (e) => {
-    e.stopPropagation();
-});
-
-// Close mobile sidebar when clicking outside
-document.addEventListener("click", () => {
-    if (window.innerWidth < 992) {
-        sidebar.classList.remove("show");
-    }
-});
-
-// Sidebar Dropdowns
-document.querySelectorAll(".menu-dropdown").forEach((drop) => {
-    const btn = drop.querySelector(".dropdown-toggle-btn");
-
-    btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-
-        // Close all other dropdowns
-        document.querySelectorAll(".menu-dropdown.open").forEach((d) => {
-            if (d !== drop) d.classList.remove("open");
-        });
-
-        drop.classList.toggle("open");
-    });
+  }
 });

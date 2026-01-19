@@ -19,7 +19,6 @@
 
     @stack('styles')
 </head>
-
 <body>
     <div class="d-flex">
         {{-- SIDEBAR --}}
