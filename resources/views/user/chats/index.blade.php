@@ -16,7 +16,7 @@
         /* Fix top spacing from dashboard layout */
         main.content {
             padding: 0 !important;
-            margin-top: 70px ;
+            margin-top: 70px;
             /* Align exactly with fixed topbar */
         }
 
@@ -341,94 +341,98 @@
             transform: scale(1.05);
         }
     </style>
-
-    <div class="row justify-content-center h-100 g-0">
-        <div class="col-12 h-100">
-            <div class="chat-wrapper">
-                {{-- Header --}}
-                <div class="chat-header">
-                    <div class="chat-title">
-                        <div class="ai-avatar">
-                            <img src="{{ asset('assets/image/logo/white-logo-icon.svg') }}" alt="AI Advisor" class="ai-icon-white">
-                            {{-- <i class="bi bi-robot"></i> --}}
-                        </div>
-                        <div>
-                            <h6 class="fw-bold mb-0 text-dark">Advisor</h6>
-                            <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1"
-                                style="font-size: 0.6rem;">Online</span>
-                        </div>
-                    </div>
-
-                    <div class="dropdown">
-                        <button class="btn btn-light btn-sm rounded-circle" style="width: 36px; height: 36px;"
-                            type="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-globe text-muted"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-3 overflow-hidden"
-                            style="min-width: 200px;">
-                            <li class="px-3 py-2 bg-light border-bottom">
-                                <small class="text-muted fw-bold">Language</small>
-                            </li>
-                            <li class="px-3 py-2">
-                                <select id="chatLanguage" class="form-select form-select-sm">
-                                    <option value="en" selected>English</option>
-                                    <option value="auto">Auto-Detect</option>
-                                    <option value="zh">Chinese</option>
-                                    <option value="es">Spanish</option>
-                                    <option value="fr">French</option>
-                                </select>
-                            </li>
-
-                            {{-- Hidden controls for JS compatibility --}}
-                            <li class="d-none">
-                                <select id="chatSessionsSelect">
-                                    <option value="">Current</option>
-                                </select>
-                                <button id="btnNewSession">New</button>
-                                <button id="btnClearSession">Clear</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {{-- Chat Area --}}
-                <div id="chatContainer" class="chat-messages">
-                    {{-- Welcome --}}
-                    <div id="centerBox" class="center-box">
-                        <div class="mb-4">
-                            <div class="d-inline-flex p-4 rounded-circle bg-white shadow-sm mb-3">
-                                <i class="bi bi-chat-dots-fill fa-3x text-primary"
-                                    style="font-size: 3rem; background: -webkit-linear-gradient(135deg, #4f46e5, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+    <div class="container-fluid">
+        <div class="row justify-content-center h-100 g-0">
+            <div class="col-12 h-100">
+                <div class="chat-wrapper">
+                    {{-- Header --}}
+                    <div class="chat-header">
+                        <div class="chat-title">
+                            <div class="ai-avatar">
+                                <img src="{{ asset('assets/image/logo/white-logo-icon.svg') }}" alt="AI Advisor"
+                                    class="ai-icon-white">
+                                {{-- <i class="bi bi-robot"></i> --}}
                             </div>
-                            <h3 class="fw-bold text-dark mb-2">How can I help you today?</h3>
-                            <p class="text-muted">Ask about your card benefits, fees, or get purchase recommendations.</p>
+                            <div>
+                                <h6 class="fw-bold mb-0 text-dark">Advisor</h6>
+                                <span class="badge bg-success-subtle text-success rounded-pill px-2 py-1"
+                                    style="font-size: 0.6rem;">Online</span>
+                            </div>
                         </div>
 
-                        <div class="suggestion-chips">
-                            <div class="chip" onclick="fillInput('Which card is best for Amazon?')">🛍️ Amazon Purchase
-                            </div>
-                            <div class="chip" onclick="fillInput('Show my card benefits')">💳 My Benefits</div>
-                            <div class="chip" onclick="fillInput('Do I have lounge access?')">✈️ Lounge Access</div>
-                            <div class="chip" onclick="fillInput('Compare my cards annual fees')">💰 Annual Fees</div>
+                        <div class="dropdown">
+                            <button class="btn btn-light btn-sm rounded-circle" style="width: 36px; height: 36px;"
+                                type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-globe text-muted"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg rounded-3 overflow-hidden"
+                                style="min-width: 200px;">
+                                <li class="px-3 py-2 bg-light border-bottom">
+                                    <small class="text-muted fw-bold">Language</small>
+                                </li>
+                                <li class="px-3 py-2">
+                                    <select id="chatLanguage" class="form-select form-select-sm">
+                                        <option value="en" selected>English</option>
+                                        <option value="auto">Auto-Detect</option>
+                                        <option value="zh">Chinese</option>
+                                        <option value="es">Spanish</option>
+                                        <option value="fr">French</option>
+                                    </select>
+                                </li>
+
+                                {{-- Hidden controls for JS compatibility --}}
+                                <li class="d-none">
+                                    <select id="chatSessionsSelect">
+                                        <option value="">Current</option>
+                                    </select>
+                                    <button id="btnNewSession">New</button>
+                                    <button id="btnClearSession">Clear</button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                {{-- Input Area --}}
-                <div class="chat-input-wrapper" id="chat-input-section">
-                    <div class="input-container">
-                        <input type="text" id="msgInput" class="chat-input" placeholder="Ask your advisor anything..."
-                            autocomplete="off">
+                    {{-- Chat Area --}}
+                    <div id="chatContainer" class="chat-messages">
+                        {{-- Welcome --}}
+                        <div id="centerBox" class="center-box">
+                            <div class="mb-4">
+                                <div class="d-inline-flex p-4 rounded-circle bg-white shadow-sm mb-3">
+                                    <i class="bi bi-chat-dots-fill fa-3x text-primary"
+                                        style="font-size: 3rem; background: -webkit-linear-gradient(135deg, #4f46e5, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                                </div>
+                                <h3 class="fw-bold text-dark mb-2">How can I help you today?</h3>
+                                <p class="text-muted">Ask about your card benefits, fees, or get purchase recommendations.
+                                </p>
+                            </div>
 
-                        {{-- Send Button --}}
-                        <button id="sendBtn" class="send-btn">
-                            <i class="bi bi-send-fill"></i>
-                        </button>
+                            <div class="suggestion-chips">
+                                <div class="chip" onclick="fillInput('Which card is best for Amazon?')">🛍️ Amazon
+                                    Purchase
+                                </div>
+                                <div class="chip" onclick="fillInput('Show my card benefits')">💳 My Benefits</div>
+                                <div class="chip" onclick="fillInput('Do I have lounge access?')">✈️ Lounge Access</div>
+                                <div class="chip" onclick="fillInput('Compare my cards annual fees')">💰 Annual Fees</div>
+                            </div>
+                        </div>
+                    </div>
 
-                        {{-- Stop Button (Hidden by default) --}}
-                        <button id="stopBtn" class="send-btn bg-danger d-none">
-                            <i class="bi bi-stop-fill"></i>
-                        </button>
+                    {{-- Input Area --}}
+                    <div class="chat-input-wrapper" id="chat-input-section">
+                        <div class="input-container">
+                            <input type="text" id="msgInput" class="chat-input"
+                                placeholder="Ask your advisor anything..." autocomplete="off">
+
+                            {{-- Send Button --}}
+                            <button id="sendBtn" class="send-btn">
+                                <i class="bi bi-send-fill"></i>
+                            </button>
+
+                            {{-- Stop Button (Hidden by default) --}}
+                            <button id="stopBtn" class="send-btn bg-danger d-none">
+                                <i class="bi bi-stop-fill"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,7 @@
 
     @stack('styles')
 </head>
+
 <body>
     <div class="d-flex">
         {{-- SIDEBAR --}}
@@ -131,12 +132,13 @@
                 </div>
             </div>
         </aside>
+        <div class="overlay-container">
+        </div>
 
         <div class="w-100">
             {{-- TOPBAR --}}
             <nav id="topbar"
-                class="topbar d-flex justify-content-between align-items-center px-4 py-3 bg-white bg-opacity-90 shadow-sm"
-                style="position: sticky; top: 0; z-index: 1040; backdrop-filter: blur(10px); color: #696969;">
+                class="topbar d-flex justify-content-between align-items-center px-4 py-3 bg-white bg-opacity-90 shadow-sm">
                 <div class="left-items d-flex align-items-center gap-3">
                     <button id="toggleSidebar" class=" btn shadow-sm toggle-btn">
                         <i class="bi bi-list fs-3"></i>
@@ -177,7 +179,7 @@
                     </div>
                 </div>
             </nav>
-            <main id="content" class="content" style="margin-top: 0px;">
+            <main id="content" class="content" style="margin-top: 80px;">
                 {{-- <h1>hello</h1> --}}
 
 
@@ -208,8 +210,9 @@
                 @yield('content')
             </main>
             <!-- Feedback Button -->
-            <div id="feedback-btn">                     
-                     <img src="{{ asset('assets/image/logo/feedback-svgrepo-com.svg') }}" alt="Feedback" class="feedback-img">
+            <div id="feedback-btn">
+                <img src="{{ asset('assets/image/logo/feedback-svgrepo-com.svg') }}" alt="Feedback"
+                    class="feedback-img">
                 <span class="feedback-text">Feedback</span>
             </div>
 

@@ -6,7 +6,7 @@ body {
 
 .topbar {
     height: 70px;
-    background: #fff;
+    background: #ff0101;
     border-bottom: 1px solid #e6e6e6;
     padding: 0 25px;
     display: flex;
@@ -16,14 +16,17 @@ body {
     right: 0;
     top: 0;
     z-index: 1000;
-    /* width: calc(100% - 260px); */
+    width: calc(100% - 260px);
     transition: 0.3s ease;
 }
 
-/* .sidebar.minimized ~ .topbar {
+/* style="position: sticky; top: 0; z-index: 1040; backdrop-filter: blur(10px); color: #696969;" */
+
+.sidebar.minimized~.w-100 .topbar {
     width: calc(100% - 80px);
     transition: 0.3s ease;
-} */
+}
+
 .topbar.minimized {
     /* width: calc(100% - 80px); */
     transition: 0.3s ease;
@@ -71,6 +74,7 @@ body {
 
 .sidebar-content {
     /* background: #fafdfd; */
+    background: #fff;
     position: fixed;
     top: 0;
     left: 0;
@@ -85,22 +89,6 @@ body {
     min-width: 80px;
 }
 
-@media (max-width: 499px) {
-  #sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 250px;             
-    transform: translateX(-100%); /* hidden */
-    transition: transform 0.3s ease;
-    z-index: 9998;
-  }
-
-  #sidebar.show {
-    transform: translateX(0); /* visible */
-  }
-}
 
 
 /* LOGO */
@@ -746,4 +734,48 @@ HERO WALLET STYLES (Added via Antigravity)
 .ai-icon-white {
     width: 40px;
     height: 34px;
+}
+
+.sidebar~.overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}
+
+@media (max-width: 700px) {
+    .sidebar~.w-100 .topbar {
+        /* width: calc(100% - 260px); */
+        width: 100%;
+        transition: 0.3s ease;
+    }
+
+    .sidebar.show~.overlay-container {
+        display: block;
+    }
+
+    #sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 250px;
+        transform: translateX(-100%);
+        /* hidden */
+        transition: transform 0.3s ease;
+        z-index: 9998;
+    }
+
+    #sidebar.show {
+        transform: translateX(0);
+        /* visible */
+    }
+}
+
+#toggleSidebar.btn:hover {
+    color: rgb(117, 116, 116);
 }

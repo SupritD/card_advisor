@@ -1,10 +1,10 @@
-const DESKTOP_BREAKPOINT = 500;
+const DESKTOP_BREAKPOINT = 700;
 
 function setDefaultSidebarState() {
   const w = window.innerWidth;
 
   if (w >= DESKTOP_BREAKPOINT) {
-    sidebar.classList.add("minimized");
+    // sidebar.classList.add("minimized");
     sidebar.classList.remove("show");
     topbar.classList.add("minimized");
     content.classList.add("minimized");

@@ -5,8 +5,8 @@ body {
     background: #0e0e0e;
     color: white;
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 /* Center area before chat starts */
@@ -31,6 +31,7 @@ body {
 #chatContainer .d-flex:last-child .message {
     margin-bottom: 120px;
 }
+
 /* .chat-container {
     height: calc(100vh - 180px);
     overflow-y: auto;

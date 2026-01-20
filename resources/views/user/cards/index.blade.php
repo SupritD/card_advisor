@@ -19,10 +19,10 @@
         }
 
         /*
-                                                            ========================================
-                                                            1. HERO WALLET SECTION
-                                                            ========================================
-                                                            */
+                            ========================================
+                            1. HERO WALLET SECTION
+                            ========================================
+                            */
         .wallet-section {
             background: #fff;
             border-radius: 24px;
@@ -52,10 +52,10 @@
         }
 
         /*
-                                                            ========================================
-                                                            2. PREMIUM CREDIT CARD COMPONENT
-                                                            ========================================
-                                                            */
+                            ========================================
+                            2. PREMIUM CREDIT CARD COMPONENT
+                            ========================================
+                            */
         .credit-card {
             aspect-ratio: 1.586 / 1;
             /* Standard ID-1 Credit Card Ratio */
@@ -136,10 +136,10 @@
         }
 
         /*
-                                                            ========================================
-                                                            3. DISCOVERY LIST COMPONENT
-                                                            ========================================
-                                                            */
+                            ========================================
+                            3. DISCOVERY LIST COMPONENT
+                            ========================================
+                            */
         .market-card {
             background: white;
             border: 1px solid var(--card-border);
@@ -197,10 +197,10 @@
         }
 
         /*
-                                                            ========================================
-                                                            4. FILTERS
-                                                            ========================================
-                                                            */
+                            ========================================
+                            4. FILTERS
+                            ========================================
+                            */
         .filter-bar {
             background: white;
             border-bottom: 1px solid var(--card-border);
@@ -215,7 +215,7 @@
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 991.98px) {
+        @media (max-width: 700px) {
 
             /* Aggressive Sidebar Fix - Targeting 'left' directly as per dashboard.css */
             aside#sidebar {
@@ -266,7 +266,7 @@
             .wallet-section {
                 padding: 1.5rem;
                 border-radius: 0 0 24px 24px;
-                margin: -1.5rem -1.5rem 2rem -1.5rem;
+                /* margin: -1.5rem -1.5rem 2rem -1.5rem; */
                 box-shadow: none;
                 border-bottom: 1px solid #e2e8f0;
             }
@@ -280,63 +280,68 @@
         MY WALLET (HERO)
         ========================================
         --}}
-        <div class="wallet-section">
-            <div class="wallet-header">
-                <div class="wallet-icon-wrapper">
-                    {{-- <i class="fas fa-wallet text-white fa-lg"></i> --}}
-                </div>
-                <div>
-                    <h4 class="fw-bold mb-0 text-dark">My Wallet</h4>
-                    <p class="text-muted small mb-0">Manage your active card portfolio</p>
-                </div>
-            </div>
-
-            <!-- Renamed class to wallet-grid-custom to avoid dashboard.css conflict -->
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 wallet-grid-custom">
-                @forelse ($userCards as $index => $card)
-                    @php
-                        // Cycle through gradients based on index
-                        $gradClass = 'gradient-' . (($index % 3) + 1);
-                    @endphp
-                    <div class="col" id="wallet-card-{{ $card->id }}">
-                        <div class="credit-card {{ $gradClass }}" data-bs-toggle="modal"
-                            data-bs-target="#modalCardDetails{{ $card->id }}">
-                            <div class="credit-card-bg"></div>
-
-                            {{-- Top --}}
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold text-uppercase small opacity-75">{{ $card->bank_name }}</span>
-                                <i class="fas fa-wifi opacity-75"></i>
-                            </div>
-
-                            {{-- Middle --}}
-                            <div>
-                                {{-- <div class="card-chip"></div> --}}
-                                <div class="mb-3">
-                                    <img src="{{ asset('assets/image/logo/chat-ai-gradient.svg') }}" height="50" />
-                                </div>
-                                <h5 class="fw-bold mb-0 text-truncate">{{ $card->card_name }}</h5>
-                            </div>
-
-                            {{-- Bottom --}}
-                            <div class="card-meta">
-                                <div>
-                                    <span class="d-block" style="font-size: 0.6rem; opacity: 0.7;">NETWORK</span>
-                                    {{ $card->network_type }}
-                                </div>
-                                <div class="card-number-dots">•••• {{ rand(1000, 9999) }}</div>
-                            </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="wallet-section">
+                    <div class="wallet-header">
+                        <div class="wallet-icon-wrapper">
+                            {{-- <i class="fas fa-wallet text-white fa-lg"></i> --}}
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0 text-dark">My Wallet</h4>
+                            <p class="text-muted small mb-0">Manage your active card portfolio</p>
                         </div>
                     </div>
-                @empty
-                    <div class="col-12 py-5 text-center">
-                        <div class="bg-slate-100 rounded-circle d-inline-flex p-4 mb-3">
-                            <i class="fas fa-wallet fa-2x text-muted"></i>
-                        </div>
-                        <h6 class="fw-bold text-dark">Your wallet is empty</h6>
-                        <p class="text-muted small">Select cards from the list below to get started.</p>
+
+                    <!-- Renamed class to wallet-grid-custom to avoid dashboard.css conflict -->
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 wallet-grid-custom">
+                        @forelse ($userCards as $index => $card)
+                            @php
+                                // Cycle through gradients based on index
+                                $gradClass = 'gradient-' . (($index % 3) + 1);
+                            @endphp
+                            <div class="col" id="wallet-card-{{ $card->id }}">
+                                <div class="credit-card {{ $gradClass }}" data-bs-toggle="modal"
+                                    data-bs-target="#modalCardDetails{{ $card->id }}">
+                                    <div class="credit-card-bg"></div>
+
+                                    {{-- Top --}}
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="fw-bold text-uppercase small opacity-75">{{ $card->bank_name }}</span>
+                                        <i class="fas fa-wifi opacity-75"></i>
+                                    </div>
+
+                                    {{-- Middle --}}
+                                    <div>
+                                        {{-- <div class="card-chip"></div> --}}
+                                        <div class="mb-3">
+                                            <img src="{{ asset('assets/image/logo/chat-ai-gradient.svg') }}"
+                                                height="50" />
+                                        </div>
+                                        <h5 class="fw-bold mb-0 text-truncate">{{ $card->card_name }}</h5>
+                                    </div>
+
+                                    {{-- Bottom --}}
+                                    <div class="card-meta">
+                                        <div>
+                                            <span class="d-block" style="font-size: 0.6rem; opacity: 0.7;">NETWORK</span>
+                                            {{ $card->network_type }}
+                                        </div>
+                                        <div class="card-number-dots">•••• {{ rand(1000, 9999) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="col-12 py-5 text-center">
+                                <div class="bg-slate-100 rounded-circle d-inline-flex p-4 mb-3">
+                                    <i class="fas fa-wallet fa-2x text-muted"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark">Your wallet is empty</h6>
+                                <p class="text-muted small">Select cards from the list below to get started.</p>
+                            </div>
+                        @endforelse
                     </div>
-                @endforelse
+                </div>
             </div>
         </div>
 
