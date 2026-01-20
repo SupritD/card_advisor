@@ -19,10 +19,10 @@
         }
 
         /*
-                            ========================================
-                            1. HERO WALLET SECTION
-                            ========================================
-                            */
+                                    ========================================
+                                    1. HERO WALLET SECTION
+                                    ========================================
+                                    */
         .wallet-section {
             background: #fff;
             border-radius: 24px;
@@ -52,33 +52,70 @@
         }
 
         /*
-                            ========================================
-                            2. PREMIUM CREDIT CARD COMPONENT
-                            ========================================
-                            */
+                                    ========================================
+                                    2. PREMIUM CREDIT CARD COMPONENT
+                                    ========================================
+                                    */
         .credit-card {
-            aspect-ratio: 1.586 / 1;
-            /* Standard ID-1 Credit Card Ratio */
-            border-radius: 16px;
-            padding: 1.5rem;
             position: relative;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 16px;
+            padding: 18px;
+            min-height: 180px;
+            color: #fff;
             cursor: pointer;
+            overflow: hidden;
         }
 
-        .credit-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-            z-index: 10;
+        .cc-top {
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
         }
 
-        /* Gradient Variants */
+        .cc-category,
+        .cc-bank {
+            font-weight: 600;
+            opacity: 0.85;
+            text-transform: uppercase;
+        }
+
+        .cc-center {
+            margin-top: 14px;
+        }
+
+        .cc-logo {
+            height: 46px;
+            max-width: 100%;
+        }
+
+        .cc-name {
+            margin-top: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cc-bottom {
+            position: absolute;
+            bottom: 16px;
+            left: 18px;
+            right: 18px;
+        }
+
+        .cc-label {
+            display: block;
+            font-size: 0.6rem;
+            letter-spacing: 0.6px;
+            opacity: 0.7;
+        }
+
+        .cc-value {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
         .credit-card.gradient-1 {
             background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
         }
@@ -91,116 +128,205 @@
             background: linear-gradient(135deg, #111827 0%, #374151 100%);
         }
 
-        /* Default fallback */
-        .credit-card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
-            pointer-events: none;
+        
+        /* 📱 Mobile (default) */
+        @media (max-width: 575px) {
+            .credit-card {
+                min-height: 165px;
+                padding: 14px;
+            }
+
+            .cc-logo {
+                height: 40px;
+            }
+
+            .cc-name {
+                font-size: 0.95rem;
+            }
+
+            .cc-value {
+                font-size: 0.8rem;
+            }
         }
 
-        .card-chip {
-            width: 40px;
-            height: 28px;
-            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            border-radius: 4px;
-            margin-bottom: 1rem;
-            position: relative;
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        /* 📲 Tablet */
+        @media (min-width: 576px) and (max-width: 991px) {
+            .credit-card {
+                min-height: 185px;
+                padding: 18px;
+            }
+
+            .cc-logo {
+                height: 48px;
+            }
+
+            .cc-name {
+                font-size: 1.05rem;
+            }
+
+            .cc-value {
+                font-size: 0.9rem;
+            }
         }
 
-        .card-details-blur {
-            /* Subtle noise/texture could go here */
+        /* 🖥 Desktop */
+        @media (min-width: 992px) {
+            .credit-card {
+                min-height: 200px;
+                padding: 20px;
+            }
+
+            .cc-logo {
+                height: 52px;
+            }
+
+            .cc-name {
+                font-size: 1.1rem;
+            }
+
+            .cc-value {
+                font-size: 0.95rem;
+            }
         }
 
-        .card-number-dots {
-            font-family: monospace;
-            font-size: 1.25rem;
-            letter-spacing: 4px;
-            opacity: 0.8;
-            margin-top: auto;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.9;
-        }
 
         /*
-                            ========================================
-                            3. DISCOVERY LIST COMPONENT
-                            ========================================
-                            */
+                                    ========================================
+                                    3. DISCOVERY LIST COMPONENT
+                                    ========================================
+                                    */
+        /* Base Card */
         .market-card {
-            background: white;
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 1.25rem;
+            position: relative;
             display: flex;
-            align-items: center;
-            transition: all 0.2s ease;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #ffffff, #f0f4ff);
+            border-radius: 22px;
+            padding: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(.25, .8, .25, 1), box-shadow 0.4s ease;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08), 0 32px 64px rgba(99, 102, 241, 0.08);
         }
 
+        /* Hover lift + tilt */
         .market-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+            transform: translateY(-14px) rotateX(2deg) rotateY(2deg);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 40px 80px rgba(99, 102, 241, 0.12);
         }
 
+        /* Dynamic diagonal accent shape */
+        .market-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -40px;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle at center, #6366f1, #22d3ee);
+            transform: rotate(45deg);
+            opacity: 0.15;
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        /* Market Icon */
         .market-icon {
-            width: 56px;
-            height: 56px;
-            background: #f1f5f9;
-            border-radius: 12px;
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #eef2ff, #ffffff);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 1.25rem;
-            flex-shrink: 0;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
+            position: relative;
         }
 
+        /* Icon Glow */
+        .market-icon i {
+            font-size: 1.6rem;
+            color: #4f46e5;
+            transition: transform 0.35s ease;
+        }
+
+        .market-card:hover .market-icon i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Market Content */
         .market-content {
-            flex: 1;
-            min-width: 0;
-            /* Text truncation fix */
+            text-align: left;
         }
 
+        .market-content h6 {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .market-content p {
+            font-size: 0.72rem;
+            color: #64748b;
+            letter-spacing: 0.08em;
+        }
+
+        /* Actions */
         .market-actions {
-            margin-left: 1rem;
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 0.5rem;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
         }
 
-        .custom-checkbox {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            border: 2px solid #cbd5e1;
+        .card-checkbox {
+            width: 22px;
+            height: 22px;
+            accent-color: #6366f1;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .custom-checkbox:checked {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
+        .market-actions button {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #4f46e5;
+            position: relative;
+        }
+
+        .market-actions button::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .market-actions button:hover::after {
+            width: 100%;
+        }
+
+        /* Premium Badge */
+        .badge.bg-green-100 {
+            background: rgba(5, 150, 105, 0.15) !important;
+            color: #05f7a0 !important;
+            border: 1px solid rgba(5, 150, 105, 0.5) !important;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.65rem;
         }
 
         /*
-                            ========================================
-                            4. FILTERS
-                            ========================================
-                            */
+                                    ========================================
+                                    4. FILTERS
+                                    ========================================
+                                    */
         .filter-bar {
             background: white;
             border-bottom: 1px solid var(--card-border);
@@ -297,42 +423,55 @@
                     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 wallet-grid-custom">
                         @forelse ($userCards as $index => $card)
                             @php
-                                // Cycle through gradients based on index
                                 $gradClass = 'gradient-' . (($index % 3) + 1);
                             @endphp
+
                             <div class="col" id="wallet-card-{{ $card->id }}">
                                 <div class="credit-card {{ $gradClass }}" data-bs-toggle="modal"
                                     data-bs-target="#modalCardDetails{{ $card->id }}">
+
                                     <div class="credit-card-bg"></div>
 
-                                    {{-- Top --}}
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span class="fw-bold text-uppercase small opacity-75">{{ $card->bank_name }}</span>
-                                        <i class="fas fa-wifi opacity-75"></i>
+                                    {{-- TOP --}}
+                                    <div class="cc-top d-flex justify-content-between align-items-center">
+                                        <span class="cc-category">
+                                            {{ $card->card_category }}
+                                        </span>
+                                        <span class="cc-bank">
+                                            {{ $card->bank_name }}
+                                        </span>
                                     </div>
 
-                                    {{-- Middle --}}
-                                    <div>
-                                        {{-- <div class="card-chip"></div> --}}
-                                        <div class="mb-3">
-                                            <img src="{{ asset('assets/image/logo/chat-ai-gradient.svg') }}"
-                                                height="50" />
-                                        </div>
-                                        <h5 class="fw-bold mb-0 text-truncate">{{ $card->card_name }}</h5>
+                                    {{-- CENTER --}}
+                                    <div class="cc-center">
+                                        <img src="{{ asset('assets/image/logo/chat-ai-gradient.svg') }}" class="cc-logo" />
+
+                                        <h6 class="cc-name">
+                                            {{ $card->card_name }}
+                                        </h6>
                                     </div>
 
-                                    {{-- Bottom --}}
-                                    <div class="card-meta">
+                                    {{-- BOTTOM --}}
+                                    <div class="cc-bottom d-flex justify-content-between align-items-end">
                                         <div>
-                                            <span class="d-block" style="font-size: 0.6rem; opacity: 0.7;">NETWORK</span>
-                                            {{ $card->network_type }}
+                                            <span class="cc-label">CARD TIER</span>
+                                            <div class="cc-value">
+                                                {{ $card->card_tier }}
+                                            </div>
                                         </div>
-                                        <div class="card-number-dots">•••• {{ rand(1000, 9999) }}</div>
+
+                                        <div class="text-end">
+                                            <span class="cc-label">NETWORK</span>
+                                            <div class="cc-value">
+                                                {{ $card->network_type }}
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         @empty
-                            <div class="col-12 py-5 text-center">
+                            <div class="col-12 py-5 text-center m-auto">
                                 <div class="bg-slate-100 rounded-circle d-inline-flex p-4 mb-3">
                                     <i class="fas fa-wallet fa-2x text-muted"></i>
                                 </div>
@@ -341,6 +480,7 @@
                             </div>
                         @endforelse
                     </div>
+
                 </div>
             </div>
         </div>
