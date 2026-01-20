@@ -19,10 +19,10 @@
         }
 
         /*
-                                    ========================================
-                                    1. HERO WALLET SECTION
-                                    ========================================
-                                    */
+                                                ========================================
+                                                1. HERO WALLET SECTION
+                                                ========================================
+                                                */
         .wallet-section {
             background: #fff;
             border-radius: 24px;
@@ -52,10 +52,10 @@
         }
 
         /*
-                                    ========================================
-                                    2. PREMIUM CREDIT CARD COMPONENT
-                                    ========================================
-                                    */
+                                                ========================================
+                                                2. PREMIUM CREDIT CARD COMPONENT
+                                                ========================================
+                                                */
         .credit-card {
             position: relative;
             border-radius: 16px;
@@ -128,7 +128,7 @@
             background: linear-gradient(135deg, #111827 0%, #374151 100%);
         }
 
-        
+
         /* 📱 Mobile (default) */
         @media (max-width: 575px) {
             .credit-card {
@@ -191,19 +191,19 @@
 
 
         /*
-                                    ========================================
-                                    3. DISCOVERY LIST COMPONENT
-                                    ========================================
-                                    */
+                                                ========================================
+                                                3. DISCOVERY LIST COMPONENT
+                                                ========================================
+                                                */
         /* Base Card */
         .market-card {
             position: relative;
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
             justify-content: space-between;
             background: linear-gradient(135deg, #ffffff, #f0f4ff);
-            border-radius: 22px;
-            padding: 24px;
+            border-radius: 10px;
+            padding: 18px;
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.4s cubic-bezier(.25, .8, .25, 1), box-shadow 0.4s ease;
@@ -212,7 +212,7 @@
 
         /* Hover lift + tilt */
         .market-card:hover {
-            transform: translateY(-14px) rotateX(2deg) rotateY(2deg);
+            transform: translateY(-4px) rotateX(2deg) rotateY(2deg);
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 40px 80px rgba(99, 102, 241, 0.12);
         }
 
@@ -233,10 +233,10 @@
 
         /* Market Icon */
         .market-icon {
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             border-radius: 18px;
-            background: linear-gradient(145deg, #eef2ff, #ffffff);
+            background: linear-gradient(151deg, #1c2235, #c4a577);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -259,6 +259,7 @@
         /* Market Content */
         .market-content {
             text-align: left;
+            margin-top: 19px;
         }
 
         .market-content h6 {
@@ -288,13 +289,18 @@
             height: 22px;
             accent-color: #6366f1;
             cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 13px;
         }
 
         .market-actions button {
             font-size: 0.72rem;
             font-weight: 700;
             color: #4f46e5;
-            position: relative;
+            position: absolute;
+            bottom: 20px;
+            right: 10px;
         }
 
         .market-actions button::after {
@@ -315,7 +321,7 @@
         /* Premium Badge */
         .badge.bg-green-100 {
             background: rgba(5, 150, 105, 0.15) !important;
-            color: #05f7a0 !important;
+            color: #3b78fd !important;
             border: 1px solid rgba(5, 150, 105, 0.5) !important;
             border-radius: 12px;
             padding: 2px 8px;
@@ -323,10 +329,10 @@
         }
 
         /*
-                                    ========================================
-                                    4. FILTERS
-                                    ========================================
-                                    */
+                                                ========================================
+                                                4. FILTERS
+                                                ========================================
+                                                */
         .filter-bar {
             background: white;
             border-bottom: 1px solid var(--card-border);
@@ -376,6 +382,8 @@
 
             .market-icon {
                 margin-bottom: 1rem;
+                position: absolute;
+                right: 20px;
             }
 
             .market-actions {
@@ -411,6 +419,8 @@
                 <div class="wallet-section">
                     <div class="wallet-header">
                         <div class="wallet-icon-wrapper">
+                            <img src="{{ asset('assets/image/logo/chat-ai-gradient.svg') }}" alt="AI Advisor"
+                                    class="ai-icon-white">
                             {{-- <i class="fas fa-wallet text-white fa-lg"></i> --}}
                         </div>
                         <div>
@@ -540,11 +550,13 @@
             {{-- Card List --}}
             <div class="row g-3">
                 @forelse ($cards as $card)
-                    <div class="col-12">
+                    <div class="col-12 col-sm-6  col-md-6  col-xl-6">
                         <div class="market-card">
-                            <div class="market-icon">
+                            {{-- <div class="market-icon">
+                                <img src="{{ asset('assets/image/logo/white-logo-icon.svg') }}" alt="AI Advisor"
+                                    class="ai-icon-white">
                                 <i class="fas fa-credit-card text-primary fa-lg"></i>
-                            </div>
+                            </div> --}}
                             <div class="market-content">
                                 <div class="d-flex align-items-center mb-1">
                                     <h6 class="fw-bold mb-0 me-2">{{ $card->card_name }}</h6>
