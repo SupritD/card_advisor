@@ -278,6 +278,17 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".dropdown-toggle-btn").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    const dropdown = this.closest(".menu-dropdown");
+                    dropdown.classList.toggle("open");
+                });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
             const btn = document.getElementById('feedback-btn');
             const box = document.getElementById('feedback-box');

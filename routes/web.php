@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CardController;
 use App\Http\Controllers\User\ChatController;
+use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,6 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('dashboard')->group(function () {
+        // =========================
+        // USER home ROUTES  ✅
+        // =========================
+        Route::get('/home', [HomeController::class, 'index'])
+        ->name('user.home.index');
         // =========================
         // USER CARDS ROUTES  ✅
         // =========================
