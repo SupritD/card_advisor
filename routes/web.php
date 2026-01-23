@@ -17,11 +17,11 @@ Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/dashboard', function () {
-    // return view('layouts.login-master');
-    return view('layouts.user-dashboard');
-    // return view('login-dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     // return view('layouts.login-master');
+//     return view('layouts.user-dashboard');
+//     // return view('login-dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,8 +35,7 @@ Route::middleware('auth')->group(function () {
         // =========================
         // USER home ROUTES  ✅
         // =========================
-        Route::get('/home', [HomeController::class, 'index'])
-        ->name('user.home.index');
+        Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
         // =========================
         // USER CARDS ROUTES  ✅
         // =========================

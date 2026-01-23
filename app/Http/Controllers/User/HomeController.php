@@ -30,6 +30,7 @@ class HomeController extends Controller
         //     'userCards',
         //     'userCardIds'
         // ));
+        
         return view('user.index');
     }
 }

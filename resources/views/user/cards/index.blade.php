@@ -19,10 +19,10 @@
         }
 
         /*
-                                                ========================================
-                                                1. HERO WALLET SECTION
-                                                ========================================
-                                                */
+                ========================================
+                1. HERO WALLET SECTION
+                ========================================
+                */
         .wallet-section {
             background: #fff;
             border-radius: 24px;
@@ -52,10 +52,10 @@
         }
 
         /*
-                                                ========================================
-                                                2. PREMIUM CREDIT CARD COMPONENT
-                                                ========================================
-                                                */
+                ========================================
+                2. PREMIUM CREDIT CARD COMPONENT
+                ========================================
+                */
         .credit-card {
             position: relative;
             border-radius: 16px;
@@ -191,10 +191,10 @@
 
 
         /*
-                                                ========================================
-                                                3. DISCOVERY LIST COMPONENT
-                                                ========================================
-                                                */
+                ========================================
+                3. DISCOVERY LIST COMPONENT
+                ========================================
+*/
         /* Base Card */
         .market-card {
             position: relative;
@@ -327,12 +327,140 @@
             padding: 2px 8px;
             font-size: 0.65rem;
         }
+        .bank-card {
+    background: linear-gradient(205deg, #05040e 0%, #4338ca 100%);
+    border-radius: 22px;
+    padding: 22px;
+    color: #fff;
+    min-height: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bank-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+}
+
+/* TOP */
+.bank-card-top {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.bank-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.bank-logo-box {
+    background: #fff;
+    color: #3b2fa5;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* CENTER */
+.bank-card-center {
+    margin: 18px 0;
+}
+
+.bank-card-icon {
+    width: 46px;
+    height: auto;
+}
+
+/* BOTTOM */
+.bank-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.bank-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.bank-network {
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bank-badge {
+    background: #27c26c;
+    color: #fff;
+    font-size: 8px;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+/* VIEW BUTTON */
+.bank-view-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: underline;
+    padding: 0;
+    cursor: pointer;
+}
+
+.bank-view-btn:hover {
+    opacity: 0.8;
+}
+
+.bank-select-box {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 6px;
+}
+
+/* Checkbox style */
+.bank-card-checkbox {
+    width: 18px;
+    height: 18px;
+    /* accent-color: #ffffff; */
+    cursor: pointer;
+}
+
+/* Bank text box */
+.bank-logo-text {
+    background: #fff;
+    color: #3b2fa5;
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+/* When selected */
+/* .bank-card-checkbox:checked + .bank-logo-text {
+    background: #27c26c;
+    color: #fff;
+} */
+
 
         /*
-                                                ========================================
-                                                4. FILTERS
-                                                ========================================
-                                                */
+                ========================================
+                4. FILTERS
+                ========================================
+                */
         .filter-bar {
             background: white;
             border-bottom: 1px solid var(--card-border);
@@ -548,44 +676,63 @@
             </div>
 
             {{-- Card List --}}
-            <div class="row g-3">
-                @forelse ($cards as $card)
-                    <div class="col-12 col-sm-6  col-md-6  col-xl-6">
-                        <div class="market-card">
-                            {{-- <div class="market-icon">
-                                <img src="{{ asset('assets/image/logo/white-logo-icon.svg') }}" alt="AI Advisor"
-                                    class="ai-icon-white">
-                                <i class="fas fa-credit-card text-primary fa-lg"></i>
-                            </div> --}}
-                            <div class="market-content">
-                                <div class="d-flex align-items-center mb-1">
-                                    <h6 class="fw-bold mb-0 me-2">{{ $card->card_name }}</h6>
-                                    @if ($card->joining_fee == 0)
-                                        <span
-                                            class="badge bg-green-100 text-success border border-success-subtle rounded-pill"
-                                            style="font-size: 0.65rem;">No Fee</span>
-                                    @endif
-                                </div>
-                                <p class="text-muted small mb-0 fw-medium text-uppercase">{{ $card->bank_name }} •
-                                    {{ $card->network_type }}</p>
-                            </div>
-                            <div class="market-actions">
-                                <input class="form-check-input custom-checkbox card-checkbox" type="checkbox"
-                                    value="{{ $card->id }}" {{ in_array($card->id, $userCardIds) ? 'checked' : '' }}>
-                                <button type="button" class="btn btn-link py-0 px-0 text-decoration-none small fw-bold"
-                                    data-bs-toggle="modal" data-bs-target="#modalCardDetails{{ $card->id }}">
-                                    View Details
-                                </button>
-                            </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+    @forelse ($cards as $card)
+        <div class="col">
+            <div class="bank-card">
+
+                {{-- TOP --}}
+                <div class="bank-card-top">
+                    <h5 class="bank-card-title">{{ $card->card_name }}</h5>
+
+                    {{-- CHECKBOX + BANK LOGO STACK --}}
+                    <div class="bank-select-box">
+                        <input type="checkbox"class="bank-card-checkbox"
+                               value="{{ $card->id }}" {{ in_array($card->id, $userCardIds) ? 'checked' : '' }}>
+                               
+                               {{-- <input class="form-check-input custom-checkbox card-checkbox" type="checkbox"
+                                    value="{{ $card->id }}" {{ in_array($card->id, $userCardIds) ? 'checked' : '' }}> --}}
+
+                        <div class="bank-logo-text">
+                            {{ strtoupper(substr($card->bank_name, 0, 4)) }}
                         </div>
                     </div>
-                @empty
-                    <div class="col-12 text-center py-5">
-                        <p class="text-muted">No cards found matching your criteria.</p>
-                        <a href="{{ route('user.cards.index') }}" class="btn btn-light btn-sm fw-bold">Clear Filters</a>
+                </div>
+
+                {{-- CENTER ICON --}}
+                <div class="bank-card-center">
+                    <img src="{{ asset('assets/image/logo/chat-ai-gradient.svg') }}" class="bank-card-icon">
+                </div>
+
+                {{-- BOTTOM --}}
+                <div class="bank-card-bottom">
+                    <div>
+                        <span class="bank-label">NETWORK</span>
+                        <div class="bank-network">
+                            {{ $card->network_type }}
+                            @if ($card->joining_fee == 0)
+                                <span class="bank-badge">No Fee</span>
+                            @endif
+                        </div>
                     </div>
-                @endforelse
+
+                    <button type="button"
+                        class="bank-view-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalCardDetails{{ $card->id }}">
+                        View Details
+                    </button>
+                </div>
+
             </div>
+        </div>
+    @empty
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">No cards found matching your criteria.</p>
+        </div>
+    @endforelse
+</div>
+
 
             <div class="mt-5 d-flex justify-content-center">
                 {{ $cards->links('vendor.pagination.bootstrap-5') }}
@@ -644,7 +791,7 @@
 @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('.card-checkbox');
+            const checkboxes = document.querySelectorAll('.bank-card-checkbox');
 
             // Toast Setup
             const toastContainer = document.createElement('div');
