@@ -12,599 +12,344 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
-        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <!-- master stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('assets/js/mainpage.js') }}"></script>
-
 </head>
 
 <body>
-    <style>
-    </style>
-    <div class="ux-cursor-dot"></div>
-    <div class="ux-cursor-ring"></div>
+    <div class="pr-main-wrapper">
+        <div class="glow-bg"></div>
+        
+        <!-- HEADER -->
+        <header class="pr-header">
+            <div class="pr-container">
+                <div class="pr-brand animate pr-fade">
+                    <a href="{{ url('/') }}" class="pr-logo">
+                        Card Advisor<span class="text-primary">.</span>
+                    </a>
+                </div>
 
+                <nav class="pr-nav animate pr-fade pr-delay-1">
+                    <a href="#">Cards</a>
+                    <a href="#">Compare</a>
+                    <a href="#">Benefits</a>
+                    <a href="#">Learn</a>
+                </nav>
 
-    <!-- TOP BAR -->
-    <div class="topbar d-none d-lg-flex justify-content-between align-items-center px-4">
-        <div class="left-info">
-            <span class="me-3"><i class="bi bi-telephone"></i> +91 9876543210</span>
-            <span><i class="bi bi-geo-alt"></i> Pune, Maharashtra</span>
-        </div>
+                <div class="pr-actions animate pr-fade pr-delay-2">
+                    <a href="{{ route('login') }}" class="pr-login">Log In</a>
+                    <a href="{{ route('register') }}" class="pr-primary-btn">Get Started</a>
+                </div>
+            </div>
+        </header>
 
-        <div class="right-social d-flex align-items-center">
-            <span class="me-2">Follow Us:</span>
-            <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
-            <a href="#"><i class="bi bi-twitter"></i></a>
-        </div>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="pr-container">
+                <div class="hero-content">
+                    <h1 class="hero-title animate fade-up">
+                        The Future of <br>
+                        <span class="text-gradient">Credit Card Intelligence</span>
+                    </h1>
+                    <p class="hero-desc animate fade-up delay-1">
+                        Stop guessing. Start knowing. Our AI analyzes HDFC, SBI, Axis, and ICICI cards
+                        to find the perfect match for your lifestyle.
+                    </p>
+                    <div class="hero-btns animate fade-up delay-2">
+                        <a href="{{ route('register') }}" class="pr-primary-btn">Find My Card</a>
+                        <a href="#" class="pr-btn-text">How it works <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="hero-visual animate fade-left delay-2">
+                    <!-- Main Hero Card -->
+                    <div class="hero-card-wrapper">
+                        <img src="{{ asset('assets/image/banner/card-premium.png') }}" class="hero-card-img floating" alt="Premium Card" style="border-radius: 20px;">
+                        <div class="hero-card-glow"></div>
+                        
+                        <!-- Floating Badges -->
+                        <div class="chk-badge badge-1">
+                            <i class="bi bi-check-circle-fill text-success"></i> 5X Rewards
+                        </div>
+                        <div class="chk-badge badge-2">
+                            <i class="bi bi-check-circle-fill text-success"></i> Lounge Access
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REAL CARDS SHOWCASE -->
+        <section class="cards-showcase">
+            <div class="pr-container">
+                <div class="section-head text-center animate fade-up">
+                    <span class="tag-pill">Premium Selection</span>
+                    <h2 class="section-title">Real Cards. Real Benefits.</h2>
+                    <p class="section-desc">Explore India's most popular credit cards, deconstructed by AI.</p>
+                </div>
+
+                <div class="cards-grid">
+                    
+                    <!-- HDFC Card -->
+                    <div class="bank-card-item animate fade-up delay-1">
+                        <div class="card-visual">
+                            <img src="{{ asset('assets/image/banner/card-travel.png') }}" alt="HDFC Regalia">
+                        </div>
+                        <div class="card-details">
+                            <h3>HDFC Regalia Gold</h3>
+                            <span class="card-type">Travel & Lifestyle</span>
+                            <ul class="card-benefits">
+                                <li>The Gold Standard for travelers</li>
+                                <li>Comp. Airport Lounge Access</li>
+                                <li>5X Reward Points on Retail</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SBI Card -->
+                    <div class="bank-card-item animate fade-up delay-2">
+                        <div class="card-visual">
+                            <img src="{{ asset('assets/image/banner/card-cashback.png') }}" alt="SBI Cashback">
+                        </div>
+                        <div class="card-details">
+                            <h3>SBI Cashback</h3>
+                            <span class="card-type">Online Shopping</span>
+                            <ul class="card-benefits">
+                                <li>5% Cashback on ANY site</li>
+                                <li>No Merchant Restrictions</li>
+                                <li>Auto-Credit to Statement</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Axis Card -->
+                    <div class="bank-card-item animate fade-up delay-3">
+                        <div class="card-visual">
+                            <img src="{{ asset('assets/image/banner/card-premium.png') }}" alt="Axis Magnus">
+                        </div>
+                        <div class="card-details">
+                            <h3>Axis Magnus</h3>
+                            <span class="card-type">Super Premium</span>
+                            <ul class="card-benefits">
+                                <li>Metal Card Exclusivity</li>
+                                <li>Unlimited Lounge + Concierge</li>
+                                <li>Up to 12% Reward Rate</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- ICICI Card -->
+                    <div class="bank-card-item animate fade-up delay-4">
+                        <div class="card-visual">
+                            <img src="{{ asset('assets/image/banner/card-shopping.png') }}" alt="ICICI Coral">
+                        </div>
+                        <div class="card-details">
+                            <h3>ICICI Coral</h3>
+                            <span class="card-type">Everyday Essentials</span>
+                            <ul class="card-benefits">
+                                <li>Buy 1 Get 1 Movie Tickets</li>
+                                <li>Dining Discounts</li>
+                                <li>Reliable Fuel Surcharge Waiver</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION (Restored & Modernized) -->
+        <section class="about-section">
+            <div class="pr-container">
+                <div class="about-wrapper animate fade-up">
+                    <div class="about-text">
+                        <span class="tag-pill">About Us</span>
+                        <h2 class="section-title">Built to Make Cards <br> <span class="text-primary">Simple & Clear.</span></h2>
+                        <p class="section-desc">
+                            Card Advisor GPT is built to solve one simple problem: <strong>people don’t fully understand their cards.</strong>
+                            <br><br>
+                            Banks often explain cards using complex terms. Our AI reads details like bank name, card type, network, fees, and benefits, then presents everything in clear, easy language.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS SECTION (Restored & Modernized) -->
+        <section class="products-section">
+            <div class="pr-container">
+                <div class="section-head text-center animate fade-up">
+                    <span class="tag-pill">Our Tools</span>
+                    <h2 class="section-title">Intelligent Features</h2>
+                    <p class="section-desc">Tools designed to help you make smarter financial decisions.</p>
+                </div>
+
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-box animate fade-up delay-1">
+                        <div class="p-icon"><i class="bi bi-robot"></i></div>
+                        <h3>Card Knowledge AI</h3>
+                        <p>An intelligent GPT-powered chatbot that answers questions about cards instantly and clearly.</p>
+                        <ul class="mini-list">
+                            <li><i class="bi bi-check2"></i> Credit & debit cards</li>
+                            <li><i class="bi bi-check2"></i> Card categories & tiers</li>
+                        </ul>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-box animate fade-up delay-2">
+                        <div class="p-icon"><i class="bi bi-folder2-open"></i></div>
+                        <h3>Card Directory</h3>
+                        <p>A structured database that helps users clearly understand what each card offers.</p>
+                        <ul class="mini-list">
+                            <li><i class="bi bi-check2"></i> Bank & card name</li>
+                            <li><i class="bi bi-check2"></i> Joining & annual fees</li>
+                        </ul>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-box animate fade-up delay-3">
+                        <div class="p-icon"><i class="bi bi-lightbulb"></i></div>
+                        <h3>Offer Awareness</h3>
+                        <p>Learn about offers, benefits, and best practices — purely for awareness, not promotions.</p>
+                        <ul class="mini-list">
+                            <li><i class="bi bi-check2"></i> Ongoing card offers</li>
+                            <li><i class="bi bi-check2"></i> Usage-based advantages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KNOWLEDGE HUB SECTION (Restored & Modernized) -->
+        <section class="knowledge-section">
+            <div class="pr-container">
+                <div class="section-head text-center animate fade-up">
+                    <span class="tag-pill">Knowledge Hub</span>
+                    <h2 class="section-title">Learn the Basics</h2>
+                    <p class="section-desc">Clear, practical card knowledge designed for beginners.</p>
+                </div>
+
+                <div class="knowledge-grid">
+                    <!-- Card 1 -->
+                    <div class="knowledge-box animate fade-up delay-1">
+                        <span class="k-badge">Basics</span>
+                        <h3>Credit Card Explained</h3>
+                        <p>Learn how credit cards work from the ground up and understand the core concepts.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="knowledge-box animate fade-up delay-2">
+                        <span class="k-badge">Networks</span>
+                        <h3>Debit Card Types</h3>
+                        <p>Understand how debit cards work and how payment networks power transactions.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="knowledge-box animate fade-up delay-3">
+                        <span class="k-badge">Smart Use</span>
+                        <h3>Fees & Habits</h3>
+                        <p>Learn how to use cards wisely and avoid common mistakes that cost money.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES / HOW IT WORKS -->
+        <section class="features-section">
+            <div class="pr-container">
+                <div class="features-grid">
+                    <div class="feature-box animate fade-right">
+                        <div class="f-icon"><i class="bi bi-robot"></i></div>
+                        <h4>AI-Powered Analysis</h4>
+                        <p>Our AI reads the fine print so you don't have to. Understand fees and hidden charges in seconds.</p>
+                    </div>
+                    <div class="feature-box animate fade-right delay-1">
+                        <div class="f-icon"><i class="bi bi-layers"></i></div>
+                        <h4>Side-by-Side Compare</h4>
+                        <p>Compare HDFC vs SBI vs Axis instantly. See which card actually puts more money in your pocket.</p>
+                    </div>
+                    <div class="feature-box animate fade-right delay-2">
+                        <div class="f-icon"><i class="bi bi-shield-check"></i></div>
+                        <h4>Unbiased Trust</h4>
+                        <p>We don't sell cards. We explain them. Get 100% neutral advice based on data, not commissions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GLOW CTA SECTION -->
+        <section class="cta-section">
+            <div class="glow-orb"></div>
+            <div class="pr-container">
+                <div class="cta-content animate fade-up">
+                    <h2 class="cta-title">Ready to Master Your Wallet?</h2>
+                    <p class="cta-desc">
+                        Join 50,000+ users who are saving money everyday with smart card choices.
+                        No spam. No bias. Just pure financial intelligence.
+                    </p>
+                    <a href="{{ route('register') }}" class="cta-btn-large">
+                        Start Your Journey <i class="bi bi-arrow-right-short"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEGA FOOTER -->
+        <footer class="mega-footer">
+            <div class="pr-container">
+                <div class="footer-grid">
+                    <!-- Column 1: Brand -->
+                    <div class="footer-col brand-col animate fade-up">
+                        <a href="#" class="footer-logo">Card Advisor<span class="text-primary">.</span></a>
+                        <p class="footer-mission">
+                            Empowering millions to understand, compare, and maximize their credit card rewards through AI-driven insights.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Explore -->
+                    <div class="footer-col animate fade-up delay-1">
+                        <h4>Explore</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Best Credit Cards</a></li>
+                            <li><a href="#">Card Comparison</a></li>
+                            <li><a href="#">Reward Calculator</a></li>
+                            <li><a href="#">Lounge Access</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Company -->
+                    <div class="footer-col animate fade-up delay-2">
+                        <h4>Company</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Our Ethics</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Newsletter -->
+                    <div class="footer-col animate fade-up delay-3">
+                        <h4>Stay Updated</h4>
+                        <p class="newsletter-text">Get the latest card devaluation alerts straight to your inbox.</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="submit"><i class="bi bi-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>&copy; {{ date('Y') }} Card Advisor GPT. Built for smart financial decisions.</p>
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <!-- NAVBAR -->
-    {{-- <nav id="mainNav" class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container-fluid px-4">
-
-            <a class="navbar-brand fw-bold" href="#">YourLogo</a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div id="navbarContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.login') }}">Admin Login</a>
-                    </li>
-
-                    <!-- Logged In User (Right Side) -->
-                    @auth
-                        <li class="nav-item ms-lg-3">
-                            <span class="nav-link">{{ Auth::user()->name }}</span>
-                        </li>
-                    @endauth
-
-                </ul>
-            </div>
-
-        </div>
-    </nav> --}}
-    <header class="pr-header">
-        <div class="pr-container">
-
-            <!-- Brand -->
-            <div class="pr-brand animate pr-fade">
-                <a href="{{ url('/') }}" class="pr-logo">
-                    Card Advisor GPT
-                </a>
-            </div>
-
-            <!-- Navigation -->
-            <nav class="pr-nav animate pr-fade pr-delay-1">
-                <a href="#">Explore Cards</a>
-                <a href="#">Knowledge Hub</a>
-                <a href="#">AI Features</a>
-                <a href="#">About</a>
-            </nav>
-
-            <!-- Actions -->
-            <div class="pr-actions animate pr-fade pr-delay-2">
-                <a href="{{ route('login') }}" class="pr-login">
-                    Login
-                </a>
-                <a href="{{ route('admin.login') }}" class="pr-login">Admin Login</a>
-                <a href="{{ route('register') }}" class="pr-primary-btn">
-                    Get Started
-                </a>
-            </div>
-
-        </div>
-    </header>
-
-    {{-- banner area start --}}
-    <section class="banner-area">
-        <div class="banner-container">
-
-            <!-- Header -->
-            <div class="banner-header animate fade-down">
-                <h1 class="banner-title">
-                    Understand Every Credit & Debit Card,
-                    Smarter with AI
-                </h1>
-
-                <p class="banner-subtitle">
-                    Card Advisor GPT is an AI-powered platform that explains credit and debit
-                    cards—fees, tiers, networks, benefits, and offers—clearly and instantly.
-                </p>
-            </div>
-
-            <!-- Content -->
-            <div class="banner-content">
-
-                <!-- Image -->
-                <div class="banner-image animate fade-left delay-1">
-                    <img src="{{ asset('assets/image/banner/dash.png') }}" alt="Card Advisor GPT">
-                </div>
-
-                <!-- Info Card -->
-                <div class="info-card animate fade-right delay-2">
-                    <p>
-                        Card Advisor GPT is an AI-powered card knowledge platform that reads, organizes, and explains
-                        credit card and debit card details from different banks. It helps users understand card fees,
-                        tiers, networks, and benefits—along with the latest offers—without confusion.
-
-                    <ul class="features">
-                        <li>💳 Compare cards across banks & networks</li>
-                        <li>📊 Understand fees, rewards & benefits</li>
-                        <li>🤖 AI explanations — no confusion</li>
-                    </ul>
-
-                    <p class="tagline">
-                        👉 Know your card. Use it right. Save more.
-                    </p>
-
-                    <div class="button-group">
-                        <a href="#" class="pr-primary-btn">Explore Cards</a>
-                        <a href="#" class="pr-btn-outline">Knowledge Hub</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    {{-- banner area end --}}
-
-    {{-- about feature area start --}}
-    <section class="about-floating-area">
-        <div class="container">
-
-            <div class="about-floating-layout">
-
-                <!-- Image -->
-                <div class="about-floating-image animate fade-left">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop"
-                        alt="AI simplifying financial information">
-                </div>
-
-                <!-- Content -->
-                <div class="about-floating-content">
-
-                    <span class="card-badge">About Us</span>
-
-                    <h2 class="about-floating-title animate fade-up delay-1">
-                        Built to Make Cards<br>
-                        Simple & Understandable
-                    </h2>
-
-                    <p class="about-floating-text animate fade-up delay-2">
-                        Card Advisor GPT is built to solve one simple problem:
-                        <strong>people don’t fully understand their cards.</strong>
-                    </p>
-
-                    <p class="about-floating-text animate fade-up delay-3">
-                        Banks often explain cards using complex terms. Our AI reads
-                        details like <strong>bank name, card type, network, fees,
-                            and benefits</strong>, then presents everything in clear,
-                        easy language.
-                    </p>
-
-                    <!-- Floating Keywords -->
-                    <div class="about-floating-tags">
-                        <span class="tag animate fade-up delay-4">Education</span>
-                        <span class="tag animate fade-up delay-5">Clarity</span>
-                        <span class="tag animate fade-up delay-6">AI-Powered</span>
-                        <span class="tag animate fade-up delay-7">No Confusion</span>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    {{-- about feature area end --}}
-
-    {{-- product feature area start --}}
-    <section class="products-area">
-        <div class="products-glow"></div>
-        <div class="knowledge-glow-step"></div>
-
-        <div class="container">
-
-            <!-- Section Header -->
-            <div class="section-header animate fade-down">
-                <span class="section-tag">Products</span>
-                <h2 class="section-title">
-                    Intelligent Tools for<br>
-                    Smarter Card Decisions
-                </h2>
-                <p class="section-subtitle">
-                    Card Advisor GPT offers focused, knowledge-first tools that help
-                    users understand cards clearly — without promotions or bias.
-                </p>
-            </div>
-
-            <!-- Product Cards -->
-            <div class="products-grid">
-
-                <!-- Product 1 -->
-                <div class="product-card animate fade-up delay-1">
-                    <div class="product-icon">🤖</div>
-                    <h3 class="title">Card Knowledge AI</h3>
-                    <p class="desc">
-                        An intelligent GPT-powered chatbot that answers questions
-                        about cards instantly and clearly.
-                    </p>
-                    <ul>
-                        <li>Credit & debit cards</li>
-                        <li>Card categories & tiers</li>
-                        <li>Visa, Mastercard, RuPay</li>
-                        <li>Fees & charges explained</li>
-                    </ul>
-                    <span class="note">Ask questions. Get instant answers.</span>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card animate fade-up delay-2">
-                    <div class="product-icon">📂</div>
-                    <h3 class="title">Card Information Directory</h3>
-                    <p class="desc">
-                        A structured card database that helps users clearly
-                        understand what each card offers.
-                    </p>
-                    <ul>
-                        <li>Bank & card name</li>
-                        <li>Network & category</li>
-                        <li>Joining & annual fees</li>
-                        <li>Status, pros & benefits</li>
-                    </ul>
-                    <span class="note">Know every detail before you use.</span>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card animate fade-up delay-3">
-                    <div class="product-icon">💡</div>
-                    <h3 class="title">Offer & Benefit Awareness</h3>
-                    <p class="desc">
-                        Learn about offers, benefits, and best practices —
-                        purely for awareness, not promotions.
-                    </p>
-                    <ul>
-                        <li>Ongoing card offers</li>
-                        <li>Cashback & discounts</li>
-                        <li>Usage-based advantages</li>
-                        <li>Avoid extra charges</li>
-                    </ul>
-                    <span class="note">Only knowledge — no promotions.</span>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    {{-- product feature area end --}}
-
-    {{-- knowledge area start  --}}
-    <section class="knowledge-area">
-        <div class="products-glow-step"></div>
-        <div class="knowledge-glow"></div>
-
-        <div class="container">
-
-            <!-- Section Header -->
-            <div class="section-header animate fade-down">
-                <span class="section-tag">Knowledge Hub</span>
-                <h2 class="section-title">
-                    Learn Cards the Right Way,<br>
-                    Step by Step
-                </h2>
-                <p class="section-subtitle">
-                    Clear, practical card knowledge designed for beginners and
-                    everyday users — no jargon, no confusion.
-                </p>
-            </div>
-
-            <!-- Knowledge Cards -->
-            <div class="knowledge-grid">
-
-                <!-- Card 1 -->
-                <div class="knowledge-card animate fade-up delay-1">
-                    <span class="card-badge">Basics</span>
-                    <h3 class="title">Credit Card Explained</h3>
-                    <p class="desc">
-                        Learn how credit cards work from the ground up and
-                        understand the core concepts every user must know.
-                    </p>
-                    <ul>
-                        <li>What is a credit card?</li>
-                        <li>Joining fee vs annual fee</li>
-                        <li>Interest & billing cycles</li>
-                        <li>Card tiers & networks</li>
-                    </ul>
-                    <span class="hint">Perfect for beginners & first-time users</span>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="knowledge-card animate fade-up delay-2">
-                    <span class="card-badge">Networks</span>
-                    <h3 class="title">Debit Card & Network Types</h3>
-                    <p class="desc">
-                        Understand how debit cards work and how payment networks
-                        power everyday transactions.
-                    </p>
-                    <ul>
-                        <li>Debit card usage rules</li>
-                        <li>Visa, Mastercard & RuPay</li>
-                        <li>ATM withdrawal limits</li>
-                        <li>Online & offline safety</li>
-                    </ul>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="knowledge-card animate fade-up delay-3">
-                    <span class="card-badge">Smart Use</span>
-                    <h3 class="title">Fees, Status & Smart Usage</h3>
-                    <p class="desc">
-                        Learn how to use cards wisely and avoid common mistakes
-                        that cost money.
-                    </p>
-                    <ul>
-                        <li>Active vs inactive status</li>
-                        <li>Avoid unnecessary fees</li>
-                        <li>Pros & limitations</li>
-                        <li>Smart daily spending habits</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    {{-- knowledge area end  --}}
-
-
-    {{-- user login area start --}}
-    {{-- <section class="login-split-area">
-        <div class="login-bg-glow"></div>
-
-        <div class="container">
-
-            <div class="login-split">
-                <div class="login-text animate fade-left">
-                    <span class="card-badge">User Login</span>
-
-                    <h2 class="section-title">
-                        One Secure Login.<br>
-                        Smarter Card Experience.
-                    </h2>
-
-                    <p class="section-subtitle">
-                        Create an account to save cards, access deeper knowledge,
-                        and stay updated — all with privacy-first security.
-                    </p>
-
-                    <a href="{{ route('login') }}" class="login-main-btn">
-                        Login to Continue
-                    </a>
-
-                    <p class="login-note">
-                        New here? <a href="{{ route('register') }}">Create an account</a>
-                    </p>
-                </div>
-                <div class="login-highlights">
-
-                    <div class="highlight-item animate fade-up delay-1">
-                        <span class="dot"></span>
-                        <p>Save preferred credit & debit cards</p>
-                    </div>
-
-                    <div class="highlight-item animate fade-up delay-2">
-                        <span class="dot"></span>
-                        <p>Access detailed card knowledge</p>
-                    </div>
-
-                    <div class="highlight-item animate fade-up delay-3">
-                        <span class="dot"></span>
-                        <p>Track updates and new card information</p>
-                    </div>
-
-                    <div class="highlight-item animate fade-up delay-4">
-                        <span class="dot"></span>
-                        <p>Secure and privacy-focused login</p>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </section> --}}
-    <section class="cta-area">
-        <div class="cta-glow"></div>
-
-        <div class="container">
-
-            <div class="cta-content animate fade-up">
-                <span class="cta-tag">Get Started</span>
-
-                <h2 class="cta-title">
-                    Understand Your Cards.<br>
-                    Make Smarter Financial Choices.
-                </h2>
-
-                <p class="cta-text">
-                    Card Advisor GPT helps you learn how your cards work,
-                    avoid unnecessary fees, and use them confidently — all
-                    through simple AI-powered explanations.
-                </p>
-
-                <div class="cta-actions">
-                    <a href="{{ route('register') }}" class="cta-btn primary">
-                        Create Free Account
-                    </a>
-                    <a href="{{ route('login') }}" class="cta-btn secondary">
-                        Login
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    {{-- user login area end --}}
-
-
-
-
-
-
-    {{-- <section class="steps-section py-5">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-12">
-                    <p class="section-subtitle">HOW IT WORKS</p>
-                    <h2 class="section-title">3 Simple Steps To Host A Website</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-9 mx-auto">
-                    <p class="section-desc mx-auto mb-5">
-                        It is a long established fact that a reader will be distracted by the readable content of a page
-                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <div class="step-icon">
-                            <img src="https://dummyimage.com/80x80/cccccc/ffffff" alt="">
-                        </div>
-                        <span class="step-badge">STEP 01</span>
-
-                        <h4 class="step-title">Choose Your Hosting Server</h4>
-                        <p class="step-text">
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page when looking at its layout.
-                        </p>
-                        <a href="#" class="read-more">Read More ↗</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <div class="step-icon">
-                            <img src="https://dummyimage.com/80x80/cccccc/ffffff" alt="">
-                        </div>
-                        <span class="step-badge">STEP 02</span>
-
-                        <h4 class="step-title">Select Your Web Hosting Plan</h4>
-                        <p class="step-text">
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page when looking at its layout.
-                        </p>
-                        <a href="#" class="read-more">Read More ↗</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="step-card">
-                        <div class="step-icon">
-                            <img src="https://dummyimage.com/80x80/cccccc/ffffff" alt="">
-                        </div>
-                        <span class="step-badge">STEP 03</span>
-
-                        <h4 class="step-title">Change Your DNS Address</h4>
-                        <p class="step-text">
-                            It is a long established fact that a reader will be distracted by the readable content
-                            of a page when looking at its layout.
-                        </p>
-                        <a href="#" class="read-more">Read More ↗</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-    <footer class="pf-footer">
-        <div class="pf-container">
-
-            <!-- Top CTA (Soft, Footer-Style) -->
-            <div class="pf-footer-cta animate pf-fade-up">
-                <h3 class="text-white">Start using your cards smarter</h3>
-                <a href="{{ route('register') }}" class="pf-cta-btn">
-                    Create Free Account
-                </a>
-            </div>
-
-            <!-- Main Footer -->
-            <div class="pf-footer-main animate pf-fade-up pf-delay-1">
-
-                <!-- Brand -->
-                <div class="pf-footer-brand">
-                    <h4 class="text-white">Card Advisor GPT</h4>
-                    <p>
-                        An AI-powered card knowledge platform built to help users
-                        understand credit and debit cards clearly — without sales,
-                        bias, or confusion.
-                    </p>
-                </div>
-
-                <!-- Links -->
-                <div class="pf-footer-cols">
-                    <div class="pf-col">
-                        <span>Product</span>
-                        <a href="#">Explore Cards</a>
-                        <a href="#">Knowledge Hub</a>
-                        <a href="#">AI Features</a>
-                    </div>
-
-                    <div class="pf-col">
-                        <span>Company</span>
-                        <a href="#">About Us</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Use</a>
-                    </div>
-
-                    <div class="pf-col">
-                        <span>Account</span>
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Create Account</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Bottom -->
-            <div class="pf-footer-bottom animate pf-fade-up pf-delay-2">
-                © {{ date('Y') }} Card Advisor GPT. All rights reserved.
-            </div>
-
-        </div>
-    </footer>
 
 
 
@@ -624,6 +369,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
         integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="{{ asset('assets/js/mainpage.js') }}"></script>
 
     <script>
