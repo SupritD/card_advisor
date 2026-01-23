@@ -43,8 +43,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/my-cards', [CardController::class, 'index'])
             ->name('user.cards.index');
 
-
-
         Route::post('/my-cards', [CardController::class, 'store'])
             ->name('user.cards.store');
 
