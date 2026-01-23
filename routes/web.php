@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CardController;
 use App\Http\Controllers\User\ChatController;
 use App\Http\Controllers\User\HomeController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -41,6 +42,8 @@ Route::middleware('auth')->group(function () {
         // =========================
         Route::get('/my-cards', [CardController::class, 'index'])
             ->name('user.cards.index');
+
+
 
         Route::post('/my-cards', [CardController::class, 'store'])
             ->name('user.cards.store');

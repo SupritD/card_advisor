@@ -18,6 +18,7 @@ class MstCard extends Model
         'annual_fee',
         'pros',
         'status',
+        'rating',
     ];
 
     public function users()
