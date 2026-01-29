@@ -12,7 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
 
     <!-- master stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -22,7 +23,7 @@
 <body>
     <div class="pr-main-wrapper">
         <div class="glow-bg"></div>
-        
+
         <!-- HEADER -->
         <header class="pr-header">
             <div class="pr-container">
@@ -55,21 +56,22 @@
                         <span class="text-gradient">Credit Card Intelligence</span>
                     </h1>
                     <p class="hero-desc animate fade-up delay-1">
-                        Stop guessing. Start knowing. Our AI analyzes HDFC, SBI, Axis, and ICICI cards
+                        Stop guessing. Start knowing. Our AI analyzes all credit and debit cards
                         to find the perfect match for your lifestyle.
                     </p>
                     <div class="hero-btns animate fade-up delay-2">
                         <a href="{{ route('register') }}" class="pr-primary-btn">Find My Card</a>
-                        <a href="#" class="pr-btn-text">How it works <i class="bi bi-arrow-right"></i></a>
+                        <a href="{{ route('login') }}" class="pr-btn-text">Login <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <div class="hero-visual animate fade-left delay-2">
+                <div class="">
                     <!-- Main Hero Card -->
                     <div class="hero-card-wrapper">
-                        <img src="{{ asset('assets/image/banner/card-premium.png') }}" class="hero-card-img floating" alt="Premium Card" style="border-radius: 20px;">
+                        <img src="{{ asset('assets/image/banner/dashboard-2.png') }}" class="hero-card-img floating"
+                            alt="Premium Card">
                         <div class="hero-card-glow"></div>
-                        
+
                         <!-- Floating Badges -->
                         <div class="chk-badge badge-1">
                             <i class="bi bi-check-circle-fill text-success"></i> 5X Rewards
@@ -92,11 +94,12 @@
                 </div>
 
                 <div class="cards-grid">
-                    
+
                     <!-- HDFC Card -->
                     <div class="bank-card-item animate fade-up delay-1">
                         <div class="card-visual">
-                            <img src="{{ asset('assets/image/banner/card-travel.png') }}" alt="HDFC Regalia">
+                            <img src="{{ asset('assets/image/banner/HDFC-Bank-Regalia-Gold-Credit-Card.png') }}"
+                                alt="HDFC Regalia">
                         </div>
                         <div class="card-details">
                             <h3>HDFC Regalia Gold</h3>
@@ -112,7 +115,8 @@
                     <!-- SBI Card -->
                     <div class="bank-card-item animate fade-up delay-2">
                         <div class="card-visual">
-                            <img src="{{ asset('assets/image/banner/card-cashback.png') }}" alt="SBI Cashback">
+                            <img src="{{ asset('assets/image/banner/SBI-Cashback-Credit-Card.png') }}"
+                                alt="SBI Cashback">
                         </div>
                         <div class="card-details">
                             <h3>SBI Cashback</h3>
@@ -128,7 +132,7 @@
                     <!-- Axis Card -->
                     <div class="bank-card-item animate fade-up delay-3">
                         <div class="card-visual">
-                            <img src="{{ asset('assets/image/banner/card-premium.png') }}" alt="Axis Magnus">
+                            <img src="{{ asset('assets/image/banner/34_axis-magnus-card-img.jpg') }}" alt="Axis Magnus">
                         </div>
                         <div class="card-details">
                             <h3>Axis Magnus</h3>
@@ -144,7 +148,8 @@
                     <!-- ICICI Card -->
                     <div class="bank-card-item animate fade-up delay-4">
                         <div class="card-visual">
-                            <img src="{{ asset('assets/image/banner/card-shopping.png') }}" alt="ICICI Coral">
+                            <img src="{{ asset('assets/image/banner/ICICI-Bank-Coral-Credit-Card.png') }}"
+                                alt="ICICI Coral">
                         </div>
                         <div class="card-details">
                             <h3>ICICI Coral</h3>
@@ -153,6 +158,39 @@
                                 <li>Buy 1 Get 1 Movie Tickets</li>
                                 <li>Dining Discounts</li>
                                 <li>Reliable Fuel Surcharge Waiver</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Amex Card -->
+                    <div class="bank-card-item animate fade-up delay-5">
+                        <div class="card-visual">
+                            <img src="{{ asset('assets/image/banner/Untitled.jpg') }}" alt="Amex Platinum Travel">
+                        </div>
+                        <div class="card-details">
+                            <h3>Amex Platinum Travel</h3>
+                            <span class="card-type">Milestone Rewards</span>
+                            <ul class="card-benefits">
+                                <li>Welcome Gift of 10,000 Points</li>
+                                <li>Great Annual Milestones</li>
+                                <li>Gold Class Experience</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- IDFC Card -->
+                    <div class="bank-card-item animate fade-up delay-6">
+                        <div class="card-visual">
+                            <img src="{{ asset('assets/image/banner/IDFC-Wealth-Credit-Card.png') }}"
+                                alt="IDFC First Wealth">
+                        </div>
+                        <div class="card-details">
+                            <h3>IDFC First Wealth</h3>
+                            <span class="card-type">Lifetime Free Premium</span>
+                            <ul class="card-benefits">
+                                <li>Lifetime Free Credit Card</li>
+                                <li>Interest-free Cash Withdrawal</li>
+                                <li>Buy 1 Get 1 Movies</li>
                             </ul>
                         </div>
                     </div>
@@ -167,12 +205,16 @@
                 <div class="about-wrapper animate fade-up">
                     <div class="about-text">
                         <span class="tag-pill">About Us</span>
-                        <h2 class="section-title">Built to Make Cards <br> <span class="text-primary">Simple & Clear.</span></h2>
-                        <p class="section-desc">
-                            Card Advisor GPT is built to solve one simple problem: <strong>people don’t fully understand their cards.</strong>
+                        <h2 class="section-title">Built to Make Cards <br> <span class="text-primary">Simple &
+                                Clear.</span></h2>
+                        <p class="section-desc pb-2">
+                            Card Advisor GPT is built to solve one simple problem: <strong>people don’t fully understand
+                                their cards.</strong>
                             <br><br>
-                            Banks often explain cards using complex terms. Our AI reads details like bank name, card type, network, fees, and benefits, then presents everything in clear, easy language.
+                            Banks often explain cards using complex terms. Our AI reads details like bank name, card
+                            type, network, fees, and benefits, then presents everything in clear, easy language.
                         </p>
+                        <a href="{{ route('register') }}" class="pr-primary-btn">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -192,7 +234,8 @@
                     <div class="product-box animate fade-up delay-1">
                         <div class="p-icon"><i class="bi bi-robot"></i></div>
                         <h3>Card Knowledge AI</h3>
-                        <p>An intelligent GPT-powered chatbot that answers questions about cards instantly and clearly.</p>
+                        <p>An intelligent GPT-powered chatbot that answers questions about cards instantly and clearly.
+                        </p>
                         <ul class="mini-list">
                             <li><i class="bi bi-check2"></i> Credit & debit cards</li>
                             <li><i class="bi bi-check2"></i> Card categories & tiers</li>
@@ -257,21 +300,30 @@
         <!-- FEATURES / HOW IT WORKS -->
         <section class="features-section">
             <div class="pr-container">
+                <div class="section-head text-center animate fade-up">
+                    <span class="tag-pill">Why Choose Us</span>
+                    <h2 class="section-title">Smarter Decisions, Zero Bias.</h2>
+                    <p class="section-desc">We provide the tools you need to understand the credit card market.</p>
+                </div>
+
                 <div class="features-grid">
                     <div class="feature-box animate fade-right">
                         <div class="f-icon"><i class="bi bi-robot"></i></div>
                         <h4>AI-Powered Analysis</h4>
-                        <p>Our AI reads the fine print so you don't have to. Understand fees and hidden charges in seconds.</p>
+                        <p>Our AI reads the fine print so you don't have to. Understand fees and hidden charges in
+                            seconds.</p>
                     </div>
                     <div class="feature-box animate fade-right delay-1">
                         <div class="f-icon"><i class="bi bi-layers"></i></div>
                         <h4>Side-by-Side Compare</h4>
-                        <p>Compare HDFC vs SBI vs Axis instantly. See which card actually puts more money in your pocket.</p>
+                        <p>Compare HDFC vs SBI vs Axis instantly. See which card actually puts more money in your
+                            pocket.</p>
                     </div>
                     <div class="feature-box animate fade-right delay-2">
                         <div class="f-icon"><i class="bi bi-shield-check"></i></div>
                         <h4>Unbiased Trust</h4>
-                        <p>We don't sell cards. We explain them. Get 100% neutral advice based on data, not commissions.</p>
+                        <p>We don't sell cards. We explain them. Get 100% neutral advice based on data, not commissions.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -302,7 +354,8 @@
                     <div class="footer-col brand-col animate fade-up">
                         <a href="#" class="footer-logo">Card Advisor<span class="text-primary">.</span></a>
                         <p class="footer-mission">
-                            Empowering millions to understand, compare, and maximize their credit card rewards through AI-driven insights.
+                            Empowering millions to understand, compare, and maximize their credit card rewards through
+                            AI-driven insights.
                         </p>
                         <div class="social-links">
                             <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
@@ -345,7 +398,8 @@
                 </div>
 
                 <div class="footer-bottom">
-                    <p>&copy; {{ date('Y') }} Card Advisor GPT. Built for smart financial decisions.</p>
+                    <!-- <p>&copy; {{ date('Y') }} Card Advisor GPT. Built for smart financial decisions.</p> -->
+                    <p>Copyright © 2026 <a href="https://infinityplus1.in/" class="company">Infinity Plus 1</a></p>
                 </div>
             </div>
         </footer>
@@ -373,7 +427,7 @@
     <script src="{{ asset('assets/js/mainpage.js') }}"></script>
 
     <script>
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             let navbar = document.getElementById('mainNav');
             if (window.scrollY > 80) {
                 navbar.classList.add('scrolled');
@@ -381,71 +435,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-    </script>
-    <script>
-        (() => {
-            const dot = document.querySelector('.ux-cursor-dot');
-            const ring = document.querySelector('.ux-cursor-ring');
-
-            let mouseX = window.innerWidth / 2;
-            let mouseY = window.innerHeight / 2;
-            let ringX = mouseX;
-            let ringY = mouseY;
-
-            // Track mouse
-            document.addEventListener('mousemove', e => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-
-                dot.style.left = mouseX + 'px';
-                dot.style.top = mouseY + 'px';
-            });
-
-            // Smooth follow (ONLY follows mouse — no snapping)
-            function animate() {
-                ringX += (mouseX - ringX) * 0.18;
-                ringY += (mouseY - ringY) * 0.18;
-
-                ring.style.left = ringX + 'px';
-                ring.style.top = ringY + 'px';
-
-                requestAnimationFrame(animate);
-            }
-            animate();
-
-            /* Hover states (NO position manipulation) */
-            const hoverEls = 'a, button, .btn, [role="button"]';
-            const textEls = 'input, textarea, select, p, h1, h2, h3, h4, h5, h6, span';
-
-            document.querySelectorAll(hoverEls).forEach(el => {
-                el.addEventListener('mouseenter', () =>
-                    document.body.classList.add('cursor-hover')
-                );
-                el.addEventListener('mouseleave', () =>
-                    document.body.classList.remove('cursor-hover')
-                );
-            });
-
-            document.querySelectorAll(textEls).forEach(el => {
-                el.addEventListener('mouseenter', () =>
-                    document.body.classList.add('cursor-text')
-                );
-                el.addEventListener('mouseleave', () =>
-                    document.body.classList.remove('cursor-text')
-                );
-            });
-
-            // Hide when leaving window
-            document.addEventListener('mouseleave', () => {
-                dot.style.opacity = 0;
-                ring.style.opacity = 0;
-            });
-
-            document.addEventListener('mouseenter', () => {
-                dot.style.opacity = 1;
-                ring.style.opacity = 1;
-            });
-        })();
     </script>
 
 
