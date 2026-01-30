@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 :root {
     --primary: #4f46e5;
@@ -11,7 +11,7 @@
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     color: var(--text-white);
     background-color: var(--dark-bg);
     margin: 0;
@@ -21,7 +21,7 @@ body {
 a {
     text-decoration: none;
     color: inherit;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 ul {
@@ -46,8 +46,16 @@ ul {
     width: 100vw;
     height: 100vh;
     background:
-        radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.1) 0%, transparent 40%);
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(79, 70, 229, 0.15) 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(56, 189, 248, 0.1) 0%,
+            transparent 40%
+        );
     pointer-events: none;
     z-index: -1;
 }
@@ -100,7 +108,7 @@ ul {
     gap: 40px;
 }
 
-@media(min-width: 992px) {
+@media (min-width: 992px) {
     .pr-nav {
         display: flex;
     }
@@ -160,10 +168,9 @@ ul {
     padding-top: 20px;
 }
 
-@media(min-width: 992px) {
+@media (min-width: 992px) {
     .hero-section .pr-container {
-        grid-template-columns: 1.2fr 1fr;
-        
+        grid-template-columns: 1fr 1.5fr;
     }
 }
 
@@ -174,7 +181,7 @@ ul {
     margin-bottom: 24px;
 }
 
-@media(min-width: 992px) {
+@media (min-width: 992px) {
     .hero-title {
         font-size: 64px;
     }
@@ -188,7 +195,7 @@ ul {
 }
 
 .hero-desc {
-    font-size: 18px;
+    font-size: 17px;
     color: var(--text-gray);
     margin-bottom: 40px;
     max-width: 500px;
@@ -217,6 +224,7 @@ ul {
 
 .hero-card-img {
     width: 100%;
+    border-radius: 20px;
     /* max-width: 450px; */
     /* transform: rotateY(-15deg) rotateX(10deg);
     transition: transform 0.5s;
@@ -232,14 +240,13 @@ ul {
 }
 
 @keyframes float {
-
     0%,
     100% {
-        transform: translateY(0) rotateY(-15deg) rotateX(10deg);
+        transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-20px) rotateY(-15deg) rotateX(10deg);
+        transform: translateY(-20px);
     }
 }
 
@@ -412,7 +419,11 @@ ul {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 60%);
+    background: radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.1) 0%,
+        transparent 60%
+    );
     pointer-events: none;
 }
 
@@ -442,7 +453,9 @@ ul {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     padding: 32px;
-    transition: transform 0.3s, border-color 0.3s;
+    transition:
+        transform 0.3s,
+        border-color 0.3s;
 }
 
 .product-box:hover {
@@ -489,7 +502,6 @@ ul {
 .mini-list li i {
     color: var(--primary-light);
 }
-
 
 /* ====================
    Knowledge Section
@@ -545,8 +557,8 @@ ul {
 /* ====================
    Features Section
 ==================== */
-.features-section{
-padding-bottom: 80px; 
+.features-section {
+    padding-bottom: 80px;
 }
 
 .features-grid {
@@ -612,7 +624,11 @@ padding-bottom: 80px;
     transform: translate(-50%, -50%);
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(79, 70, 229, 0.2) 0%, transparent 70%);
+    background: radial-gradient(
+        circle,
+        rgba(79, 70, 229, 0.2) 0%,
+        transparent 70%
+    );
     filter: blur(80px);
     z-index: -1;
     pointer-events: none;
@@ -642,7 +658,9 @@ padding-bottom: 80px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition:
+        transform 0.3s,
+        box-shadow 0.3s;
     box-shadow: 0 10px 40px rgba(79, 70, 229, 0.3);
 }
 
@@ -788,7 +806,6 @@ padding-bottom: 80px;
    Mobile Responsiveness
 ==================== */
 @media (max-width: 991px) {
-
     /* 1. Global Spacing */
     .pr-container {
         padding: 0 20px;
@@ -908,14 +925,14 @@ padding-bottom: 80px;
     }
 }
 
-.company{
+.company {
     color: #c9c9c9;
     font-size: 14px;
     font-weight: 600;
 }
 .company:hover {
     color: #4f46e5;
-    transform: scale3d(1.2,1.2,1.2);
+    transform: scale3d(1.2, 1.2, 1.2);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     text-shadow: 0 0 10px #5d56ef;
