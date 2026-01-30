@@ -68,8 +68,8 @@
                 <div class="">
                     <!-- Main Hero Card -->
                     <div class="hero-card-wrapper">
-                        <img src="{{ asset('assets/image/banner/dashboard-2.png') }}" class="hero-card-img floating"
-                            alt="Premium Card">
+                        <img src="{{ asset('assets/image/banner/dashboard-2.png') }}" class="hero-card-img"
+                            alt="Premium Dashboard">
                         <div class="hero-card-glow"></div>
 
                         <!-- Floating Badges -->
@@ -207,7 +207,7 @@
                         <span class="tag-pill">About Us</span>
                         <h2 class="section-title">Built to Make Cards <br> <span class="text-primary">Simple &
                                 Clear.</span></h2>
-                        <p class="section-desc pb-2">
+                        <p class="section-desc pb-4">
                             Card Advisor GPT is built to solve one simple problem: <strong>people don’t fully understand
                                 their cards.</strong>
                             <br><br>

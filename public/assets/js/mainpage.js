@@ -84,19 +84,19 @@ $(document).ready(function () {
     // ==========================================
     // 6. Hero 3D Mouse Parallax (Optimized)
     // ==========================================
-    if (window.innerWidth > 991) {
-        document.addEventListener("mousemove", (e) => {
-            const mouseX = (e.clientX / window.innerWidth - 0.5) * 15;
-            const mouseY = (e.clientY / window.innerHeight - 0.5) * 15;
+    // if (window.innerWidth > 991) {
+    //     document.addEventListener("mousemove", (e) => {
+    //         const mouseX = (e.clientX / window.innerWidth - 0.5) * 15;
+    //         const mouseY = (e.clientY / window.innerHeight - 0.5) * 15;
 
-            gsap.to(".hero-card-img", {
-                rotationY: -15 + mouseX,
-                rotationX: 10 - mouseY,
-                duration: 1,
-                ease: "power2.out"
-            });
-        });
-    }
+    //         gsap.to(".hero-card-img", {
+    //             rotationY: -15 + mouseX,
+    //             rotationX: 10 - mouseY,
+    //             duration: 1,
+    //             ease: "power2.out"
+    //         });
+    //     });
+    // }
 
     console.log("GSAP Premium Animation Suite Loaded.");
 });
