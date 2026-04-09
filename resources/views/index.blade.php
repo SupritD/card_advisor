@@ -34,10 +34,10 @@
                 </div>
 
                 <nav class="pr-nav animate pr-fade pr-delay-1">
-                    <a href="#">Cards</a>
-                    <a href="#">Compare</a>
-                    <a href="#">Benefits</a>
-                    <a href="#">Learn</a>
+                    <a href="#card">Cards</a>
+                    <a href="#compare">Compare</a>
+                    <a href="#benefits">Benefits</a>
+                    <a href="#learn">Learn</a>
                 </nav>
 
                 <div class="pr-actions animate pr-fade pr-delay-2">
@@ -73,19 +73,19 @@
                         <div class="hero-card-glow"></div>
 
                         <!-- Floating Badges -->
-                        <div class="chk-badge badge-1">
+                        <!-- <div class="chk-badge badge-1">
                             <i class="bi bi-check-circle-fill text-success"></i> 5X Rewards
                         </div>
                         <div class="chk-badge badge-2">
                             <i class="bi bi-check-circle-fill text-success"></i> Lounge Access
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- REAL CARDS SHOWCASE -->
-        <section class="cards-showcase">
+        <section id="card" class="cards-showcase">
             <div class="pr-container">
                 <div class="section-head text-center animate fade-up">
                     <span class="tag-pill">Premium Selection</span>
@@ -200,7 +200,7 @@
         </section>
 
         <!-- ABOUT SECTION (Restored & Modernized) -->
-        <section class="about-section">
+        <section id="compare" class="about-section">
             <div class="pr-container">
                 <div class="about-wrapper animate fade-up">
                     <div class="about-text">
@@ -221,7 +221,7 @@
         </section>
 
         <!-- PRODUCTS SECTION (Restored & Modernized) -->
-        <section class="products-section">
+        <section id="benefits" class="products-section">
             <div class="pr-container">
                 <div class="section-head text-center animate fade-up">
                     <span class="tag-pill">Our Tools</span>
@@ -266,7 +266,7 @@
         </section>
 
         <!-- KNOWLEDGE HUB SECTION (Restored & Modernized) -->
-        <section class="knowledge-section">
+        <section id="learn" class="knowledge-section">
             <div class="pr-container">
                 <div class="section-head text-center animate fade-up">
                     <span class="tag-pill">Knowledge Hub</span>

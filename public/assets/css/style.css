@@ -191,6 +191,14 @@ ul {
     left: 50%;
 }
 
+@media (max-width: 450px) {
+    .pr-primary-btn {
+   
+    padding: 10px 15px;
+   
+    }
+}
+
 /* ====================
    Hero Section
 ==================== */
@@ -957,6 +965,7 @@ ul {
         font-size: 36px;
         /* Massive reduction from 64px */
         line-height: 1.2;
+        margin-top: 30px;
     }
 
     .hero-desc {
