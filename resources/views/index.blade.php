@@ -157,11 +157,11 @@
             class="invisible opacity-0 -translate-y-4 transition-all duration-300 md:hidden bg-[#0e0e0e]/95 backdrop-blur-3xl border-t border-outline-variant/10 absolute w-full left-0 shadow-2xl">
             <div class="flex flex-col px-6 py-6 gap-6">
                 <a class="text-gray-400 hover:text-white transition-colors font-headline font-bold text-lg border-b border-outline-variant/10 pb-4"
-                href="#cards">Cards</a>
+                    href="#cards">Cards</a>
                 <a class="text-gray-400 hover:text-white transition-colors font-headline font-bold text-lg border-b border-outline-variant/10 pb-4"
-                href="#dashboard">Dashboard</a>
+                    href="#dashboard">Dashboard</a>
                 <a class="text-gray-400 hover:text-white transition-colors font-headline font-bold text-lg border-b border-outline-variant/10 pb-4"
-                href="#chat">Chat</a>
+                    href="#chat">Chat</a>
                 <a class="text-gray-400 hover:text-white transition-colors font-headline font-bold text-lg border-b border-outline-variant/10 pb-4"
                     href="#features">Features</a>
                 <div class="pt-4 flex flex-col gap-4">
@@ -191,12 +191,12 @@
                         class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-3 hover:scale-95 transition-transform"
                         onclick="window.location.hash='#chat'">
                         <span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
-                        Chat with CardBot
+                        <a href="{{ route('register') }}"> Chat with CardBot</a>
                     </button>
                     <button
                         class="bg-surface-container-highest px-8 py-4 rounded-xl font-headline font-bold border border-outline-variant/15 hover:bg-surface-bright transition-colors flex items-center justify-center"
                         onclick="window.location.hash='#cards'">
-                        Explore Cards
+                        <a href="#cards">Explore Cards</a>
                     </button>
                 </div>
             </div>
@@ -291,7 +291,9 @@
             <div class="card-item bg-surface-container p-8 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all group"
                 data-type="credit" data-network="visa">
                 <div class="mb-6 aspect-[1.6/1] rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <img src="{{ asset('assets/image/cards/HDFC-Bank-Regalia-Gold-Credit-Card.png') }}" alt="HDFC Regalia Gold" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                    <img src="{{ asset('assets/image/cards/HDFC-Bank-Regalia-Gold-Credit-Card.png') }}"
+                        alt="HDFC Regalia Gold"
+                        class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <div class="space-y-4">
                     <div class="flex justify-between items-start">
@@ -307,7 +309,7 @@
                         <span class="bg-tertiary/10 text-tertiary px-3 py-1 rounded-md text-xs font-bold">3x
                             Travel</span>
                     </div>
-                    <a href="#chat"
+                    <a href="{{ route('register') }}"
                         class="w-full mt-4 py-3 bg-surface-container-highest rounded-xl text-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all flex items-center justify-center gap-2 inline-block">
                         <span class="material-symbols-outlined text-sm" data-icon="smart_toy">smart_toy</span> Ask Bot
                     </a>
@@ -317,7 +319,8 @@
             <div class="card-item bg-surface-container p-8 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all group"
                 data-type="credit" data-network="amex">
                 <div class="mb-6 aspect-[1.6/1] rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <img src="{{ asset('assets/image/cards/american.jpg') }}" alt="American Express" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                    <img src="{{ asset('assets/image/cards/american.jpg') }}" alt="American Express"
+                        class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <div class="space-y-4">
                     <div>
@@ -330,7 +333,7 @@
                         <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-md text-xs font-bold">Lounge
                             Access</span>
                     </div>
-                    <a href="#chat"
+                    <a href="{{ route('register') }}"
                         class="w-full mt-4 py-3 bg-surface-container-highest rounded-xl text-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all flex items-center justify-center gap-2 inline-block">
                         <span class="material-symbols-outlined text-sm" data-icon="smart_toy">smart_toy</span> Ask Bot
                     </a>
@@ -340,7 +343,8 @@
             <div class="card-item bg-surface-container p-8 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all group"
                 data-type="credit" data-network="mastercard">
                 <div class="mb-6 aspect-[1.6/1] rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <img src="{{ asset('assets/image/cards/axis-magnus-card-img.jpg') }}" alt="Axis Magnus" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                    <img src="{{ asset('assets/image/cards/axis-magnus-card-img.jpg') }}" alt="Axis Magnus"
+                        class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <div class="space-y-4">
                     <div>
@@ -353,7 +357,7 @@
                         <span class="bg-primary/10 text-primary px-3 py-1 rounded-md text-xs font-bold">5x
                             Lifestyle</span>
                     </div>
-                    <a href="#chat"
+                    <a href="{{ route('register') }}"
                         class="w-full mt-4 py-3 bg-surface-container-highest rounded-xl text-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all flex items-center justify-center gap-2 inline-block">
                         <span class="material-symbols-outlined text-sm" data-icon="smart_toy">smart_toy</span> Ask Bot
                     </a>
@@ -364,7 +368,8 @@
             <div class="card-item bg-surface-container p-8 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all group"
                 data-type="credit" data-network="visa">
                 <div class="mb-6 aspect-[1.6/1] rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <img src="{{ asset('assets/image/cards/SBI-Cashback-Credit-Card.png') }}" alt="SBI Cashback" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                    <img src="{{ asset('assets/image/cards/SBI-Cashback-Credit-Card.png') }}" alt="SBI Cashback"
+                        class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <div class="space-y-4">
                     <div>
@@ -372,10 +377,12 @@
                         <p class="text-on-surface-variant text-sm">SBI • Credit</p>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                        <span class="bg-primary/10 text-primary px-3 py-1 rounded-md text-xs font-bold">5% Cashback</span>
-                        <span class="bg-secondary/10 text-secondary px-3 py-1 rounded-md text-xs font-bold">Waiver</span>
+                        <span class="bg-primary/10 text-primary px-3 py-1 rounded-md text-xs font-bold">5%
+                            Cashback</span>
+                        <span
+                            class="bg-secondary/10 text-secondary px-3 py-1 rounded-md text-xs font-bold">Waiver</span>
                     </div>
-                    <a href="#chat"
+                    <a href="{{ route('register') }}"
                         class="w-full mt-4 py-3 bg-surface-container-highest rounded-xl text-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all flex items-center justify-center gap-2 inline-block">
                         <span class="material-symbols-outlined text-sm" data-icon="smart_toy">smart_toy</span> Ask Bot
                     </a>
@@ -385,7 +392,8 @@
             <div class="card-item bg-surface-container p-8 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all group"
                 data-type="credit" data-network="mastercard">
                 <div class="mb-6 aspect-[1.6/1] rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <img src="{{ asset('assets/image/cards/ICICI-Bank-Coral-Credit-Card.png') }}" alt="ICICI Coral" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                    <img src="{{ asset('assets/image/cards/ICICI-Bank-Coral-Credit-Card.png') }}" alt="ICICI Coral"
+                        class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <div class="space-y-4">
                     <div>
@@ -398,7 +406,7 @@
                         <span class="bg-tertiary/10 text-tertiary px-3 py-1 rounded-md text-xs font-bold">Dining
                             Offers</span>
                     </div>
-                    <a href="#chat"
+                    <a href="{{ route('register') }}"
                         class="w-full mt-4 py-3 bg-surface-container-highest rounded-xl text-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all flex items-center justify-center gap-2 inline-block">
                         <span class="material-symbols-outlined text-sm" data-icon="smart_toy">smart_toy</span> Ask Bot
                     </a>
@@ -408,7 +416,8 @@
             <div class="card-item bg-surface-container p-8 rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all group"
                 data-type="credit" data-network="visa">
                 <div class="mb-6 aspect-[1.6/1] rounded-xl flex items-center justify-center relative overflow-hidden">
-                    <img src="{{ asset('assets/image/cards/IDFC-Wealth-Credit-Card.png') }}" alt="IDFC Wealth" class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
+                    <img src="{{ asset('assets/image/cards/IDFC-Wealth-Credit-Card.png') }}" alt="IDFC Wealth"
+                        class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105">
                 </div>
                 <div class="space-y-4">
                     <div>
@@ -421,7 +430,7 @@
                         <span class="bg-primary/10 text-primary px-3 py-1 rounded-md text-xs font-bold">10x
                             Rewards</span>
                     </div>
-                    <a href="#chat"
+                    <a href="{{ route('register') }}"
                         class="w-full mt-4 py-3 bg-surface-container-highest rounded-xl text-sm font-bold group-hover:bg-primary group-hover:text-on-primary transition-all flex items-center justify-center gap-2 inline-block">
                         <span class="material-symbols-outlined text-sm" data-icon="smart_toy">smart_toy</span> Ask Bot
                     </a>
@@ -640,20 +649,22 @@
             <div
                 class="bg-gradient-to-br from-primary-dim to-primary p-12 md:p-20 rounded-[3rem] text-center space-y-10 relative overflow-hidden">
                 <div
-                    class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_0%,_transparent_100%)]">
+                    class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_0%,_transparent_100%)] pointer-events-none">
                 </div>
-                <h2 class="text-4xl md:text-6xl font-black font-headline text-on-primary-container">Want more benefits?
-                    <br />Apply for a new card.</h2>
-                <div class="flex flex-wrap justify-center items-center gap-12 opacity-60">
+                <h2 class="text-4xl md:text-6xl font-black font-headline text-on-primary-container relative z-10">Want more benefits?
+                    <br />Apply for a new card.
+                </h2>
+                <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 relative z-10">
                     <span class="text-on-primary-container font-black text-2xl tracking-tighter">VISA</span>
                     <span class="text-on-primary-container font-black text-2xl tracking-tighter">Mastercard</span>
                     <span class="text-on-primary-container font-black text-2xl tracking-tighter">AMEX</span>
                     <span class="text-on-primary-container font-black text-2xl tracking-tighter">RuPay</span>
                 </div>
-                <a href="#cards"
-                    class="bg-on-primary-container text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-transform inline-block">
+                <a href="{{ route('register') }}"
+                    class="bg-on-primary-container text-white px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-transform inline-block relative z-10">
                     Find my ideal card
                 </a>
+                
             </div>
         </section>
     </main>
@@ -679,11 +690,11 @@
                 <span class="font-inter text-md tracking-wide uppercase text-white-800 mb-6 block">Product</span>
                 <ul class="space-y-3">
                     <li><a class="text-gray-500 hover:text-blue-400 transition-colors hover:translate-x-1 inline-block duration-200"
-                    href="#cards">Cards</a></li>
+                            href="#cards">Cards</a></li>
                     <li><a class="text-gray-500 hover:text-blue-400 transition-colors hover:translate-x-1 inline-block duration-200"
-                    href="#dashboard">Dashboard</a></li>
+                            href="#dashboard">Dashboard</a></li>
                     <li><a class="text-gray-500 hover:text-blue-400 transition-colors hover:translate-x-1 inline-block duration-200"
-                    href="#chat">Card</a></li>
+                            href="#chat">Card</a></li>
                     <li><a class="text-gray-500 hover:text-blue-400 transition-colors hover:translate-x-1 inline-block duration-200"
                             href="#features">Features</a></li>
                 </ul>
